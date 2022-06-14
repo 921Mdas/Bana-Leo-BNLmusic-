@@ -1,0 +1,21 @@
+.artist_info_bio {
+  background-color: whitesmoke;
+  padding: 1em;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.content_likeBook {
+  display: flex;
+  gap: 2em;
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.track_actions {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+}

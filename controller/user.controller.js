@@ -51,12 +51,11 @@ const register = async (req, res, next) => {
 const sendUser = async (req, res, next) => {
   try {
     //   only with react - try simplify
-    // const {
-    //   localUser: { email, password },
-    // } = req.body;
+    const {
+      localUser: { email, password },
+    } = req.body;
 
-    const { email, password } = req.body;
-    console.log(req.body);
+    // const { email, password } = req.body;
 
     let Auth = false;
 

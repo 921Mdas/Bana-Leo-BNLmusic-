@@ -1,0 +1,556 @@
+.App {
+  overflow-y: scroll;
+  padding: 1em;
+}
+
+/* navbar */
+
+.Tracks-Preview form {
+  height: 50%;
+  padding-top: 100px;
+}
+
+.equalizer_icon {
+  font-size: 100px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--bgc-grey-light);
+  /* animation: equalize 5s ease-in-out infinite forwards alternate; */
+}
+
+.notif {
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translateY(-50%);
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.2em;
+  cursor: pointer;
+  color: white;
+  font-size: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.5s ease-in-out;
+}
+
+.logoContainer span {
+  font-size: 15px;
+}
+
+.contentnavSection {
+  display: flex;
+  gap: 1em;
+  top: 15px;
+  right: 0;
+}
+
+.logoContainer:hover {
+  color: var(--clr) !important;
+  transform: scale(1.1);
+}
+
+/* artists */
+
+.noartists {
+  font-weight: bold;
+  width: 300px;
+  color: var(--clr);
+  text-align: center;
+}
+
+/* allartists */
+
+.alltracks {
+  width: 100%;
+  min-height: 150vh;
+  padding: 1em;
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.74), black),
+    url("../images-client/pattern2.jpeg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+#track_all {
+  padding: 0.5em 1em;
+}
+
+.alltracks-content {
+  border: solid 1px white;
+  width: 100%;
+  height: max-content;
+  margin-top: 9vh;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
+  grid-template-rows: 100px;
+  grid-auto-rows: 100px;
+  gap: 1em;
+  padding: 1em;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(96, 96, 97, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+/* homepage */
+
+/* bio */
+
+.Bio {
+  font-size: 18px;
+  padding-top: 0.5em;
+  height: 120px;
+  /* overflow-y: scroll; */
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #ededed;
+}
+
+audio::-webkit-media-controls-play-button {
+  transition: all 0.5s ease-in-out;
+}
+
+audio::-webkit-media-controls-play-button:hover {
+  background-color: rgba(177, 212, 224, 0.7);
+  border-radius: 50%;
+}
+
+audio::-webkit-media-controls-current-time-display {
+  color: var(--clr);
+}
+
+.audio::-webkit-media-controls-timeline {
+  width: 150px;
+}
+
+.artist-preview {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.aritst-pic {
+  width: 100px;
+  height: 100px;
+  border: solid 1px rgb(179, 179, 179);
+  border-radius: 10px;
+  /* border: solid 1px red; */
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+
+  background-image: url("../images-client/concert.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* border: solid 1px red; */
+}
+
+.nomusic {
+  /* margin-top: 1em; */
+  padding: 1em;
+  text-align: center;
+  color: rgb(228, 226, 226);
+}
+
+.aritst-pic img,
+.avatar {
+  width: 100px;
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+  /* border: solid 1px red; */
+}
+
+.social_icons {
+  width: 300px;
+  font-size: 25px;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.fb {
+  color: rgb(90, 138, 241);
+}
+
+.yt {
+  color: rgb(155, 2, 2);
+}
+
+.tw {
+  color: blueviolet;
+}
+
+.insta {
+  color: rgb(180, 100, 34);
+}
+
+.social_ic {
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.social_ic:hover {
+  transform: scale(1.2);
+}
+
+.cardSubtitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 150px;
+  background-color: var(--bgc-light);
+  border-radius: 10px;
+  height: 65px;
+  width: 100px;
+  position: relative;
+}
+
+.cardSubtitle span {
+  margin-top: 1em;
+  font-weight: 600;
+}
+
+.icon {
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 5px;
+}
+
+.AllTracks {
+  /* display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2.5em 0; */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+
+.tracks {
+  background-color: rgb(196, 196, 196);
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: scroll;
+}
+
+.audiofilectrl {
+  position: absolute;
+  right: 0%;
+}
+
+.uploadform {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 0 auto 100px auto;
+  padding: 2em;
+  border: solid 1px rgba(134, 133, 133, 0.267);
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 3px 8px -1px rgba(134, 133, 133, 0.404);
+  background-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.876),
+      rgba(0, 0, 0, 0.876)
+    ),
+    url("../images-client/pattern.webp");
+}
+
+.upload_icon_btn {
+  color: white;
+  font-size: 30px;
+}
+
+.uploadBtn {
+  background-color: var(--clr) !important;
+  border: none !important;
+  color: black !important;
+  font-weight: bold !important;
+}
+
+.forminput {
+  background: black !important;
+}
+
+.Tracks-Preview {
+  width: 80%;
+  min-height: 100%;
+  padding: 1em 1em 2em 1em;
+  margin-bottom: 1em;
+  margin-top: 12em;
+}
+
+.Tracks-Preview form {
+  position: relative;
+}
+
+.Tracks-Preview .collectionTitle {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5em;
+  gap: 1.5em;
+}
+
+.collectionTitle {
+  margin-left: 130px;
+}
+
+.track {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1em;
+  position: relative;
+  /* width: 70%; */
+  border-radius: 10px;
+  background: #ededed;
+  /* border: solid 2px red; */
+  /* box-shadow: 20px 20px 60px #c9c9c9, -20px -20px 60px #ffffff96; */
+}
+
+.playBTn {
+  font-size: 50px;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.playBTn:hover {
+  color: var(--clr);
+  transform: scale(1.2);
+}
+
+.trackIcon {
+  font-size: 25px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.trackIcon:hover {
+  transform: scale(1.1);
+  color: var(--clr);
+}
+
+.heart {
+  font-size: 30px;
+}
+
+.heart-full,
+.book-full {
+  color: var(--clr) !important;
+}
+
+.artist_info {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  align-items: center;
+  width: 400px;
+  gap: 20px;
+  padding: 1em 0;
+  position: relative;
+}
+
+.artist_info audio {
+  position: absolute;
+  left: 40%;
+}
+
+.info {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  width: 600px;
+}
+
+.info h5 {
+  color: var(--clr);
+}
+
+.info p {
+  color: rgb(119, 119, 119);
+}
+
+/* form */
+.App-header-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.App-header-form h3 {
+  color: white;
+}
+
+label {
+  display: block;
+  color: rgb(255, 255, 255);
+}
+
+.submission_btns {
+  width: 220px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel {
+  background: none !important;
+  border: solid 1px white !important;
+}
+
+.cancel:hover {
+  background-color: rgba(255, 255, 255, 0.219) !important;
+}
+
+.artist-submission {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.Discover a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.Discover,
+.submission {
+  background-color: var(--clr) !important;
+  border: none !important;
+  font-weight: bold !important;
+  transition: all 0.5s ease-in-out;
+}
+
+.submission:hover,
+.Discover:hover {
+  background-color: var(--clr-light) !important;
+}
+
+.Discover:hover a {
+  color: white;
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1em;
+  text-align: center;
+}
+
+.copyrightSection {
+  display: flex;
+  gap: 1em;
+}
+
+.review {
+  padding: 1em 0;
+}
+
+/* Footer */
+
+.footerLinks {
+  display: grid;
+  height: 400px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+  justify-content: center;
+  align-items: center;
+  padding-top: 1em;
+  /* margin-top: 150px; */
+}
+
+.footerLinks h3 {
+  color: var(--clr);
+  text-align: center;
+}
+
+.general {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footerLinks ul {
+  height: 100px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.footerLinks ul li {
+  list-style: none;
+  font-size: 20px;
+  color: var(--bgc-grey);
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.footerLinks ul li:hover {
+  color: white;
+}
+
+.social_links {
+  width: 100%;
+  height: 200px;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+  color: var(--bgc-grey);
+}
+
+.socialIcons,
+.sponsorIcons {
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.socialIcons:nth-child(n):hover,
+.sponsorIcons:nth-child(n):hover {
+  color: white;
+}
+
+.sponsors {
+  display: flex;
+  justify-content: center;
+  gap: 5em;
+  margin-top: 2em;
+  color: var(--bgc-grey);
+}
+
+.socialIcons,
+.sponsorIcons {
+  font-size: 40px;
+}
+/* .moreContent .explore_history .preview{
+
+} */
+
+/* small screens */

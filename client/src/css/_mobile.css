@@ -1,0 +1,266 @@
+@media screen and (max-width: 600px) {
+  /* main */
+  .App {
+    overflow: hidden;
+  }
+
+  /* navbar */
+  .navigation {
+    max-width: 100%;
+    margin: 1 auto;
+  }
+
+  .welcome_message {
+    position: absolute;
+    top: 10%;
+  }
+
+  /* landing page */
+  .landingpage h1 {
+    margin-top: 2em;
+  }
+
+  .styledHeadline {
+    font-size: 40px;
+    width: 90%;
+    margin-top: 1em;
+  }
+
+  .searchbar {
+    width: 90%;
+  }
+
+  /* add artist btn */
+
+  .nextpage {
+    position: absolute;
+    top: 1%;
+    left: 50%;
+    height: 50px;
+    width: 20%;
+    transform: translateX(-50%);
+  }
+
+  /* description section  */
+  .description h3 {
+    font-size: 25px;
+    margin: 10px auto;
+    max-width: 60%;
+    text-align: center;
+  }
+
+  .description p {
+    max-width: 60%;
+    font-size: 18px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* ******** Bio page */
+
+  .artist_info audio {
+    position: absolute;
+    left: 27%;
+    top: 50%;
+    transform: translateY(-25%);
+    padding: 0;
+  }
+
+  /* card gallery */
+
+  .cardGallery {
+    padding-top: 10vh;
+  }
+
+  .google {
+    overflow: hidden;
+  }
+
+  .AllTracks {
+    min-height: 20vh;
+    padding: 1em 0;
+    display: flex;
+    justify-content: center;
+    /* align-items: center;s */
+    flex-direction: column;
+    overflow: hidden !important;
+  }
+  .content_likeBook {
+    display: none;
+  }
+
+  /* biography */
+  .Tracks-Preview {
+    width: 50%;
+    min-height: 100vh;
+    padding: 2em;
+    margin: 0 auto;
+    width: 100%;
+    /* overflow-y: scroll; */
+  }
+
+  .bio_track {
+    padding: 1em;
+    background-color: whitesmoke;
+  }
+
+  .bio_track audio {
+    top: 0;
+  }
+
+  .bio_track h5 {
+    margin-top: 5px;
+    width: 120px !important;
+    left: -4% !important;
+    background: none !important;
+  }
+
+  .Tracks-Preview form {
+    width: 100%;
+    margin-top: 200px !important;
+    padding-top: 150px;
+    margin-bottom: 50px;
+  }
+
+  .bio-titles .bio-titles h1 {
+    font-size: 20px;
+    width: max-content;
+    margin: 0 !important;
+    padding: 2px;
+  }
+
+  .bio-titles h5 {
+    font-size: 14px;
+  }
+
+  .bio-titles {
+    width: 50%;
+    color: white;
+  }
+
+  /* track list bio */
+  .artist-preview {
+    margin-bottom: 1em;
+    width: 100%;
+  }
+
+  /* .artist_info .info {
+    width: max-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+  } */
+
+  /* .artist_info .info audio {
+    position: absolute;
+    padding: 20px;
+    top: 50%;
+    left: 28.3%;
+    transform: translateY(-50%);
+  } */
+
+  .single_track {
+    position: relative;
+    width: 100%;
+    height: 10vh;
+  }
+
+  .artist_info .info h5 {
+    font-weight: 500;
+    font-size: 15px;
+    background-color: var(--clr);
+    padding: 1em;
+    border-radius: 10px;
+    color: black;
+    position: absolute;
+    left: 0%;
+    top: -60%;
+    width: 110px;
+    z-index: 3;
+    box-shadow: var(--glass);
+  }
+
+  .track {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .AllTracks {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* login page */
+
+  .google {
+    width: 100%;
+  }
+
+  .loginBtn {
+    width: clamp(30px, 40vw, 200px) !important;
+  }
+
+  .Signinform {
+    gap: 10px;
+    min-height: max-content;
+  }
+
+  .main_layout {
+    padding: 0;
+  }
+
+  /* maybe delete */
+  .explore_history {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+    height: max-content;
+    margin-top: 5em;
+    justify-content: center;
+  }
+
+  .preview iframe {
+    max-width: 60%;
+    margin: 1em auto;
+  }
+
+  .tracks {
+    background: black;
+    width: 100%;
+  }
+
+  .moreContent {
+    width: 100%;
+    height: max-content;
+    /* overflow-y: scroll; */
+    padding-top: 3em;
+  }
+
+  .Discover {
+    left: 50% !important;
+    display: none !important;
+  }
+
+  .concerts {
+    margin-top: 7em;
+  }
+
+  .footerLinks {
+    height: 30vh;
+    overflow: scroll;
+    margin-bottom: 1em;
+  }
+
+  .nomusic {
+    text-align: center;
+  }
+
+  .alltracks-content {
+    margin-top: 0vh;
+  }
+}

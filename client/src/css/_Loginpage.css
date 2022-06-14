@@ -1,0 +1,129 @@
+.loginpage {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden !important;
+  display: grid;
+  place-items: center;
+}
+
+.sign_in_form {
+  width: 60%;
+  max-width: 500px;
+  height: max-content;
+  min-height: 60vh;
+  overflow-y: scroll;
+  height: 56vh;
+  position: absolute;
+  padding: 2em 3em;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.719);
+  border: solid 1px rgba(255, 255, 255, 0.171);
+  border-radius: 10px;
+  box-shadow: 0.5px 1.1px 2.2px rgba(0, 0, 0, 0.02),
+    1.2px 2.7px 5.3px rgba(0, 0, 0, 0.028),
+    2.3px 5.1px 10px rgba(0, 0, 0, 0.035), 4px 9.2px 17.9px rgba(0, 0, 0, 0.042),
+    7.5px 17.1px 33.4px rgba(0, 0, 0, 0.05), 18px 41px 80px rgba(0, 0, 0, 0.07);
+}
+
+.sign_inpageContent {
+  background: var(--light-black2);
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  pointer-events: none;
+  /* border: solid 3px red;s */
+  overflow: hidden !important;
+}
+
+.titles {
+  margin-bottom: 2em;
+}
+
+.titles h1 {
+  color: white;
+}
+
+.titles span {
+  color: var(--clr);
+}
+
+.titles h4 {
+  color: white;
+  font-size: 18px;
+}
+
+.loginBtn {
+  width: 50%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.alternative {
+  display: flex;
+  justify-content: center;
+  padding: 1em 0;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.line {
+  margin: 0 1em;
+  opacity: 0.6;
+}
+
+.Signinform {
+  width: 100%;
+  height: 18vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+.signinBtn {
+  margin-top: 20px;
+  background: var(--clr) !important;
+  border: none !important;
+  font-weight: bolder !important;
+  transition: all 0.5s ease-in-out !important;
+}
+
+.signinBtn:hover {
+  background: var(--clrdark) !important;
+}
+
+.iconplaceholder {
+  position: absolute;
+  color: var(--bgc-grey);
+  font-size: 25px;
+}
+
+.inputfield {
+  padding-left: 50px !important;
+}
+
+.key,
+.mail {
+  top: 50%;
+  left: 3%;
+  transform: translateY(-50%);
+}
+
+.inputController {
+  position: relative;
+}
+
+.videobg {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+}
+
+.bgc-vid {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}

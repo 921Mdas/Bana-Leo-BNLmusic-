@@ -1,0 +1,21 @@
+/* navbar */
+@keyframes navdown {
+  0% {
+    top: -10%;
+  }
+
+  100% {
+    top: 0.7%;
+  }
+}
+
+@keyframes equalize {
+  0% {
+    transform: scale(1) translateX(-50%);
+  }
+
+  100% {
+    transform: scale(1.1) translateX(-50%);
+    color: white;
+  }
+}
