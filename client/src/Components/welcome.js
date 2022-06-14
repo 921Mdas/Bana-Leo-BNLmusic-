@@ -22,9 +22,7 @@ const Welcome = () => {
           Welcome <span>{storageUser?.name}</span>{" "}
         </p>
       ) : (
-        <p>
-          <IoIosLogIn />
-        </p>
+        <p>Welcome to BanaLeo</p>
       )}
     </div>
   );
