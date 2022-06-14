@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "start": "node server.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -16,5 +17,20 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.16",
     "passport": "^0.6.0"
-  }
+  },
+  "name": "finalroute",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/921Mdas/BNLmusic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/921Mdas/BNLmusic/issues"
+  },
+  "homepage": "https://github.com/921Mdas/BNLmusic#readme",
+  "description": ""
 }
