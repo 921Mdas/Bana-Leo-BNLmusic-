@@ -4,6 +4,7 @@ const Tracks = require("../models/tracks.model");
 const mongoose = require("mongoose");
 const { StatusCodes } = require("http-status-codes");
 
+// register a new track in the DB - POST
 const createTrack = async (req, res) => {
   // update to req.body.track
   // update req.body.title
@@ -33,7 +34,7 @@ const createTrack = async (req, res) => {
   }
 };
 
-// get request
+// get track by artists id - GET
 const showTrack = async (req, res) => {
   try {
     const tracks = Artist.findById(req.params.id)
@@ -50,6 +51,7 @@ const showTrack = async (req, res) => {
   }
 };
 
+// get all tracks in db - GET
 const getallTracks = async (req, res) => {
   try {
     const alltracks = await Tracks.find({});

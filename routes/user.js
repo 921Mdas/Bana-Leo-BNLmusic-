@@ -1,20 +1,25 @@
-// var express = require("express");
-// var app = express();
-// var router = express.Router();
-// var ctrl = require("../controller/user.controller");
+var express = require("express");
+var app = express();
 
-// router.get("/", (req, res, next) => {
-//   res.send("welcome home");
-// });
+var router = express.Router();
+var ctrl = require("../controller/user.controller");
 
-// router.post("/userlogin", (req, res, next) => {
-//   ctrl.sendUser(req, res, next);
-// });
+// user home route
+router.get("/", (req, res, next) => {
+  res.send("welcome to the user route 👋");
+});
 
-// router.post("/google-login", (req, res, next) => {
-//   ctrl.NewUser(req, res, next);
-// });
+// manual register user
+router.post("/register", ctrl.register);
 
-// router.post("/register", ctrl.register);
+// user manual login
+router.post("/userlogin", (req, res, next) => {
+  ctrl.sendUser(req, res, next);
+});
 
-// module.exports = router;
+// google
+router.post("/google-login", (req, res, next) => {
+  ctrl.NewGoogleUser(req, res, next);
+});
+
+module.exports = router;
