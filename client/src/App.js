@@ -26,6 +26,7 @@ function App() {
     removeArtist,
     updateArtist,
     playMusic,
+    registerArtist,
   } = useContext(MyContext);
 
   const AddNewArtist = () => {
@@ -49,7 +50,12 @@ function App() {
             playMusic={playMusic}
           />
         ) : (
-          <ARTISTFORM state={state} dispatch={dispatch} COMMANDS={COMMANDS} />
+          <ARTISTFORM
+            state={state}
+            dispatch={dispatch}
+            COMMANDS={COMMANDS}
+            registerArtist={registerArtist}
+          />
         )}
         {isPageChange && (
           <Button className="nextpage" variant="success" onClick={AddNewArtist}>
