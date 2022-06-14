@@ -1,7 +1,8 @@
 import React, { useState, useReducer } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { baseURLtype, COMMANDS } from "./type";
+import { COMMANDS } from "./type";
+
 const MyContext = React.createContext();
 
 const reducer = (state, action) => {
@@ -87,19 +88,29 @@ const defaultState = {
   loggedInUser: {},
 };
 
-// const localDevArt = `${baseURLtype}/artists`;
-// const localDevPlayMusic = `${baseURLtype}/tracks/${id}/uploadsongs`;
-// const localDevUpload = `${baseURLtype}/tracks/${idTracker}/uploadsongs`;
-// const localDevRemoveArt = `${baseURLtype}/artists/remove/:${id}`;
-
-// const onlineDevArt = `/artists`;
-// const onlineDevPlayMusic = `/tracks/${id}/uploadsongs`;
-// const onlineDevUpload = `/tracks/${idTracker}/uploadsongs`;
-// const onlineDevRemoveArt = `/artists/remove/:${id}`;
-
 function MyProvider(props) {
   const [state, dispatch] = useReducer(reducer, defaultState);
   const [idTracker, setIdTracker] = useState(null);
+
+  // create a new artist
+  const registerArtist = async args => {
+    try {
+      console.log("new artist info", args);
+      await axios.post("/artists", args);
+      toast.success(` successfully added`, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 500,
+      });
+      dispatch({ type: COMMANDS.GOTO_PREVIOUS_PAGE });
+    } catch (error) {
+      if (error)
+        toast.error("oops cant register artist", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 500,
+        });
+      console.log(error);
+    }
+  };
 
   // initial api call to retrieve and localstore artists list
   const LoadArtists = async () => {
@@ -115,6 +126,38 @@ function MyProvider(props) {
           autoClose: 500,
         });
       console.log(error);
+    }
+  };
+
+  // delete artist
+  const removeArtist = id => {
+    const { artists } = state;
+    axios.post(`/artists/remove/:${id}`);
+    const removedArtist = artists.find(artist => artist._id === id);
+    const newArtists = artists.filter(artist => artist._id !== id);
+    dispatch({ type: COMMANDS.REMOVE_AN_ARTIST, payload: newArtists });
+
+    toast.error(` ${removedArtist.name} removed`, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 500,
+    });
+  };
+
+  // update artists
+  const updateArtist = async id => {
+    try {
+      const { artists } = state;
+      const artistToUpdate = artists.find(artist => artist._id === id);
+      dispatch({
+        type: COMMANDS.UPDATE_ARTIST,
+        payload: { artistToUpdate, id },
+      });
+    } catch (err) {
+      if (err) console.log(err);
+      toast.error(`💥 successfully updated`, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 500,
+      });
     }
   };
 
@@ -170,36 +213,6 @@ function MyProvider(props) {
     }
   };
 
-  const removeArtist = id => {
-    const { artists } = state;
-    axios.post(`/artists/remove/:${id}`);
-    const removedArtist = artists.find(artist => artist._id === id);
-    const newArtists = artists.filter(artist => artist._id !== id);
-    dispatch({ type: COMMANDS.REMOVE_AN_ARTIST, payload: newArtists });
-
-    toast.error(` ${removedArtist.name} removed`, {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 500,
-    });
-  };
-
-  const updateArtist = async id => {
-    try {
-      const { artists } = state;
-      const artistToUpdate = artists.find(artist => artist._id === id);
-      dispatch({
-        type: COMMANDS.UPDATE_ARTIST,
-        payload: { artistToUpdate, id },
-      });
-    } catch (err) {
-      if (err) console.log(err);
-      toast.error(`💥 successfully updated`, {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 500,
-      });
-    }
-  };
-
   return (
     <>
       <MyContext.Provider
@@ -213,6 +226,7 @@ function MyProvider(props) {
           getAllTracks,
           removeArtist,
           updateArtist,
+          registerArtist,
         }}
       >
         {props.children}

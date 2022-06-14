@@ -9,7 +9,7 @@ import { Button, Form } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const ARTISTFORM = ({ state, dispatch, COMMANDS }) => {
+const ARTISTFORM = ({ state, dispatch, COMMANDS, registerArtist }) => {
   const handleOnChange = e => {
     e.preventDefault();
     const inputname = e.target.name;
@@ -23,25 +23,7 @@ const ARTISTFORM = ({ state, dispatch, COMMANDS }) => {
 
   const addArtistForm = async () => {
     const { name, picture, song, bio, country, year, copyright: cop } = state;
-    dispatch({ type: COMMANDS.GOTO_PREVIOUS_PAGE });
-    toast.success(` ${name} successfully added`, {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 500,
-    });
-
-    axios
-      .post("/artists", {
-        name,
-        picture,
-        song,
-        bio,
-        country,
-        year,
-        cop: cop === "on",
-      })
-      .then(res => {
-        console.log(`new artist added to the db ${res.data}`);
-      });
+    registerArtist({ name, picture, song, bio, country, year, cop });
   };
 
   const updateArtistForm = () => {

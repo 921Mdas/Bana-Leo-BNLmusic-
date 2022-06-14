@@ -15,3 +15,14 @@ export const COMMANDS = {
   PLAYTRACK: "PLAYTRACK",
   LOGGEDIN: "LOGGEDIN",
 };
+
+// ****** needed links for local DEV
+// const localDevArt = `${baseURLtype}/artists`;
+// const localDevPlayMusic = `${baseURLtype}/tracks/${id}/uploadsongs`;
+// const localDevUpload = `${baseURLtype}/tracks/${idTracker}/uploadsongs`;
+// const localDevRemoveArt = `${baseURLtype}/artists/remove/:${id}`;
+
+// const onlineDevArt = `/artists`;
+// const onlineDevPlayMusic = `/tracks/${id}/uploadsongs`;
+// const onlineDevUpload = `/tracks/${idTracker}/uploadsongs`;
+// const onlineDevRemoveArt = `/artists/remove/:${id}`;
