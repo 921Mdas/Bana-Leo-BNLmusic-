@@ -87,6 +87,16 @@ const defaultState = {
   loggedInUser: {},
 };
 
+// const localDevArt = `${baseURLtype}/artists`;
+// const localDevPlayMusic = `${baseURLtype}/tracks/${id}/uploadsongs`;
+// const localDevUpload = `${baseURLtype}/tracks/${idTracker}/uploadsongs`;
+// const localDevRemoveArt = `${baseURLtype}/artists/remove/:${id}`;
+
+// const onlineDevArt = `/artists`;
+// const onlineDevPlayMusic = `/tracks/${id}/uploadsongs`;
+// const onlineDevUpload = `/tracks/${idTracker}/uploadsongs`;
+// const onlineDevRemoveArt = `/artists/remove/:${id}`;
+
 function MyProvider(props) {
   const [state, dispatch] = useReducer(reducer, defaultState);
   const [idTracker, setIdTracker] = useState(null);
@@ -94,7 +104,7 @@ function MyProvider(props) {
   // initial api call to retrieve and localstore artists list
   const LoadArtists = async () => {
     try {
-      await axios.get(`${baseURLtype}/artists`).then(res => {
+      await axios.get(`/artists`).then(res => {
         dispatch({ type: COMMANDS.GET_ALL_ARTISTS, payload: res.data });
         dispatch({ type: COMMANDS.STORE_ALL_ARTISTS, payload: res.data });
       });
@@ -112,7 +122,7 @@ function MyProvider(props) {
   const playMusic = async id => {
     try {
       setIdTracker(id);
-      await axios.get(`${baseURLtype}/tracks/${id}/uploadsongs`).then(res => {
+      await axios.get(`/tracks/${id}/uploadsongs`).then(res => {
         dispatch({ type: COMMANDS.GET_TRACKS_BY_ID, payload: res.data });
         console.log("this singer music", res.data);
       });
@@ -130,10 +140,7 @@ function MyProvider(props) {
   const sendMusic = async data => {
     try {
       const receivedData = await data;
-      await axios.post(
-        `${baseURLtype}/tracks/${idTracker}/uploadsongs`,
-        receivedData
-      );
+      await axios.post(`/tracks/${idTracker}/uploadsongs`, receivedData);
       toast.success("💥 new track uploaded", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 500,
@@ -150,7 +157,7 @@ function MyProvider(props) {
   // retrieve all songs
   const getAllTracks = async () => {
     try {
-      await axios.get(`${baseURLtype}/tracks/alltracks`).then(res => {
+      await axios.get(`/tracks/alltracks`).then(res => {
         dispatch({ type: COMMANDS.GETALL_TRACKS, payload: res.data });
         localStorage.setItem("songs", JSON.stringify(res.data));
       });
@@ -165,7 +172,7 @@ function MyProvider(props) {
 
   const removeArtist = id => {
     const { artists } = state;
-    axios.post(`${baseURLtype}/artists/remove/:${id}`);
+    axios.post(`/artists/remove/:${id}`);
     const removedArtist = artists.find(artist => artist._id === id);
     const newArtists = artists.filter(artist => artist._id !== id);
     dispatch({ type: COMMANDS.REMOVE_AN_ARTIST, payload: newArtists });
