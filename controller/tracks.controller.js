@@ -2,61 +2,66 @@ const Artist = require("../models/artists.model");
 const Tracks = require("../models/tracks.model");
 
 const mongoose = require("mongoose");
-const httpStatus = require("http-status-codes");
+const { StatusCodes } = require("http-status-codes");
 
-// const bucket = "banaleo2";
-// const s3config = require("../config/s3.config");
-// const Grid = require("gridfs-stream");
-// const db = mongoose.connection;
-// let gfs;
-
-// gfs = Grid(db, mongoose.mongo);
-
-// post request
-const gridCreateTrack = (req, res) => {
-  const id = req.params.id;
-  const { file } = req;
-
-  console.log("artists id:", id, "file received:", req.body);
-
-  Tracks.create(
-    {
+const createTrack = async (req, res) => {
+  // update to req.body.track
+  // update req.body.title
+  try {
+    const id = req.params.id;
+    const newTrack = await Tracks.create({
       title: req.body.name,
       track: req.body.song,
-    },
-    (err, doc) => {
-      Artist.findById(id).then(singer => {
-        singer.tracks.push(doc);
-        console.log("here is the singer:", singer);
-        doc.artists.push(singer);
-        singer.save().then(err => {
-          res.json(doc);
-        });
-      });
-    }
-  );
+    });
+    const Musician = await Artist.findById(id);
+    await Musician.tracks.push(newTrack);
 
-  console.log("track created, create POST");
+    const Track = await Tracks.findOne({ title: req.body.name });
+    await Track.artists.push(Musician);
+
+    await Musician.save();
+    await Track.save();
+
+    console.log(newTrack.artists);
+
+    return res
+      .status(StatusCodes.OK)
+      .send("new track added 💥 " + newTrack.title);
+  } catch (err) {
+    if (err) console.log(err);
+    return res.status(StatusCodes.NOT_FOUND).send("couldnt save new track");
+  }
 };
 
 // get request
-const showTrack = (req, res) => {
-  const tracks = Artist.findById(req.params.id)
-    .populate("tracks")
-    .exec((err, person) => {
-      res.send(person);
-    });
+const showTrack = async (req, res) => {
+  try {
+    const tracks = Artist.findById(req.params.id)
+      .populate("tracks")
+      .exec((err, person) => {
+        console.log(person);
+        return res.status(StatusCodes.OK).send(person);
+      });
+  } catch (err) {
+    if (err)
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .send("couldnt retrieve artist tracks");
+  }
 };
 
-const getallTracks = (req, res) => {
-  Tracks.find({}, (err, doc) => {
-    console.log(doc);
-    res.send(doc);
-  });
+const getallTracks = async (req, res) => {
+  try {
+    const alltracks = await Tracks.find({});
+    return res.status(StatusCodes.OK).send(alltracks);
+  } catch (err) {
+    console.log(err);
+    if (err) return res.status(StatusCodes.NOT_FOUND).send("no tracks found");
+  }
 };
 
 module.exports = {
   showTrack,
-  gridCreateTrack,
+  createTrack,
   getallTracks,
 };

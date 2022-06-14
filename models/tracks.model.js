@@ -21,7 +21,7 @@ const trackSchema = new Schema(
       default: "no lyrics",
     },
     copyright: {
-      type: Boolean,
+      type: String,
       default: "socoda",
     },
   },
