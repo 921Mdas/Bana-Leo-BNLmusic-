@@ -1,25 +1,37 @@
-// var mongoose = require('mongoose');
-// var Schema = mongoose.Schema;
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
-// // add artists and you can reference multiple
-// // bring your artists into tracks
-// // reference differently
+const trackSchema = new Schema(
+  {
+    title: {
+      type: String,
+      default: "unkown song",
+    },
+    track: {
+      type: String,
+    },
+    artists: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Artist",
+      },
+    ],
+    lyrics: {
+      type: String,
+      default: "no lyrics",
+    },
+    copyright: {
+      type: String,
+      default: "socoda",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-// const trackSchema = new Schema({
-//     title:String,
-//     track:String,
-//     artists:[{
-//         type:Schema.Types.ObjectId,
-//         ref:'Artist'
-//     }]
+module.exports = mongoose.model("tracks", trackSchema);
 
-// }, {
-//     timestamps:true
-// })
-
-// module.exports = mongoose.model('tracks', trackSchema)
-
-// copyright: {
-//   type: Boolean,
-//   default: "socoda",
-// },
+// add artists and you can reference multiple
+// bring your artists into tracks
+// reference differently

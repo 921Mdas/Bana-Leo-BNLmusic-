@@ -1,20 +1,22 @@
-// var express = require('express');
-// var router = express.Router();
-// var ctrl = require('../controller/tracks.controller');
-// var upload = require("../middleware/multer.middleware");
+var express = require("express");
+var router = express.Router();
 
-// // we grab all tracks and display them here
-// router.get('/:id/uploadsongs', (req,res)=>{
-//     ctrl.showTrack(req,res)
-// })
-// // get all tracks
-// router.get('/alltracks', (req,res)=>{
-//     ctrl.getallTracks(req,res)
-// })
+var ctrl = require("../controller/tracks.controller");
 
-// // we create all tracks here per id we display them above
-// router.post('/:id/uploadsongs', upload.single("song"), (req,res)=>{
-//    ctrl.gridCreateTrack(req,res)
-// })
+// get all DB saved tracks
+router.get("/alltracks", (req, res) => {
+  ctrl.getallTracks(req, res);
+});
 
-// module.exports = router;
+// get musician's tracks by ID
+router.get("/:id/uploadsongs", (req, res) => {
+  ctrl.showTrack(req, res);
+});
+
+//create tracks by id
+router.post("/:id/uploadsongs", (req, res) => {
+  console.log("reached here");
+  ctrl.createTrack(req, res);
+});
+
+module.exports = router;
