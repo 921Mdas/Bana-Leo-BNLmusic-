@@ -3,9 +3,9 @@ var router = express.Router();
 const passport = require("passport");
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
-  res.render("index", { title: "Banaleo Music App" });
-});
+// router.get("/", function (req, res, next) {
+//   res.render("index", { title: "Banaleo Music App" });
+// });
 
 // Google OAuth login route
 // router.get(

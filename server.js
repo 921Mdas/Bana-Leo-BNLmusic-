@@ -16,6 +16,10 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(cors({ credentials: true, origin: "http://localhost:3005/" }));
 
+// compile
+app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(express.static("public"));
+
 // routers config
 var indexRouter = require("./routes/index");
 var artistsRouter = require("./routes/artists");
@@ -27,9 +31,6 @@ app.use("/", indexRouter);
 app.use("/artists", artistsRouter);
 app.use("/tracks", tracksRouter);
 app.use("/user", usersRouter);
-
-// compile
-app.use(express.static(path.join(__dirname, "client", "build")));
 
 // send html back
 app.get("*", function (req, res) {
