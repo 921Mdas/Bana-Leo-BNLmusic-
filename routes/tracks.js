@@ -15,7 +15,6 @@ router.get("/:id/uploadsongs", (req, res) => {
 
 //create tracks by id
 router.post("/:id/uploadsongs", (req, res) => {
-  console.log("reached here");
   ctrl.createTrack(req, res);
 });
 
