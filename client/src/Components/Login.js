@@ -68,9 +68,12 @@ function Login() {
     }
   };
 
+  // const localDevLogin = `${baseURLtype}/user/userlogin`;
+  // const onlineDevLogin = `/user/userlogin`;
+
   const handleSignIn = async e => {
     e.preventDefault();
-    const SignedUser = await axios.post(`${baseURLtype}/user/userlogin`, {
+    const SignedUser = await axios.post(`/user/userlogin`, {
       localUser,
     });
     SignedUser.data.isAuth ? navigate("/home") : navigate("/");
