@@ -1,0 +1,47 @@
+/* navbar */
+
+.navigation {
+  width: 100%;
+  height: 10vh;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  padding: 0 1em;
+
+  margin-bottom: 1em;
+}
+
+/* navbar message */
+.welcome_message {
+  color: var(--white);
+  width: max-content;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  overflow: hidden;
+  margin-right: 1em;
+}
+
+.welcome_message img {
+  width: 40px;
+  border-radius: 40px;
+}
+
+.welcome_message p {
+  padding-top: 20px;
+  order: -1;
+}
+
+.welcome_message p span {
+  font-weight: bolder;
+  color: var(--clr);
+}
+
+/* logo */
+
+.logoIcon {
+  font-size: 30px;
+  color: var(--clr);
+}

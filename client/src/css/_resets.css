@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Khula:wght@300;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap");
+
+@import "./_Loginpage.css";
+@import "./Main.css";
+@import "./_navbar.css";
+@import "./_footer.css";
+@import "./_animate.css";
+@import "./landingpage.css";
+@import "./homeCards.css";
+@import "./_HomeIntro.css";
+@import "./_bio.css";
+
+@import "./_mobile.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bgc: black;
+  --bgc-light: rgba(94, 94, 94, 0.568);
+  --bgc-grey: rgba(136, 135, 135, 0.877);
+  --bgc-grey-light: rgba(209, 209, 209, 0.877);
+  --clr: #dcad54;
+  --clr-light: #f5d394;
+  --clrdark: #000000;
+  --light-black: rgba(0, 0, 0, 0.671);
+  --light-black2: rgba(0, 0, 0, 0.788);
+  --cursive-font: "Dancing Script", cursive;
+  --white: white;
+  --black: black;
+  --shadow-1: 0px 9.3px 13.3px rgba(0, 0, 0, 0.363),
+    0px 74px 106px rgba(0, 0, 0, 0.08);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  padding: none;
+  margin: none;
+}
+
+body,
+html {
+  background-color: black;
+}
+
+.main_layout {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bgc);
+  overflow-y: scroll;
+  font-family: khula, Helvetica, sans-serif;
+  overflow: hidden;
+  /* padding: 10px 20px; */
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(88, 88, 88, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}

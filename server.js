@@ -3,6 +3,8 @@ const app = require("./config/app");
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
+const cors = require("cors");
+const path = require("path");
 
 // general configs
 require("dotenv").config();
@@ -12,17 +14,27 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(logger("dev"));
 app.use(express.json());
+app.use(cors({ credentials: true, origin: "http://localhost:3005/" }));
 
-// routes config
+// routers config
 var indexRouter = require("./routes/index");
 var artistsRouter = require("./routes/artists");
 var tracksRouter = require("./routes/tracks");
 var usersRouter = require("./routes/user");
 
+// routers
 app.use("/", indexRouter);
 app.use("/artists", artistsRouter);
 app.use("/tracks", tracksRouter);
 app.use("/user", usersRouter);
+
+// compile
+app.use(express.static(path.join(__dirname, "client", "build")));
+
+// send html back
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 // basic setting confis
 const port = process.env.PORT || 3005;

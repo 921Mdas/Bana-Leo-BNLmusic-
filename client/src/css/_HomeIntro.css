@@ -1,0 +1,116 @@
+/* origin of rumba section */
+.moreContent {
+  height: max-content;
+  /* margin-top: 2em; */
+}
+
+.moreContent .description {
+  color: whitesmoke;
+  padding: 1em;
+  height: 100%;
+}
+
+.description h3 {
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 0.5em;
+}
+
+.description p {
+  font-size: 22px;
+}
+
+.description {
+  height: 300px;
+}
+
+.preview {
+  text-align: center;
+}
+.preview,
+.description {
+  width: 650px;
+}
+
+.concerts {
+  width: 100%;
+  border: solid 1px rgba(131, 131, 131, 0.329);
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.concerts h1 {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.concert-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.concert {
+  width: 500px;
+  height: 250px;
+  border-radius: 10px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease-in-out;
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  border: solid 1px rgba(255, 255, 255, 0.37);
+  overflow: hidden;
+}
+
+.concert h1 {
+  position: absolute;
+  bottom: 0;
+  text-transform: capitalize;
+  left: 2%;
+}
+
+.concert a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.37);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.concert:hover a {
+  color: white;
+}
+
+.concert:nth-child(n):hover {
+  background-size: 103%;
+}
+
+.concert-location1 {
+  background-image: linear-gradient(to top, black, transparent),
+    url("../images-client/theater.jpeg");
+}
+.concert-location2 {
+  background-image: linear-gradient(to top, black, transparent),
+    url("../images-client/wemba.jpeg");
+}
+.concert-location3 {
+  background-image: linear-gradient(to top, black, transparent),
+    url("../images-client/concert.jpeg");
+}
+
+.moreContent .explore_history {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
