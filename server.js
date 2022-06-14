@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors({ credentials: true, origin: "http://localhost:3005/" }));
 
 // compile
-app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(express.static(path.join(__dirname, "build")));
 app.use(express.static("public"));
 
 // routers config
@@ -34,7 +34,7 @@ app.use("/user", usersRouter);
 
 // send html back
 app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 // basic setting confis

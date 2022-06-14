@@ -1,1 +1,6 @@
 node_modules
+/client
+client
+
+# git push heroku yourbranch:master
+# heroku git:remote -a banaleo
