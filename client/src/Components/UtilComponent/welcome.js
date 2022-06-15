@@ -3,23 +3,34 @@ import { MyContext } from "../../Context/index.context";
 
 // react icon
 import { IoIosLogIn } from "react-icons/io";
+import { FcApproval } from "react-icons/fc";
 
-const Welcome = () => {
-  const { state: userOnline } = useContext(MyContext);
+const Welcome = ({ state }) => {
+  const {
+    loggedInUser: {
+      data: {
+        user: { email },
+      },
+    },
+  } = state;
   const { loggedUser, setLoggedUser } = useState({});
   const storageUser = JSON.parse(localStorage.getItem("loginData"));
 
   return (
     <div className="welcome_message">
-      <div>
+      {/* <div>
         <img src={storageUser?.picture} alt="" />
-      </div>
+      </div> */}
 
       {storageUser?.name ? (
         <p>
           Welcome <span>{storageUser?.name}</span>{" "}
         </p>
-      ) : null}
+      ) : (
+        <p>Welcome {email}</p>
+      )}
+
+      <FcApproval />
     </div>
   );
 };
