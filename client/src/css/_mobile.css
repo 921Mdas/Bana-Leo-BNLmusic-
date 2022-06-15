@@ -1,7 +1,15 @@
 @media screen and (max-width: 600px) {
   /* main */
+
+  .main_layout {
+    padding: 1em;
+  }
   .App {
     overflow: hidden;
+  }
+
+  .loader {
+    margin: 0 auto;
   }
 
   /* navbar */
@@ -10,20 +18,26 @@
     margin: 1 auto;
   }
 
+  /* Home */
   .welcome_message {
     position: absolute;
     top: 10%;
   }
 
-  /* landing page */
-  .landingpage h1 {
-    margin-top: 2em;
+  .home_headlines {
+    height: 10vh;
+  }
+
+  .home_headlines .intro_title {
+    font-size: 5rem;
+    font-weight: bold;
+    color: var(--bgc-grey);
   }
 
   .styledHeadline {
     font-size: 40px;
     width: 90%;
-    margin-top: 1em;
+    /* margin-top: 1em; */
   }
 
   .searchbar {
@@ -39,6 +53,16 @@
     height: 50px;
     width: 20%;
     transform: translateX(-50%);
+  }
+
+  /* artist creation form */
+
+  .App-header-form {
+    width: 100%;
+  }
+
+  .submission_btns {
+    margin-top: 10px;
   }
 
   /* description section  */
@@ -91,7 +115,7 @@
 
   /* biography */
   .Tracks-Preview {
-    margin: 5em auto 0 0;
+    margin: 10em auto 0 0;
     min-height: 100vh;
     padding: 2em;
     width: 100%;
@@ -141,6 +165,47 @@
   .artist-preview {
     margin-bottom: 1em;
     width: 100%;
+  }
+
+  .Detail_Playlist {
+    min-height: 50vh;
+    gap: 1.5em;
+    width: 100%;
+    display: flex;
+    padding-top: 15px;
+  }
+
+  .detail_song {
+    width: 100%;
+    background-color: var(--track);
+    border-radius: 10px;
+  }
+
+  .detail_info {
+    position: relative;
+    padding: 10px;
+    width: 350px;
+    height: 10vh;
+  }
+  .detail_info h5 {
+    position: absolute;
+    z-index: 3;
+    min-width: 30%;
+    background: var(--grey);
+    padding: 3px 10px;
+    border-radius: 10px;
+    top: -15%;
+    left: 0;
+    pointer-events: none;
+    font-size: 15px;
+  }
+  .detail_info audio {
+    position: absolute;
+    width: 90%;
+  }
+
+  .track_actions {
+    display: none;
   }
 
   /* .artist_info .info {
@@ -208,11 +273,12 @@
     min-height: max-content;
   }
 
-  .main_layout {
-    padding: 0;
-  }
-
   /* maybe delete */
+
+  .originesContentPage {
+    width: 100%;
+    overflow: hidden;
+  }
   .explore_history {
     display: flex;
     flex-direction: column;
@@ -239,7 +305,7 @@
   .moreContent {
     width: 100%;
     height: max-content;
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
     padding-top: 3em;
   }
 
