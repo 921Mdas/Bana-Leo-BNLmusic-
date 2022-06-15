@@ -58,6 +58,7 @@ const updateArtists = async (req, res) => {
   try {
     const id = req.params.id;
     const newInfo = req.body;
+
     const foundAndUpdated = await Artist.findByIdAndUpdate(id, { ...newInfo });
     return res
       .status(StatusCodes.OK)

@@ -28,7 +28,7 @@ const Navbar = () => {
           <AiOutlineHome />
         </Link>
         <Link to="/tracks" className="logoContainer">
-          <BsMusicNoteList onClick={() => getAllTracks()} />
+          <BsMusicNoteList />
         </Link>
         <Link to="/" className="logoContainer ">
           <IoIosLogOut onClick={() => LogOut()} />

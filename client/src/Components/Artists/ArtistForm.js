@@ -1,5 +1,5 @@
 // state
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // bootstrap
@@ -16,9 +16,9 @@ const ArtistForm = ({
   registerArtist,
   setCurrentPage,
   FIRST_PAGE,
+  SECOND_PAGE,
+  currentPage,
 }) => {
-  const { name, picture, song, bio, country, year, copyright: cop } = state;
-
   const handleOnChange = e => {
     e.preventDefault();
     const inputname = e.target.name;
@@ -27,6 +27,7 @@ const ArtistForm = ({
   };
 
   const addArtistForm = async () => {
+    const { name, picture, song, bio, country, year, copyright: cop } = state;
     await registerArtist({ name, picture, song, bio, country, year, cop });
     setCurrentPage(FIRST_PAGE);
   };
@@ -35,6 +36,7 @@ const ArtistForm = ({
     const id = state.update[1];
     const { name, picture, song, bio, country, year, copyright: cop } = state;
     dispatch({ type: COMMANDS.GOTO_PREVIOUS_PAGE });
+    setCurrentPage(FIRST_PAGE);
     toast.success(` ${name} updated`, {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 500,
@@ -123,15 +125,6 @@ const ArtistForm = ({
             onChange={e => handleOnChange(e)}
           />
         </Form.Label>
-        {/* <Form.Label htmlFor="copyright" className="copyrightSection">
-          Copyright:
-          <Form.Check
-            type="checkbox"
-            name="copyright"
-            id="copyright"
-            onChange={e => handleOnChange(e)}
-          />
-        </Form.Label> */}
       </Form>
       <div className="submission_btns">
         <Link to="/home">

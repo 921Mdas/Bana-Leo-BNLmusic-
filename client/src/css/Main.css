@@ -172,7 +172,6 @@ audio::-webkit-media-controls-current-time-display {
 }
 
 .alltracks-content {
-  border: solid 2px red;
   justify-content: center;
 }
 

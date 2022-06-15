@@ -24,7 +24,7 @@ import { toast } from "react-toastify";
 // assets
 import jazz from "../videos/pexels-anthony-shkraba-production-8043616.mp4";
 
-function Login() {
+function Login({ getAllTracks }) {
   const { dispatch, COMMANDS, state } = useContext(MyContext);
   let navigate = useNavigate();
 

@@ -27,11 +27,16 @@ function Home({
   playMusic,
   registerArtist,
   sendMusic,
+  getAllTracks,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
   const FIRST_PAGE = 1;
   const SECOND_PAGE = 2;
   const isPageChange = currentPage === FIRST_PAGE;
+
+  useEffect(() => {
+    getAllTracks();
+  }, []);
 
   return (
     <>
@@ -52,6 +57,10 @@ function Home({
               removeArtist={removeArtist}
               updateArtist={updateArtist}
               playMusic={playMusic}
+              setCurrentPage={setCurrentPage}
+              FIRST_PAGE={FIRST_PAGE}
+              SECOND_PAGE={SECOND_PAGE}
+              currentPage={currentPage}
             />
             <Button
               className="nextpage"
@@ -69,6 +78,8 @@ function Home({
             registerArtist={registerArtist}
             setCurrentPage={setCurrentPage}
             FIRST_PAGE={FIRST_PAGE}
+            SECOND_PAGE={SECOND_PAGE}
+            currentPage={currentPage}
           />
         )}
       </div>

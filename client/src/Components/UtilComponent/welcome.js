@@ -9,8 +9,6 @@ const Welcome = () => {
   const { loggedUser, setLoggedUser } = useState({});
   const storageUser = JSON.parse(localStorage.getItem("loginData"));
 
-  console.log("article", storageUser);
-
   return (
     <div className="welcome_message">
       <div>

@@ -20,7 +20,6 @@ const reducer = (state, action) => {
     case COMMANDS.GET_TRACKS_BY_ID:
       return { ...state, playlist: [action.payload] };
     case COMMANDS.LOGGEDIN:
-      console.log(action.payload);
       return { ...state, loggedInUser: action.payload };
     case COMMANDS.REMOVE_AN_ARTIST:
       return { ...state, artists: action.payload };
@@ -156,9 +155,9 @@ function MyProvider(props) {
         type: COMMANDS.UPDATE_ARTIST,
         payload: { artistToUpdate, id },
       });
-    } catch (error) {
-      if (error) console.log(error);
-      toast.error(error.response.data.message, {
+    } catch (err) {
+      if (err) console.log(err);
+      toast.error(`💥 successfully updated`, {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 500,
       });
@@ -167,6 +166,8 @@ function MyProvider(props) {
 
   // retrieving music of specific artists by id
   const playMusic = async id => {
+    console.log(id);
+
     try {
       await axios.get(`/tracks/${id}/uploadsongs`).then(res => {
         dispatch({ type: COMMANDS.GET_TRACKS_BY_ID, payload: res.data });
@@ -185,9 +186,7 @@ function MyProvider(props) {
   // uploading music
   const sendMusic = async data => {
     try {
-      console.log("the id we received", dataTracker._id);
       const receivedData = await data;
-      console.log("received data", receivedData);
       await axios.post(`/tracks/${dataTracker._id}/uploadsongs`, receivedData);
       toast.success("💥 new track uploaded", {
         position: toast.POSITION.TOP_CENTER,
@@ -205,10 +204,9 @@ function MyProvider(props) {
   // retrieve all songs
   const getAllTracks = async () => {
     try {
-      await axios.get(`/tracks/alltracks`).then(res => {
-        dispatch({ type: COMMANDS.GETALL_TRACKS, payload: res.data });
-        localStorage.setItem("songs", JSON.stringify(res.data));
-      });
+      const tracks = await axios.get(`/tracks/alltracks`);
+      await dispatch({ type: COMMANDS.GETALL_TRACKS, payload: tracks.data });
+      localStorage.setItem("songs", JSON.stringify(tracks.data));
     } catch (error) {
       toast.error(error.response.data.message, {
         position: toast.POSITION.TOP_CENTER,
@@ -230,8 +228,8 @@ function MyProvider(props) {
           sendMusic,
           getAllTracks,
           removeArtist,
-          updateArtist,
           registerArtist,
+          updateArtist,
         }}
       >
         {props.children}
