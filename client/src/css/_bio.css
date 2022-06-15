@@ -8,14 +8,82 @@
 .content_likeBook {
   display: flex;
   gap: 2em;
-  position: absolute;
-  right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
+  align-items: center;
 }
 
 .track_actions {
   display: flex;
   flex-direction: row;
   width: 200px;
+}
+
+.Detail_Playlist {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.detail_song {
+  width: 100%;
+  background-image: linear-gradient(90deg, var(--track) 60%, transparent),
+    url("../images-client/pattern2.jpeg");
+  border-radius: 10px;
+  display: flex;
+  box-shadow: var(--shadow-2);
+}
+
+.detail_info {
+  position: relative;
+  padding: 10px;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+}
+.detail_info h5 {
+  z-index: 3;
+  min-width: 20%;
+  background: var(--track);
+  padding: 3px 10px;
+  border-radius: 10px;
+  pointer-events: none;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.artist_info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  align-items: center;
+  width: 400px;
+  /* gap: 20px; */
+  padding: 1em 0;
+  position: relative;
+}
+
+.artist_info audio {
+  position: absolute;
+  left: 40%;
+  top: 0;
+}
+
+.info {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  width: 600px;
+}
+
+.info h5 {
+  color: var(--grey);
+  font-weight: bold;
+}
+.Tracks-Preview {
+  margin: 10em auto 0 0;
+  min-height: 100vh;
+  padding: 2em;
+  width: 100%;
+  overflow: hidden;
 }

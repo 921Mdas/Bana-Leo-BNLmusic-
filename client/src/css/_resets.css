@@ -23,6 +23,7 @@
   --bgc: black;
   --bgc-light: rgba(94, 94, 94, 0.568);
   --bgc-grey: rgba(136, 135, 135, 0.877);
+  --grey: rgb(195, 195, 195);
   --bgc-grey-light: rgba(209, 209, 209, 0.877);
   --clr: #dcad54;
   --clr-light: #f5d394;
@@ -32,8 +33,11 @@
   --cursive-font: "Dancing Script", cursive;
   --white: white;
   --black: black;
+  --track: #ededed;
   --shadow-1: 0px 9.3px 13.3px rgba(0, 0, 0, 0.363),
     0px 74px 106px rgba(0, 0, 0, 0.08);
+  --shadow-2: 0px 9.3px 13.3px rgba(0, 0, 0, 0.082),
+    0px 74px 106px rgba(0, 0, 0, 0.048);
 }
 
 h1,

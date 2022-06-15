@@ -10,20 +10,21 @@ const createTrack = async (req, res) => {
   // update req.body.title
   try {
     const id = req.params.id;
+
     const newTrack = await Tracks.create({
-      title: req.body.name,
+      title: req.body.songname,
       track: req.body.song,
     });
+
     const Musician = await Artist.findById(id);
+
     await Musician.tracks.push(newTrack);
 
-    const Track = await Tracks.findOne({ title: req.body.name });
+    const Track = await Tracks.findOne({ title: req.body.songname });
     await Track.artists.push(Musician);
 
     await Musician.save();
     await Track.save();
-
-    console.log(newTrack.artists);
 
     return res
       .status(StatusCodes.OK)
@@ -40,7 +41,6 @@ const showTrack = async (req, res) => {
     const tracks = Artist.findById(req.params.id)
       .populate("tracks")
       .exec((err, person) => {
-        console.log(person);
         return res.status(StatusCodes.OK).send(person);
       });
   } catch (err) {

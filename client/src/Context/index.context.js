@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { COMMANDS } from "./type";
@@ -90,7 +90,11 @@ const defaultState = {
 
 function MyProvider(props) {
   const [state, dispatch] = useReducer(reducer, defaultState);
-  const [idTracker, setIdTracker] = useState(null);
+  const [dataTracker, setdataTracker] = useState(
+    localStorage.getItem("detailSongs")
+      ? JSON.parse(localStorage.getItem("detailSongs"))
+      : null
+  );
 
   // create a new artist
   const registerArtist = async args => {
@@ -104,7 +108,7 @@ function MyProvider(props) {
       dispatch({ type: COMMANDS.GOTO_PREVIOUS_PAGE });
     } catch (error) {
       if (error)
-        toast.error("oops cant register artist", {
+        toast.error(error.response.data.message, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 500,
         });
@@ -121,7 +125,7 @@ function MyProvider(props) {
       });
     } catch (error) {
       if (error)
-        toast.error("oops something is wrong", {
+        toast.error(error.response.data.message, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 500,
         });
@@ -152,9 +156,9 @@ function MyProvider(props) {
         type: COMMANDS.UPDATE_ARTIST,
         payload: { artistToUpdate, id },
       });
-    } catch (err) {
-      if (err) console.log(err);
-      toast.error(`💥 successfully updated`, {
+    } catch (error) {
+      if (error) console.log(error);
+      toast.error(error.response.data.message, {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 500,
       });
@@ -164,36 +168,37 @@ function MyProvider(props) {
   // retrieving music of specific artists by id
   const playMusic = async id => {
     try {
-      setIdTracker(id);
       await axios.get(`/tracks/${id}/uploadsongs`).then(res => {
         dispatch({ type: COMMANDS.GET_TRACKS_BY_ID, payload: res.data });
-        console.log("this singer music", res.data);
+        localStorage.setItem("detailSongs", JSON.stringify(res.data));
       });
-    } catch (err) {
-      if (err)
-        toast.error("couldnt retrieve music", {
+    } catch (error) {
+      if (error)
+        toast.error(error.response.data.message, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 500,
         });
-      console.log(err);
+      console.log(error);
     }
   };
 
   // uploading music
   const sendMusic = async data => {
     try {
+      console.log("the id we received", dataTracker._id);
       const receivedData = await data;
-      await axios.post(`/tracks/${idTracker}/uploadsongs`, receivedData);
+      console.log("received data", receivedData);
+      await axios.post(`/tracks/${dataTracker._id}/uploadsongs`, receivedData);
       toast.success("💥 new track uploaded", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 500,
       });
-    } catch (err) {
-      toast.error("couldn't upload the new song", {
+    } catch (error) {
+      toast.error(error.response.data.message, {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 500,
       });
-      console.log(err);
+      console.log(error);
     }
   };
 
@@ -204,12 +209,12 @@ function MyProvider(props) {
         dispatch({ type: COMMANDS.GETALL_TRACKS, payload: res.data });
         localStorage.setItem("songs", JSON.stringify(res.data));
       });
-    } catch (err) {
-      toast.error("couldn't retrieve playlist", {
+    } catch (error) {
+      toast.error(error.response.data.message, {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 500,
       });
-      console.log(err);
+      console.log(error);
     }
   };
 

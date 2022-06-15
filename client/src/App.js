@@ -1,21 +1,21 @@
 // state
 import React, { useContext } from "react";
 import { MyContext } from "./Context/index.context";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 
-// Bootstrap
-import { Button } from "react-bootstrap";
+import Home from "./Components/Home/Home";
+// main components
+import Navbar from "./Components/navbar";
+import Footer from "./Components/Footer";
+import PlayList from "./Components/MusicGallery/PlayList";
+import ErrorPage from "./Components/error";
+import DetailView from "./Components/Details/DetailView";
+import Login from "./Components/Login";
 
-// components
-import HomepageContent from "./Components/HomepageContent";
-import Artists from "./Components/artists";
-import ARTISTFORM from "./Components/form";
-import LandingPage from "./Components/LandingPage";
-
-// icons
-import { BsFillPersonPlusFill } from "react-icons/bs";
+// Libraries
+import { ToastContainer } from "react-toastify";
 
 // constants
-const PAGE_NUM = 1;
 
 function App() {
   const {
@@ -27,45 +27,72 @@ function App() {
     updateArtist,
     playMusic,
     registerArtist,
+    sendMusic,
   } = useContext(MyContext);
 
-  const AddNewArtist = () => {
-    dispatch({ type: COMMANDS.GOTO_NEXT_PAGE });
-  };
-
-  const isPageChange = state.stage === PAGE_NUM;
-
   return (
-    <div className="App">
-      <LandingPage state={state} dispatch={dispatch} COMMANDS={COMMANDS} />
-      <div className="contentPage">
-        {isPageChange ? (
-          <Artists
-            state={state}
-            dispatch={dispatch}
-            COMMANDS={COMMANDS}
-            LoadArtists={LoadArtists}
-            removeArtist={removeArtist}
-            updateArtist={updateArtist}
-            playMusic={playMusic}
-          />
-        ) : (
-          <ARTISTFORM
-            state={state}
-            dispatch={dispatch}
-            COMMANDS={COMMANDS}
-            registerArtist={registerArtist}
-          />
-        )}
-        {isPageChange && (
-          <Button className="nextpage" variant="success" onClick={AddNewArtist}>
-            <BsFillPersonPlusFill />
-          </Button>
-        )}
-      </div>
-      <HomepageContent state={state} dispatch={dispatch} COMMANDS={COMMANDS} />
-    </div>
+    <>
+      <BrowserRouter>
+        <ToastContainer />
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route
+            path="/home"
+            element={
+              <Home
+                state={state}
+                dispatch={dispatch}
+                COMMANDS={COMMANDS}
+                LoadArtists={LoadArtists}
+                removeArtist={removeArtist}
+                updateArtist={updateArtist}
+                playMusic={playMusic}
+                registerArtist={registerArtist}
+                sendMusic={sendMusic}
+              />
+            }
+          ></Route>
+          <Route
+            path="/bio/:id"
+            element={
+              <DetailView
+                state={state}
+                dispatch={dispatch}
+                COMMANDS={COMMANDS}
+                LoadArtists={LoadArtists}
+                removeArtist={removeArtist}
+                updateArtist={updateArtist}
+                playMusic={playMusic}
+                registerArtist={registerArtist}
+                sendMusic={sendMusic}
+              />
+            }
+          ></Route>
+          <Route
+            path="/tracks"
+            element={
+              <PlayList
+                state={state}
+                dispatch={dispatch}
+                COMMANDS={COMMANDS}
+                LoadArtists={LoadArtists}
+                removeArtist={removeArtist}
+                updateArtist={updateArtist}
+                playMusic={playMusic}
+                registerArtist={registerArtist}
+                sendMusic={sendMusic}
+              />
+            }
+          ></Route>
+          <Route path="*" element={<ErrorPage />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
+
+  //  <LandingPage state={state} dispatch={dispatch} COMMANDS={COMMANDS} />
+
+  // );
 }
 
 export default App;

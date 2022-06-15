@@ -1,7 +1,73 @@
+/* landing home section */
+/* .landingpage {
+} */
+
+.home_headlines {
+  height: 10vh;
+}
+
+.home_headlines .intro_title {
+  font-size: 5rem;
+  font-weight: bold;
+  color: var(--bgc-grey);
+}
+
+/* artist cards section */
+
+.contentPage {
+  width: 100%;
+}
+
+/* artist creation form */
+
+.submission_btns {
+  margin-top: 10px;
+}
+
+/* form */
+.App-header-form {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.App-header-form h3 {
+  color: white;
+}
+
+label {
+  display: block;
+  color: rgb(255, 255, 255);
+}
+
+.submission_btns {
+  width: 220px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel {
+  background: none !important;
+  border: solid 1px white !important;
+}
+
+.cancel:hover {
+  background-color: rgba(255, 255, 255, 0.219) !important;
+}
+
+.artist-submission {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
 /* origin of rumba section */
 .moreContent {
   height: max-content;
-  /* margin-top: 2em; */
+  overflow: hidden;
 }
 
 .moreContent .description {

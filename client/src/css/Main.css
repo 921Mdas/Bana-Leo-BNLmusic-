@@ -1,6 +1,10 @@
+.main_layout {
+  padding: 1em;
+}
+
 .App {
   overflow-y: scroll;
-  padding: 1em;
+  /* padding: 1em; */
 }
 
 /* navbar */
@@ -71,7 +75,6 @@
 .alltracks {
   width: 100%;
   min-height: 150vh;
-  padding: 1em;
   background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.74), black),
     url("../images-client/pattern2.jpeg");
   background-size: cover;
@@ -143,9 +146,11 @@ audio::-webkit-media-controls-current-time-display {
 
 .aritst-pic {
   width: 100px;
-  height: 100px;
+  height: 100%;
   border: solid 1px rgb(179, 179, 179);
   border-radius: 10px;
+  object-fit: cover;
+  overflow: hidden;
   /* border: solid 1px red; */
 }
 
@@ -164,6 +169,11 @@ audio::-webkit-media-controls-current-time-display {
   padding: 1em;
   text-align: center;
   color: rgb(228, 226, 226);
+}
+
+.alltracks-content {
+  border: solid 2px red;
+  justify-content: center;
 }
 
 .aritst-pic img,
@@ -359,73 +369,8 @@ audio::-webkit-media-controls-current-time-display {
   color: var(--clr) !important;
 }
 
-.artist_info {
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  align-items: center;
-  width: 400px;
-  gap: 20px;
-  padding: 1em 0;
-  position: relative;
-}
-
-.artist_info audio {
-  position: absolute;
-  left: 40%;
-}
-
-.info {
-  display: flex;
-  gap: 2em;
-  align-items: center;
-  width: 600px;
-}
-
-.info h5 {
-  color: var(--clr);
-}
-
 .info p {
   color: rgb(119, 119, 119);
-}
-
-/* form */
-.App-header-form {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.App-header-form h3 {
-  color: white;
-}
-
-label {
-  display: block;
-  color: rgb(255, 255, 255);
-}
-
-.submission_btns {
-  width: 220px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.cancel {
-  background: none !important;
-  border: solid 1px white !important;
-}
-
-.cancel:hover {
-  background-color: rgba(255, 255, 255, 0.219) !important;
-}
-
-.artist-submission {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
 }
 
 .Discover a {
