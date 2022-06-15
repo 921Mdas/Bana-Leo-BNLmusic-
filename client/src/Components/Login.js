@@ -24,7 +24,7 @@ import { toast } from "react-toastify";
 // assets
 import jazz from "../videos/pexels-anthony-shkraba-production-8043616.mp4";
 
-function Login({ getAllTracks }) {
+function Login() {
   const { dispatch, COMMANDS, state } = useContext(MyContext);
   let navigate = useNavigate();
 
@@ -34,6 +34,7 @@ function Login({ getAllTracks }) {
   });
   const [validateEmail, setValidateEmail] = useState("");
   const [validatePass, setValidatePass] = useState("");
+  const [register, setRegister] = useState(false);
 
   const [loginData, setLoginData] = useState(
     localStorage.getItem("loginData")
@@ -41,50 +42,76 @@ function Login({ getAllTracks }) {
       : null
   );
 
-  const handleLogin = async googleData => {
+  // const handleLogin = async googleData => {
+  //   try {
+  //     const res = await fetch(`/user/google-login`, {
+  //       method: "POST",
+  //       body: JSON.stringify({ token: googleData.tokenId }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+
+  //     const data = await res.json();
+  //     setLoginData(data);
+
+  //     data.email ? navigate("/home") : navigate("/");
+  //     localStorage.setItem("loginData", JSON.stringify(data));
+  //     const userLogged = JSON.parse(localStorage.getItem("loginData"));
+
+  //     userLogged.email ? navigate("/home") : navigate("/");
+
+  //     if (!loginData.email) {
+  //       setLoginData(userLogged);
+  //     }
+  //   } catch (err) {
+  //     if (err) console.log(err);
+  //   }
+  // };
+
+  const handleSignIn = async e => {
     try {
-      const res = await fetch(`/user/google-login`, {
-        method: "POST",
-        body: JSON.stringify({ token: googleData.tokenId }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+      e.preventDefault();
+      const SignedUser = await axios.post(`/user/userlogin`, {
+        localUser,
       });
-
-      const data = await res.json();
-      setLoginData(data);
-
-      data.email ? navigate("/home") : navigate("/");
-      localStorage.setItem("loginData", JSON.stringify(data));
-      const userLogged = JSON.parse(localStorage.getItem("loginData"));
-
-      userLogged.email ? navigate("/home") : navigate("/");
-
-      if (!loginData.email) {
-        setLoginData(userLogged);
-      }
-    } catch (err) {
-      if (err) console.log(err);
+      SignedUser.data.isAuth ? navigate("/home") : navigate("/");
+      dispatch({ type: COMMANDS.LOGGEDIN, payload: SignedUser });
+    } catch (error) {
+      if (error)
+        toast.error(error.response.data, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 500,
+        });
+      console.log(error);
     }
   };
 
-  // const localDevLogin = `${baseURLtype}/user/userlogin`;
-  // const onlineDevLogin = `/user/userlogin`;
+  const handleSignUp = async e => {
+    try {
+      e.preventDefault();
+      const RegisteredUser = await axios.post("user/register", localUser);
+      setRegister(false);
+      toast.success(`Success ${RegisteredUser.data.email}`, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 500,
+      });
+    } catch (error) {
+      if (error)
+        toast.error(error.response.data, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 500,
+        });
+      console.log(error);
+    }
+  };
 
-  const handleSignIn = async e => {
-    e.preventDefault();
-    const SignedUser = await axios.post(`/user/userlogin`, {
-      localUser,
-    });
-    SignedUser.data.isAuth ? navigate("/home") : navigate("/");
-    dispatch({ type: COMMANDS.LOGGEDIN, payload: SignedUser });
-  };
-  const handleFailure = err => {
-    toast.error("🛑 couldn't login, try later", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 500,
-    });
-  };
+  // const handleFailure = err => {
+  //   toast.error("🛑 couldn't login, try later", {
+  //     position: toast.POSITION.TOP_CENTER,
+  //     autoClose: 500,
+  //   });
+  // };
 
   const handleLogout = () => {
     localStorage.removeItem("loginData");
@@ -145,7 +172,7 @@ function Login({ getAllTracks }) {
             </h4>
           </div>
           <div className="sign_in">
-            <div className="google">
+            {/* <div className="google">
               <GoogleLogin
                 className="loginBtn"
                 clientId={
@@ -156,16 +183,12 @@ function Login({ getAllTracks }) {
                 onFailure={handleFailure}
                 cookiePolicy={"single_host_origin"}
               ></GoogleLogin>
-            </div>
-            <div className="alternative">
+            </div> */}
+            {/* <div className="alternative">
               <MdHorizontalRule className="line" /> OR{" "}
               <MdHorizontalRule className="line" />
-            </div>
-            <Form
-              action=""
-              className="Signinform"
-              onSubmit={e => handleSignIn(e)}
-            >
+            </div> */}
+            <Form action="" className="Signinform">
               <div className="inputController">
                 {!validateEmail ? (
                   <RiErrorWarningLine className="success notif" />
@@ -195,8 +218,25 @@ function Login({ getAllTracks }) {
                   onChange={e => handleManualChange(e)}
                 />
               </div>
-              <Button type="submit" className="signinBtn">
-                Sign in
+              {register ? (
+                <Button
+                  type="submit"
+                  className="signinBtn"
+                  onClick={e => handleSignUp(e)}
+                >
+                  Sign up
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  className="signinBtn"
+                  onClick={e => handleSignIn(e)}
+                >
+                  Sign in
+                </Button>
+              )}
+              <Button variant="light" onClick={() => setRegister(!register)}>
+                {register ? "Want to Login ?" : "Want to create account ?"}
               </Button>
             </Form>
           </div>

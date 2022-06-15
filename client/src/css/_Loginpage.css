@@ -87,6 +87,7 @@
   border: none !important;
   font-weight: bolder !important;
   transition: all 0.5s ease-in-out !important;
+  margin-bottom: 10px;
 }
 
 .signinBtn:hover {

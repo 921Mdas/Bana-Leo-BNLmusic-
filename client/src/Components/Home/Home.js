@@ -42,7 +42,7 @@ function Home({
     <>
       <Navbar />
       <div className="landingpage">
-        <Welcome />
+        <Welcome state={state} />
         <Intro />
         <Searchbar state={state} dispatch={dispatch} COMMANDS={COMMANDS} />
       </div>

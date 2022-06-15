@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors({ credentials: true, origin: "http://localhost:3005/" }));
 
 // compile
-// app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "build")));
 app.use(express.static("public"));
 
 // routers config
@@ -33,9 +33,9 @@ app.use("/tracks", tracksRouter);
 app.use("/user", usersRouter);
 
 // send html back
-// app.get("*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 // basic setting confis
 const port = process.env.PORT || 3005;
