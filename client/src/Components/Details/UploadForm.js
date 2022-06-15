@@ -24,12 +24,6 @@ const UploadForm = ({ sendMusic, playMusic, savedData }) => {
     setSongState({ songname: "", song: "" });
   };
 
-  useEffect(() => {
-    if (savedData) {
-      playMusic(savedData._id);
-    }
-  }, []);
-
   return (
     <Form
       className="uploadform"

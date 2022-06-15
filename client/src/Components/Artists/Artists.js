@@ -13,28 +13,22 @@ function Artists({
   removeArtist,
   updateArtist,
   playMusic,
+  getAllTracks,
+  dispatch,
+  COMMANDS,
+  setCurrentPage,
+  FIRST_PAGE,
+  SECOND_PAGE,
+  currentPage,
 }) {
-  const [opacity, setOpacity] = useState({
-    SHOW_OPACITY: 1,
-    HIDE_OPACITY: 0,
-  });
-
   const handleDeleteArtist = id => {
     removeArtist(id);
   };
 
   const handleUpdateArtist = id => {
     updateArtist(id);
+    setCurrentPage(SECOND_PAGE);
   };
-
-  // const styles = useSpring({
-  //   to: { opacity: opacity.SHOW_OPACITY, y: 0 },
-  //   from: { opacity: opacity.HIDE_OPACITY, y: 100 },
-  //   delay: 500,
-  //   config: { duration: 500 },
-  // });
-
-  console.log(state);
 
   useEffect(() => {
     LoadArtists();
@@ -62,6 +56,10 @@ function Artists({
               handleDeleteArtist={handleDeleteArtist}
               handleUpdateArtist={handleUpdateArtist}
               playMusic={playMusic}
+              FIRST_PAGE={FIRST_PAGE}
+              SECOND_PAGE={SECOND_PAGE}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
             />
           </div>
         );

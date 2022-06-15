@@ -28,6 +28,10 @@ const CardArtist = ({
   handleDeleteArtist,
   handleUpdateArtist,
   playMusic,
+  FIRST_PAGE,
+  SECOND_PAGE,
+  currentPage,
+  setCurrentPage,
 }) => {
   return (
     <Card className="card">

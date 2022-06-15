@@ -32,6 +32,8 @@ function DetailView({
     ? JSON.parse(localStorage.getItem("detailSongs"))
     : null;
 
+  console.log("our saved data", savedData);
+
   const image = savedData?.picture ? <img src={savedData?.picture} /> : null;
 
   return (
@@ -62,8 +64,8 @@ function DetailView({
 
           <div className="Detail_Playlist">
             <Song
-              playlist={list?.tracks}
-              name={list?.name}
+              playlist={savedData?.tracks}
+              name={savedData?.name}
               state={state}
               dispatch={dispatch}
               COMMANDS={COMMANDS}

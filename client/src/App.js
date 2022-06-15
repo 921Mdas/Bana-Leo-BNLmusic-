@@ -28,6 +28,7 @@ function App() {
     playMusic,
     registerArtist,
     sendMusic,
+    getAllTracks,
   } = useContext(MyContext);
 
   return (
@@ -35,7 +36,7 @@ function App() {
       <BrowserRouter>
         <ToastContainer />
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Login getAllTracks={getAllTracks} />} />
           <Route
             path="/home"
             element={
@@ -49,6 +50,7 @@ function App() {
                 playMusic={playMusic}
                 registerArtist={registerArtist}
                 sendMusic={sendMusic}
+                getAllTracks={getAllTracks}
               />
             }
           ></Route>
