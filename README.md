@@ -6,6 +6,8 @@ As an admin, you are able to create musician profiles and be allowed to add trac
 
 ## Tools used :  MongoDB, Express, React, NODEJs
 
+See the deployed App [BN - BANALEO](https://banaleo.herokuapp.com/) 
+
 
 ## Gallery
 
