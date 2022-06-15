@@ -1,5 +1,3 @@
 node_modules
-
-
 # git push heroku yourbranch:master
 # heroku git:remote -a banaleo
