@@ -184,10 +184,10 @@ function Login() {
                 cookiePolicy={"single_host_origin"}
               ></GoogleLogin>
             </div> */}
-            <div className="alternative">
+            {/* <div className="alternative">
               <MdHorizontalRule className="line" /> OR{" "}
               <MdHorizontalRule className="line" />
-            </div>
+            </div> */}
             <Form action="" className="Signinform">
               <div className="inputController">
                 {!validateEmail ? (
