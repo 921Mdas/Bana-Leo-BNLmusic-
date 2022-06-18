@@ -9,6 +9,18 @@ As an admin, you are able to create an artist's profile and add tracks. Only tra
 See the deployed App [BN - BANALEO](https://banaleo.herokuapp.com/) 
 
 
+##About The Project
+
+|Day	| Task |
+__________________________________________________________________
+Day 1	Brainstorm, Research, and Plan
+Day 2-3	Trello, Wireframe, ERD, Create shell
+Day 4	Create base: Views, Urls, Templates
+Day 5	Uploading images in Django using AWS (Amazon Web Services)
+Day 6 - 8	CSS, Authentication, Final Touches
+Day 9	Deploy to Heroku
+
+
 ## Gallery
 
 <img width="1006" alt="image" src="https://user-images.githubusercontent.com/66809588/173737507-f7bb9546-9817-4313-ae1e-cee4821fc84a.png">
