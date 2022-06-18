@@ -24,6 +24,9 @@ See the deployed App [BN - BANALEO](https://banaleo.herokuapp.com/)
 
 <img width="1292" alt="image" src="https://user-images.githubusercontent.com/66809588/174445632-8d42e43b-1427-41e0-9a24-a940e646d174.png">
 
+## ERD
+
+<img width="681" alt="image" src="https://user-images.githubusercontent.com/66809588/174449318-bf4de9e5-e9a7-4e0f-b29f-a33014ceeea1.png">
 
 
 ## Gallery
