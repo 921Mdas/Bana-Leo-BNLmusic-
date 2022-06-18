@@ -13,12 +13,12 @@ See the deployed App [BN - BANALEO](https://banaleo.herokuapp.com/)
 
 | Day	                  |                                 Task |
 |:---------------------:|:------------------------------------:|
-| Day 1 |	Brainstorm, Research, and Plan |
-| Day 2 |	Trello, Wireframe, ERD, Create shell |
-| Day 4 |	Create base: Views, Urls, Templates |
-| Day 5 |	Uploading images in Django using AWS (Amazon Web Services) |
-| Day 6 |	CSS, Authentication, Final Touches |
-| Day 9 |	Deploy to Heroku |
+| Day 1 |	Research, Planning |
+| Day 2 |	Trello, Wireframe, ERD |
+| Day 3 |	Create backend: Server, Middlewares, Urls Postman Testing |
+| Day 3 |	Create frontend, React architecture, HOCs |
+| Day 4 |	CSS, Authentication, responsiveness testing |
+| Day 4 |	Deploy to Heroku |
 
 
 ## Gallery
