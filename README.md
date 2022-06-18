@@ -9,7 +9,7 @@ As an admin, you are able to create an artist's profile and add tracks. Only tra
 See the deployed App [BN - BANALEO](https://banaleo.herokuapp.com/) 
 
 
-##About The Project
+## Timeline
 
 | Day	                  |                                 Task |
 |:---------------------:|:------------------------------------:|
@@ -19,6 +19,11 @@ See the deployed App [BN - BANALEO](https://banaleo.herokuapp.com/)
 | Day 3 |	Create frontend, React architecture, HOCs |
 | Day 4 |	CSS, Authentication, responsiveness testing |
 | Day 4 |	Deploy to Heroku |
+
+## Trello
+
+<img width="1292" alt="image" src="https://user-images.githubusercontent.com/66809588/174445632-8d42e43b-1427-41e0-9a24-a940e646d174.png">
+
 
 
 ## Gallery
