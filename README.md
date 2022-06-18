@@ -28,6 +28,9 @@ See the deployed App [BN - BANALEO](https://banaleo.herokuapp.com/)
 
 <img width="681" alt="image" src="https://user-images.githubusercontent.com/66809588/174449318-bf4de9e5-e9a7-4e0f-b29f-a33014ceeea1.png">
 
+## Wireframes
+
+<img width="543" alt="image" src="https://user-images.githubusercontent.com/66809588/174449488-e7e3a1ca-19c8-4763-a569-cd5d1372e2e2.png">
 
 ## Gallery
 
