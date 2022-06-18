@@ -12,7 +12,7 @@ See the deployed App [BN - BANALEO](https://banaleo.herokuapp.com/)
 ##About The Project
 
 |Day	| Task |
-__________________________________________________________________
+----------------------------------------------------------------
 Day 1	Brainstorm, Research, and Plan
 Day 2-3	Trello, Wireframe, ERD, Create shell
 Day 4	Create base: Views, Urls, Templates
