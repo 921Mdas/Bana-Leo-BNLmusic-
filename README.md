@@ -1,10 +1,19 @@
 ## BANALEO MUSIC
 
-Mobile friendly webapp - Listen to the most exclusive african music handpicked from 1950s to early 1990. 
-Easy-to use, Banaleo allows you to discover music hard to find in todays archives.
-As an admin, you are able to create an artist's profile and add tracks. Only tracks without royalties are added to the app.
+You have a music event? Say goodbye to spreadsheets. Banaleo
+allows your team to create a list of all performing artists,
+their bio and the tracks you want them to perform. Decide
+together which musician is a good fit and update information in
+real-time
 
 ## Tools used :  MongoDB, Express, React, NODEJs
+
+How to use:
+- Sign up with email and password.
+- Login and use the avatar icon in gold to add a new artist (name, picture, bio, etc).
+- Artist must be created first before adding any music.
+- Click on the play icon on a created artist to add music
+- Upload a track.
 
 See the deployed App [BN - BANALEO](https://banaleo.herokuapp.com/) 
 
