@@ -3,26 +3,15 @@ import React, { useState, useEffect, useRef } from "react";
 // components
 import SongCtrl from "./SongCtrl";
 import Loader from "../UtilComponent/Loader";
+import { CongoPlayLists } from "./Stack";
 
-const Song = ({ state, dispatch, COMMANDS, playlist, name }) => {
-  const [play, setPlay] = useState(false);
-  const nowPlaying = useRef(null);
+const Song = ({ playlist }) => {
+  playlist.map(track => {
+    CongoPlayLists.push(track);
+  });
 
-  const starTrack = () => {
-    setPlay(!play);
-  };
-
-  if (playlist?.length > 0) {
-    return playlist.map(track => {
-      return (
-        <SongCtrl
-          track={track}
-          key={track._id}
-          starTrack={starTrack}
-          nowPlaying={nowPlaying}
-        />
-      );
-    });
+  if (playlist.length > 0) {
+    return <SongCtrl />;
   } else {
     return <Loader />;
   }
