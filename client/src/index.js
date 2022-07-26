@@ -17,21 +17,11 @@ import Layout from "./HOC/Layout";
 const root = createRoot(document.getElementById("root"));
 
 root.render(
-  <React.StrictMode>
-    <MyProvider>
-      <Layout>
-        <App />
-        {/* <BrowserRouter>
-          <ToastContainer />
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/home" element={<App />}></Route>
-            <Route path="/bio/:id" element={<Bio />}></Route>
-            <Route path="/tracks" element={<AllTracks />}></Route>
-            <Route path="*" element={<ErrorPage />}></Route>
-          </Routes>
-        </BrowserRouter> */}
-      </Layout>
-    </MyProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <MyProvider>
+    <Layout>
+      <App />
+    </Layout>
+  </MyProvider>
+  // </React.StrictMode>
 );

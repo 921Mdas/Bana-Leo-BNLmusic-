@@ -32,8 +32,6 @@ function DetailView({
     ? JSON.parse(localStorage.getItem("detailSongs"))
     : null;
 
-  console.log("our saved data", savedData);
-
   const image = savedData?.picture ? <img src={savedData?.picture} /> : null;
 
   return (

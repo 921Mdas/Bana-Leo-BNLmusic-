@@ -9,6 +9,57 @@
   display: flex;
   gap: 2em;
   align-items: center;
+  width: max-content;
+  margin-left: 20px;
+}
+
+.next_song {
+  width: max-content;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.next_song_detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--grey);
+  margin-left: 10px;
+  border-radius: 25px;
+  padding: 3px 0;
+}
+
+.next_song h5 {
+  font-weight: 600;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  padding: 0 15px;
+}
+
+.next_song_icon {
+  font-size: 25px;
+}
+
+.next_song h5 span {
+  color: var(--white);
+  padding-left: 10px;
+}
+
+.next_song_btn {
+  background: none;
+  border: solid 2px var(--white);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.next_song_btn:active {
+  background-color: var(--white);
 }
 
 .track_actions {
@@ -37,7 +88,7 @@
 .detail_info {
   position: relative;
   padding: 10px;
-  width: 100%;
+  width: 70%;
   height: 10vh;
   display: flex;
 }
@@ -51,6 +102,10 @@
   font-size: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-top: 10px;
+  background-color: var(--grey);
 }
 
 .artist_info {
@@ -58,7 +113,6 @@
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
   align-items: center;
   width: 400px;
-  /* gap: 20px; */
   padding: 1em 0;
   position: relative;
 }
