@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player/lazy";
 
 import Actionbar from "./Actionbar";
 import { CongoPlayLists } from "./Stack";
 
-const SongCtrl = () => {
-  const [currentTrack, setCurrentTrack] = useState(CongoPlayLists.start());
+const SongCtrl = ({ playList, ctrlMusic }) => {
+  const [currentTrack, setCurrentTrack] = useState(null);
 
-  const ChangeSong = async () => {
-    await CongoPlayLists.next();
-    setCurrentTrack(CongoPlayLists.start());
-  };
+  const ChangeSong = () => {};
+
+  useEffect(() => {
+    setCurrentTrack(ctrlMusic.start());
+    console.log("current track", currentTrack);
+  }, [playList]);
 
   return (
     <div className="detail_song">
