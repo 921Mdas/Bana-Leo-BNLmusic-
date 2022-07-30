@@ -16,6 +16,7 @@ class PlayList {
   }
 
   start() {
+    console.log("the top song here is ", this.bottom);
     return this.top;
   }
 

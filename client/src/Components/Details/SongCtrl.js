@@ -9,22 +9,26 @@ const SongCtrl = ({ playList, ctrlMusic }) => {
 
   const ChangeSong = () => {};
 
+  let meTrack;
+
   useEffect(() => {
     setCurrentTrack(ctrlMusic.start());
-    console.log("current track", currentTrack);
-  }, [playList]);
+    meTrack = (
+      <ReactPlayer
+        controls={true}
+        url={currentTrack?.value?.track}
+        width={"100%"}
+        height={"100%"}
+        volume={0.2}
+      />
+    );
+  }, [playList, ctrlMusic]);
 
   return (
     <div className="detail_song">
       <div className="detail_info">
         <h5>{currentTrack?.value?.title}</h5>
-        <ReactPlayer
-          controls={true}
-          url={currentTrack?.value?.track}
-          width={"100%"}
-          height={"100%"}
-          volume={0.2}
-        />
+        {meTrack}
       </div>
       <div className="track_actions">
         <Actionbar nextTrack={currentTrack} ChangeSong={ChangeSong} />
