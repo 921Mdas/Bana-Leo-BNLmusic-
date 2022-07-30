@@ -30,11 +30,19 @@ class PlayList {
     if (this.length === 0) {
       this.top = song;
       this.bottom = song;
+    } else {
+      const temp = this.top;
+      this.top = song;
+      this.top.next = temp;
     }
-    song.next = this.top;
-    this.top = song;
-
     this.length++;
+  }
+
+  pop() {
+    if (!this.top) return null;
+    let holdTop = this.top;
+    this.top = this.top.next;
+    this.length--;
   }
 
   next() {

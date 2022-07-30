@@ -4,9 +4,12 @@ import React, { useState, useEffect, useRef } from "react";
 import SongCtrl from "./SongCtrl";
 import Loader from "../UtilComponent/Loader";
 import { CongoPlayLists } from "./Stack";
-import e from "cors";
 
-const Song = ({ playlist }) => {
+const Song = () => {
+  const savedData = localStorage.getItem("detailSongs")
+    ? JSON.parse(localStorage.getItem("detailSongs"))
+    : null;
+
   const AddTrackToStack = MusicList => {
     MusicList.map(track => {
       CongoPlayLists.push(track);
@@ -14,14 +17,12 @@ const Song = ({ playlist }) => {
   };
 
   useEffect(() => {
-    if (playlist.length > 0) CongoPlayLists.reset();
-    AddTrackToStack(playlist);
-  }, [playlist]);
+    if (CongoPlayLists.length > 0) CongoPlayLists.reset();
+    AddTrackToStack(savedData?.tracks);
+  }, [savedData]);
 
-  console.log("verify change", playlist, CongoPlayLists.length);
-
-  if (playlist.length > 0) {
-    return <SongCtrl />;
+  if (CongoPlayLists.length > 0) {
+    return <SongCtrl ctrlMusic={CongoPlayLists} playList={savedData} />;
   } else {
     return <Loader />;
   }
