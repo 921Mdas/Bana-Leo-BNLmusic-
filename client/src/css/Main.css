@@ -138,34 +138,57 @@ audio::-webkit-media-controls-current-time-display {
 }
 
 .artist-preview {
-  width: 600px;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 30px;
+  border: solid 1px var(--bgc-grey);
+  background: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: var(--shadow-2);
 }
 
 .aritst-pic {
-  width: 100px;
+  width: 100%;
   height: 100%;
-  border: solid 1px rgb(179, 179, 179);
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   object-fit: cover;
   overflow: hidden;
-  /* border: solid 1px red; */
+}
+
+.aritst-pic img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.detail_bio_icon {
+  font-size: 30px;
+  color: var(--bgc-grey);
+}
+
+.bio_detail_section {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1em;
 }
 
 .avatar {
   width: 100%;
   height: 100%;
-
   background-image: url("../images-client/concert.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
-  /* border: solid 1px red; */
 }
 
 .nomusic {
-  /* margin-top: 1em; */
   padding: 1em;
   text-align: center;
   color: rgb(228, 226, 226);
@@ -175,14 +198,12 @@ audio::-webkit-media-controls-current-time-display {
   justify-content: center;
 }
 
-.aritst-pic img,
 .avatar {
   width: 100px;
   max-width: 100px;
   max-height: 100px;
   border-radius: 10px;
   object-fit: cover;
-  /* border: solid 1px red; */
 }
 
 .social_icons {
@@ -193,20 +214,11 @@ audio::-webkit-media-controls-current-time-display {
   margin-bottom: 10px;
 }
 
-.fb {
-  color: rgb(90, 138, 241);
-}
-
-.yt {
-  color: rgb(155, 2, 2);
-}
-
-.tw {
-  color: blueviolet;
-}
-
+.fb,
+.yt,
+.tw,
 .insta {
-  color: rgb(180, 100, 34);
+  color: var(--bgc-grey);
 }
 
 .social_ic {
@@ -271,11 +283,13 @@ audio::-webkit-media-controls-current-time-display {
   display: flex;
   flex-direction: column;
   width: 400px;
+  height: 400px !important;
   margin: 0 auto 100px auto;
   padding: 2em;
   border: solid 1px rgba(134, 133, 133, 0.267);
   border-radius: 10px;
   position: relative;
+  box-shadow: var(--shadow-2);
   box-shadow: 0 3px 8px -1px rgba(134, 133, 133, 0.404);
   background-image: linear-gradient(
       90deg,
@@ -407,6 +421,11 @@ audio::-webkit-media-controls-current-time-display {
 .copyrightSection {
   display: flex;
   gap: 1em;
+}
+
+.copyright h5 {
+  margin-top: 5px;
+  color: var(--bgc-grey);
 }
 
 .review {

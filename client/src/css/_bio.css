@@ -141,3 +141,12 @@
   width: 100%;
   overflow: hidden;
 }
+
+.Track-preview_first_section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 60%;
+  margin: 0 auto;
+  gap: 10px;
+}
