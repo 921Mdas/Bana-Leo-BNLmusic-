@@ -2,6 +2,7 @@ import React, { useState, useReducer, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { COMMANDS } from "./type";
+import { resetStorage } from "./helper";
 
 const MyContext = React.createContext();
 
@@ -18,6 +19,7 @@ const reducer = (state, action) => {
     case COMMANDS.GETALL_TRACKS:
       return { ...state, alltracks: [...action.payload] };
     case COMMANDS.GET_TRACKS_BY_ID:
+      resetStorage("detailSongs", action.payload);
       return { ...state, playlist: [action.payload] };
     case COMMANDS.LOGGEDIN:
       return { ...state, loggedInUser: action.payload };
@@ -171,7 +173,7 @@ function MyProvider(props) {
     try {
       await axios.get(`/tracks/${id}/uploadsongs`).then(res => {
         dispatch({ type: COMMANDS.GET_TRACKS_BY_ID, payload: res.data });
-        localStorage.setItem("detailSongs", JSON.stringify(res.data));
+        // localStorage.setItem("detailSongs", JSON.stringify(res.data));
       });
     } catch (error) {
       if (error)
