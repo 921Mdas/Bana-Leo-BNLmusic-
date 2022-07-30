@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { COMMANDS } from "./type";
 import { resetStorage } from "./helper";
+import { CongoPlayLists } from "../Components/Details/Stack";
 
 const MyContext = React.createContext();
 
@@ -168,12 +169,15 @@ function MyProvider(props) {
 
   // retrieving music of specific artists by id
   const playMusic = async id => {
-    console.log(id);
+    CongoPlayLists.reset();
 
     try {
       await axios.get(`/tracks/${id}/uploadsongs`).then(res => {
         dispatch({ type: COMMANDS.GET_TRACKS_BY_ID, payload: res.data });
-        // localStorage.setItem("detailSongs", JSON.stringify(res.data));
+        let newMusic = res.data?.tracks;
+        if (CongoPlayLists.length === 0) {
+          newMusic.map(music => CongoPlayLists.push(music));
+        }
       });
     } catch (error) {
       if (error)

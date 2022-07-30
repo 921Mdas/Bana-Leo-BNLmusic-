@@ -10,17 +10,6 @@ const Song = () => {
     ? JSON.parse(localStorage.getItem("detailSongs"))
     : null;
 
-  const AddTrackToStack = MusicList => {
-    MusicList.map(track => {
-      CongoPlayLists.push(track);
-    });
-  };
-
-  useEffect(() => {
-    if (CongoPlayLists.length > 0) CongoPlayLists.reset();
-    AddTrackToStack(savedData?.tracks);
-  }, [savedData]);
-
   if (CongoPlayLists.length > 0) {
     return <SongCtrl ctrlMusic={CongoPlayLists} playList={savedData} />;
   } else {
