@@ -16,7 +16,6 @@ class PlayList {
   }
 
   start() {
-    console.log("the top song here is ", this.bottom);
     return this.top;
   }
 
@@ -47,13 +46,15 @@ class PlayList {
   }
 
   next() {
+    let holdTop = this.top;
     let tempPrev = this.top.next;
+    tempPrev.prev = holdTop;
     this.top = tempPrev;
     return tempPrev;
   }
 
   prev() {
-    this.prev = this.top;
+    return this.top;
   }
 }
 
