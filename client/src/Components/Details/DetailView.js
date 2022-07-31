@@ -14,6 +14,16 @@ import { FaFacebookSquare } from "react-icons/fa";
 import Navbar from "../navbar";
 import Footer from "../Footer";
 
+let dateCreator = (data, val) => {
+  return (
+    new Date(data[val]).getDay().toString() +
+    "-" +
+    (new Date(data[val]).getMonth() + 1).toString() +
+    "-" +
+    new Date(data[val]).getFullYear().toString()
+  );
+};
+
 function DetailView({
   state,
   dispatch,
@@ -34,29 +44,34 @@ function DetailView({
 
   const image = savedData?.picture ? <img src={savedData?.picture} /> : null;
 
+  console.log(savedData.updatedAt);
+
   return (
     <>
       <Navbar />
       <div className="tracks">
         <div className="Tracks-Preview">
-          <UploadForm
+          {/* <UploadForm
             sendMusic={sendMusic}
             playMusic={playMusic}
             savedData={savedData}
-          />
+          /> */}
 
           <div className="artist-preview">
             <div className="aritst-pic">{image}</div>
 
             <div className="bio-titles">
+              <h6>PLAYLIST</h6>
               <h2>{savedData?.name || "No artist"}</h2>
-              <div className="social_icons">
-                <FaFacebookSquare className="fb social_ic" />{" "}
-                <AiFillYoutube className="yt social_ic" />{" "}
-                <BsTwitch className="tw social_ic" />{" "}
-                <AiOutlineInstagram className="insta social_ic" />
+              <p>{savedData?.bio}</p>
+              <div className="metadata">
+                <p>
+                  Created By: <span>Banaleo</span> /
+                </p>
+                <p>{savedData.tracks.length} tracks uploaded / </p>
+                <p>Artist added: {dateCreator(savedData, "createdAt")} / </p>
+                <p>Last updated: {dateCreator(savedData, "updatedAt")}</p>
               </div>
-              <h5>Banaleo copyright</h5>
             </div>
           </div>
 

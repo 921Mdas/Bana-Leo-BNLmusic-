@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import ReactPlayer from "react-player/lazy";
+import ReactPlayer from "react-player";
+import { IoIosMusicalNote } from "react-icons/io";
+import { CgPlayTrackNextR } from "react-icons/cg";
+import { FiPlayCircle } from "react-icons/fi";
 
 import Actionbar from "./Actionbar";
 
 const SongCtrl = ({ playList, ctrlMusic }) => {
   const [currentTrack, setCurrentTrack] = useState(null);
   let [counter, setCounter] = useState(0);
+  let [showEqualizer, setShowEqualizer] = useState(false);
 
   const NextSong = () => {
     if (ctrlMusic.length >= counter) {
@@ -32,20 +36,39 @@ const SongCtrl = ({ playList, ctrlMusic }) => {
   return (
     <div className="detail_song">
       <div className="detail_info">
-        <h5>{currentTrack?.value?.title}</h5>
+        <div className="detail_info_music">
+          <div className="title_playing playing_now">
+            <h6>
+              <IoIosMusicalNote /> Now Playing:
+            </h6>
+            <h6 className="bio_title_song_playing">
+              {currentTrack?.value?.title}
+            </h6>
+          </div>
+          <div className="title_playing coming_up_next">
+            <h6>
+              <CgPlayTrackNextR className="icon_coming_up" /> Coming up:
+            </h6>
+            <h6 className="bio_title_song_playing playing_next">
+              {currentTrack?.next?.value?.title}
+            </h6>
+          </div>
+        </div>
         <ReactPlayer
           controls={true}
           url={currentTrack?.value?.track}
           width={"100%"}
           height={"100%"}
           volume={0.2}
+          onStart={() => setShowEqualizer(true)}
+          onPause={() => setShowEqualizer(false)}
         />
       </div>
       <div className="track_actions">
         <Actionbar
-          nextTrack={currentTrack}
           NextSong={NextSong}
           PrevSong={PrevSong}
+          showEqualizer={showEqualizer}
         />
       </div>
     </div>
