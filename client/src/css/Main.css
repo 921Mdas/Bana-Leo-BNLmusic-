@@ -137,38 +137,6 @@ audio::-webkit-media-controls-current-time-display {
   width: 150px;
 }
 
-.artist-preview {
-  width: 400px;
-  height: 400px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  border: solid 1px var(--bgc-grey);
-  background: var(--white);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 10px;
-  box-shadow: var(--shadow-2);
-}
-
-.aritst-pic {
-  width: 100%;
-  height: 100%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  object-fit: cover;
-  overflow: hidden;
-}
-
-.aritst-pic img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
 .detail_bio_icon {
   font-size: 30px;
   color: var(--bgc-grey);
