@@ -193,6 +193,7 @@ function MyProvider(props) {
   const sendMusic = async data => {
     try {
       const receivedData = await data;
+      console.log("received data", receivedData);
       await axios.post(`/tracks/${dataTracker._id}/uploadsongs`, receivedData);
       toast.success("💥 new track uploaded", {
         position: toast.POSITION.TOP_CENTER,

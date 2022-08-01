@@ -39,10 +39,6 @@ const UploadForm = ({ sendMusic, playMusic, savedData }) => {
   //   setSongState({ ...songstate, [targetName]: targetValue });
   // };
 
-  const awsSubmit = async e => {
-    console.log(e);
-  };
-
   return (
     <>
       <Formik
@@ -50,7 +46,7 @@ const UploadForm = ({ sendMusic, playMusic, savedData }) => {
         // validationSchema={SongSchema}
         onSubmit={(values, { resetForm }) => {
           const file = FileUpload?.current?.files[0];
-          axios.post("/tracks/:id/uploadsongs", file);
+          sendMusic(file);
         }}
       >
         {({ handleSubmit, handleBlur, handleChange, handleReset, errors }) => (
@@ -64,7 +60,7 @@ const UploadForm = ({ sendMusic, playMusic, savedData }) => {
                 type="file"
                 name="file"
                 id="file"
-                accept="audio/*"
+                // accept="audio/*"
                 placeholder="upload here"
                 className="dissapear"
                 ref={FileUpload}

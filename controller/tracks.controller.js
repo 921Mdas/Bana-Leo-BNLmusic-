@@ -1,14 +1,23 @@
 const Artist = require("../models/artists.model");
 const Tracks = require("../models/tracks.model");
+const uploadAWSAutomate = require("../middleware/aws");
+const fileMulter = require("../middleware/upload");
 
 const mongoose = require("mongoose");
 const { StatusCodes } = require("http-status-codes");
-
 // register a new track in the DB - POST
 const createTrack = async (req, res) => {
   // update to req.body.track
   // update req.body.title
-  console.log("received file", req.body);
+  // console.log("received file", req.body);
+  const id = req.params.id;
+  // console.log("current", id);
+  console.log("our file received data", req.file, "files", req.files);
+
+  const fileLocation = uploadAWSAutomate(req.body);
+  // res.status(200).json({ location: fileLocation });
+
+  // console.log("received file", req.body);
   // try {
   //   const id = req.params.id;
 
