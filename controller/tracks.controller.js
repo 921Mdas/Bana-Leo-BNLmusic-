@@ -8,31 +8,32 @@ const { StatusCodes } = require("http-status-codes");
 const createTrack = async (req, res) => {
   // update to req.body.track
   // update req.body.title
-  try {
-    const id = req.params.id;
+  console.log("received file", req.body);
+  // try {
+  //   const id = req.params.id;
 
-    const newTrack = await Tracks.create({
-      title: req.body.songname,
-      track: req.body.song,
-    });
+  //   const newTrack = await Tracks.create({
+  //     title: req.body.songname,
+  //     track: req.body.song,
+  //   });
 
-    const Musician = await Artist.findById(id);
+  //   const Musician = await Artist.findById(id);
 
-    await Musician.tracks.push(newTrack);
+  //   await Musician.tracks.push(newTrack);
 
-    const Track = await Tracks.findOne({ title: req.body.songname });
-    await Track.artists.push(Musician);
+  //   const Track = await Tracks.findOne({ title: req.body.songname });
+  //   await Track.artists.push(Musician);
 
-    await Musician.save();
-    await Track.save();
+  //   await Musician.save();
+  //   await Track.save();
 
-    return res
-      .status(StatusCodes.OK)
-      .send("new track added 💥 " + newTrack.title);
-  } catch (err) {
-    if (err) console.log(err);
-    return res.status(StatusCodes.NOT_FOUND).send("couldnt save new track");
-  }
+  //   return res
+  //     .status(StatusCodes.OK)
+  //     .send("new track added 💥 " + newTrack.title);
+  // } catch (err) {
+  //   if (err) console.log(err);
+  //   return res.status(StatusCodes.NOT_FOUND).send("couldnt save new track");
+  // }
 };
 
 // get track by artists id - GET

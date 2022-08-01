@@ -288,3 +288,65 @@
 .dissapear {
   opacity: 0;
 }
+
+/* upload form */
+
+.uploadform {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 400px !important;
+  margin: 0 auto 0 auto;
+  padding: 2em;
+  border: solid 1px rgba(134, 133, 133, 0.267);
+  border-radius: 10px;
+  position: relative;
+  box-shadow: var(--shadow-2);
+  box-shadow: 0 3px 8px -1px rgba(134, 133, 133, 0.404);
+  background-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.876),
+      rgba(0, 0, 0, 0.876)
+    ),
+    url("../images-client/pattern.webp");
+  position: relative;
+}
+
+.upload_icon_btn {
+  color: white;
+  font-size: 30px;
+}
+
+.uploadBtn {
+  background-color: var(--clr) !important;
+  border: none !important;
+  color: black !important;
+  font-weight: bold !important;
+}
+
+.forminput {
+  background: black !important;
+}
+
+.upload_label {
+  width: 100%;
+  height: 25vh;
+  cursor: pointer;
+}
+
+.upload_label p {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.upload_icon {
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease-in-out;
+}
+
+.upload_label:hover .upload_icon {
+  transform: scale(1.1);
+}

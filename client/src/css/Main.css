@@ -247,42 +247,6 @@ audio::-webkit-media-controls-current-time-display {
   right: 0%;
 }
 
-.uploadform {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: 400px !important;
-  margin: 0 auto 100px auto;
-  padding: 2em;
-  border: solid 1px rgba(134, 133, 133, 0.267);
-  border-radius: 10px;
-  position: relative;
-  box-shadow: var(--shadow-2);
-  box-shadow: 0 3px 8px -1px rgba(134, 133, 133, 0.404);
-  background-image: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.876),
-      rgba(0, 0, 0, 0.876)
-    ),
-    url("../images-client/pattern.webp");
-}
-
-.upload_icon_btn {
-  color: white;
-  font-size: 30px;
-}
-
-.uploadBtn {
-  background-color: var(--clr) !important;
-  border: none !important;
-  color: black !important;
-  font-weight: bold !important;
-}
-
-.forminput {
-  background: black !important;
-}
-
 .Tracks-Preview {
   width: 80%;
   min-height: 100%;
