@@ -15,13 +15,14 @@ import Navbar from "../navbar";
 import Footer from "../Footer";
 
 let dateCreator = (data, val) => {
-  return (
-    new Date(data[val]).getDay().toString() +
-    "-" +
-    (new Date(data[val]).getMonth() + 1).toString() +
-    "-" +
-    new Date(data[val]).getFullYear().toString()
-  );
+  if (data)
+    return (
+      new Date(data[val]).getDay().toString() +
+      "-" +
+      (new Date(data[val]).getMonth() + 1).toString() +
+      "-" +
+      new Date(data[val]).getFullYear().toString()
+    );
 };
 
 function DetailView({
@@ -44,18 +45,16 @@ function DetailView({
 
   const image = savedData?.picture ? <img src={savedData?.picture} /> : null;
 
-  console.log(savedData.updatedAt);
-
   return (
     <>
       <Navbar />
       <div className="tracks">
         <div className="Tracks-Preview">
-          {/* <UploadForm
+          <UploadForm
             sendMusic={sendMusic}
             playMusic={playMusic}
             savedData={savedData}
-          /> */}
+          />
 
           <div className="artist-preview">
             <div className="aritst-pic">{image}</div>
@@ -68,7 +67,7 @@ function DetailView({
                 <p>
                   Created By: <span>Banaleo</span> /
                 </p>
-                <p>{savedData.tracks.length} tracks uploaded / </p>
+                <p>{savedData?.tracks.length} tracks uploaded / </p>
                 <p>Artist added: {dateCreator(savedData, "createdAt")} / </p>
                 <p>Last updated: {dateCreator(savedData, "updatedAt")}</p>
               </div>
