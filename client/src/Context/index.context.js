@@ -5,6 +5,8 @@ import { COMMANDS } from "./type";
 import { resetStorage } from "./helper";
 import { CongoPlayLists } from "../Components/Details/Stack";
 
+import { Toaster, setStorage } from "./helper";
+
 const MyContext = React.createContext();
 
 const reducer = (state, action) => {
@@ -92,28 +94,17 @@ const defaultState = {
 
 function MyProvider(props) {
   const [state, dispatch] = useReducer(reducer, defaultState);
-  const [dataTracker, setdataTracker] = useState(
-    localStorage.getItem("detailSongs")
-      ? JSON.parse(localStorage.getItem("detailSongs"))
-      : null
-  );
+  const [dataTracker, setdataTracker] = useState(setStorage("detailSongs"));
 
   // create a new artist
   const registerArtist = async args => {
     try {
       console.log("new artist info", args);
       await axios.post("/artists", args);
-      toast.success(` successfully added`, {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 500,
-      });
+      Toaster("success", `💥 successfully added`);
       dispatch({ type: COMMANDS.GOTO_PREVIOUS_PAGE });
     } catch (error) {
-      if (error)
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 500,
-        });
+      if (error) Toaster("error", error.response.data.message);
       console.log(error);
     }
   };
@@ -126,27 +117,29 @@ function MyProvider(props) {
         dispatch({ type: COMMANDS.STORE_ALL_ARTISTS, payload: res.data });
       });
     } catch (error) {
-      if (error)
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 500,
-        });
+      if (error) Toaster("error", error.response.data.message);
       console.log(error);
     }
   };
 
   // delete artist
   const removeArtist = id => {
-    const { artists } = state;
-    axios.post(`/artists/remove/:${id}`);
-    const removedArtist = artists.find(artist => artist._id === id);
-    const newArtists = artists.filter(artist => artist._id !== id);
-    dispatch({ type: COMMANDS.REMOVE_AN_ARTIST, payload: newArtists });
+    try {
+      const { artists } = state;
+      axios.post(`/artists/remove/:${id}`);
+      const removedArtist = artists.find(artist => artist._id === id);
+      const newArtists = artists.filter(artist => artist._id !== id);
+      dispatch({ type: COMMANDS.REMOVE_AN_ARTIST, payload: newArtists });
 
-    toast.error(` ${removedArtist.name} removed`, {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 500,
-    });
+      toast.error(` ${removedArtist.name} removed`, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 500,
+      });
+      Toaster("success", `${removedArtist.name} removed`);
+    } catch (error) {
+      if (error) console.log(error);
+      Toaster("error", error.response.data.message);
+    }
   };
 
   // update artists
@@ -158,12 +151,10 @@ function MyProvider(props) {
         type: COMMANDS.UPDATE_ARTIST,
         payload: { artistToUpdate, id },
       });
-    } catch (err) {
-      if (err) console.log(err);
-      toast.error(`💥 successfully updated`, {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 500,
-      });
+      Toaster("success", `💥 ${artistToUpdate.name} successfully updated`);
+    } catch (error) {
+      if (error) console.log(error);
+      Toaster("error", error.response.data.message);
     }
   };
 
@@ -180,32 +171,19 @@ function MyProvider(props) {
         }
       });
     } catch (error) {
-      if (error)
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 500,
-        });
+      if (error) Toaster("error", error.response.data.message);
       console.log(error);
     }
   };
 
   // uploading music
-  const sendMusic = async data => {
+  const sendMusic = async (data, filename) => {
     try {
       const receivedData = await data;
-      const musicSent = await axios.post(
-        `/tracks/${dataTracker._id}/uploadsongs`,
-        receivedData
-      );
-      toast.success("💥 new track uploaded", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 500,
-      });
+      await axios.post(`/tracks/${dataTracker._id}/uploadsongs`, receivedData);
+      Toaster("success", `💥 ${filename} uploaded`);
     } catch (error) {
-      toast.error(error.response.data.message, {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 500,
-      });
+      Toaster("error", error.response.data.message);
       console.log(error);
     }
   };
@@ -217,10 +195,7 @@ function MyProvider(props) {
       await dispatch({ type: COMMANDS.GETALL_TRACKS, payload: tracks.data });
       localStorage.setItem("songs", JSON.stringify(tracks.data));
     } catch (error) {
-      toast.error(error.response.data.message, {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 500,
-      });
+      Toaster("error", error.response.data.message);
       console.log(error);
     }
   };
