@@ -9,12 +9,14 @@ const { StatusCodes } = require("http-status-codes");
 const createTrack = async (req, res) => {
   // update to req.body.track
   // update req.body.title
-  // console.log("received file", req.body);
   const id = req.params.id;
   // console.log("current", id);
-  console.log("our file received data", req.file, "files", req.files);
 
-  const fileLocation = uploadAWSAutomate(req.body);
+  res.json({ message: "success" });
+  const fileLocation = uploadAWSAutomate(req.file);
+  console.log("received file", req.file);
+
+  // res.send(req.file);
   // res.status(200).json({ location: fileLocation });
 
   // console.log("received file", req.body);

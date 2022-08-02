@@ -1,19 +1,39 @@
 var express = require("express");
 var router = express.Router();
 const multer = require("multer");
-
+const uuid = require("uuid").v4;
 var ctrl = require("../controller/tracks.controller");
 
-const fileStorageEngine = multer.diskStorage({
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-  destination: (req, file, cb) => {
-    cb(null, "../middleware/uploads");
-  },
-});
+// const upload = multer({ dest: "uploadFolder/" });
 
-const upload = multer({ storage: fileStorageEngine });
+// const multiUpload = upload.fields([
+//   { name: "lyrics", maxCount: 1 },
+//   { name: "title", maxCount: 1 },
+// ]);
+
+// const fileFilter = (req, file, cb) => {
+//   if (file.mimetype.split("/")[0] === "audio/mpeg") {
+//     cb(null, true);
+//   } else {
+//     cb(new Error("incorrect file type"), true);
+//   }
+// };
+
+// const fileStorageEngine = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "uploadFolder");
+//   },
+//   filename: (req, file, cb) => {
+//     const { originalname } = file;
+//     cb(null, `${uuid()}-${originalname}`);
+//   },
+// });
+
+const fileStorageEngine = multer.memoryStorage();
+
+const upload = multer({
+  storage: fileStorageEngine,
+});
 
 // get all DB saved tracks
 router.get("/alltracks", (req, res) => {
