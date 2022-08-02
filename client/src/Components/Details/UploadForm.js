@@ -27,21 +27,78 @@ const SongSchema = Yup.object({
 
 const UploadForm = ({ sendMusic, playMusic, savedData }) => {
   const FileUpload = useRef(null);
-  // const [songstate, setSongState] = useState({
-  //   songname: "",
-  //   song: "",
-  // });
+  const [formState, setFormState] = useState({
+    file: "",
+  });
 
-  // const handleChange = e => {
-  //   e.preventDefault();
-  //   const targetName = e.target.name;
-  //   const targetValue = e.target.value;
-  //   setSongState({ ...songstate, [targetName]: targetValue });
-  // };
+  const handleChange = e => {
+    e.preventDefault();
+    const targetName = e.target.name;
+    const targetValue = e.target.files[0];
+
+    if (targetName && targetValue) {
+      setFormState({ ...formState, [targetName]: targetValue });
+    } else {
+      console.log("form incomplete");
+    }
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("file", formState.file);
+    // axios
+    //   .post("https://httpbin.org/anything", data)
+    //   .then(res => console.log(res));
+    sendMusic(data);
+  };
+
+  // create a formData
 
   return (
     <>
-      <Formik
+      <form
+        className="uploadform"
+        action="#"
+        // encType="multipart/form-data"
+      >
+        <input
+          type="file"
+          name="file"
+          id="file"
+          ref={FileUpload}
+          onChange={e => handleChange(e)}
+          // className="dissapear"
+        />
+        <button className="uploadBtn" onClick={e => handleSubmit(e)}>
+          <HiUpload className="upload_icon_btn" />
+        </button>
+      </form>
+      {/* <Form
+        className="uploadform"
+        action="/tracks/:id/uploadsongs"
+        method="POST"
+        encType="multipart/form-data"
+      >
+        <Form.Label htmlFor="file" className="upload_label">
+          <p>Click to Upload</p>
+          <BsSoundwave className="upload_icon" />
+        </Form.Label>
+        <Form.Control
+          type="file"
+          name="file"
+          id="file"
+          ref={FileUpload}
+          value={formState.file}
+          onChange={e => handleChange(e)}
+          className="dissapear"
+        />
+
+        <Button className="uploadBtn" onClick={e => handleSubmit(e)}>
+          <HiUpload className="upload_icon_btn" />
+        </Button>
+      </Form> */}
+      {/* <Formik
         initialValues={FormInit}
         // validationSchema={SongSchema}
         onSubmit={(values, { resetForm }) => {
@@ -73,41 +130,12 @@ const UploadForm = ({ sendMusic, playMusic, savedData }) => {
             </Button>
           </Form>
         )}
-      </Formik>
+      </Formik> */}
     </>
   );
 
   // return (
-  //   <Form
-  //     className="uploadform"
-  //     action="/tracks/:id/uploadsongs"
-  //     method="POST"
-  //     encType="multipart/form-data"
-  //   >
-  //     <BiEqualizer className="equalizer_icon" />
-  //     <Form.Label htmlFor="songname">
-  //       <Form.Control
-  //         type="text"
-  //         name="songname"
-  //         id="songname"
-  //         placeholder="enter track name"
-  //         value={songstate.songname}
-  //         onChange={e => handleChange(e)}
-  //       />
-  //     </Form.Label>
-  //     <Form.Label htmlFor="song">
-  //       <Form.Control
-  //         type="text"
-  //         name="song"
-  //         id="song"
-  //         placeholder="Song url / Aws format"
-  //         onChange={e => handleChange(e)}
-  //       />
-  //     </Form.Label>
-  //     <Button className="uploadBtn" onClick={e => handleSubmit(e)}>
-  //       <HiUpload className="upload_icon_btn" />
-  //     </Button>
-  //   </Form>
+  //
   //   // <Form
   //   //   className="uploadform"
   //   //   action="/tracks/:id/uploadsongs"
@@ -121,7 +149,7 @@ const UploadForm = ({ sendMusic, playMusic, savedData }) => {
   //   //       name="songname"
   //   //       id="songname"
   //   //       placeholder="enter track name"
-  //   //       value={songstate.songname}
+  //   //       formStatesongname}
   //   //       onChange={e => handleChange(e)}
   //   //     />
   //   //   </Form.Label>
