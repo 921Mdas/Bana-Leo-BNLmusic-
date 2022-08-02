@@ -14,7 +14,8 @@ const createTrack = async (req, res) => {
 
   res.json({ message: "success" });
   const fileLocation = uploadAWSAutomate(req.file);
-  console.log("received file", req.file);
+
+  console.log("url received", await fileLocation);
 
   // res.send(req.file);
   // res.status(200).json({ location: fileLocation });
