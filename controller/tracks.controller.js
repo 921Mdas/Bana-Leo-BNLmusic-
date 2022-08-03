@@ -3,49 +3,42 @@ const Tracks = require("../models/tracks.model");
 const uploadAWSAutomate = require("../middleware/aws");
 const fileMulter = require("../middleware/upload");
 
+// res.send(req.file);
+// res.status(200).json({ location: fileLocation });
+// console.log("received file", req.body);
+
 const mongoose = require("mongoose");
 const { StatusCodes } = require("http-status-codes");
 // register a new track in the DB - POST
 const createTrack = async (req, res) => {
-  // update to req.body.track
-  // update req.body.title
-  const id = req.params.id;
-  // console.log("current", id);
+  try {
+    const id = req.params.id;
+    const fileLocation = await uploadAWSAutomate(req.file);
+    const FileURL = await fileLocation?.Location;
+    const FileName = await fileLocation?.key?.split("new-")[1];
 
-  res.json({ message: "success" });
-  const fileLocation = uploadAWSAutomate(req.file);
+    // if (!FileURL || !FileName) return;
 
-  console.log("url received", await fileLocation);
+    console.log("the id of the correct", id);
 
-  // res.send(req.file);
-  // res.status(200).json({ location: fileLocation });
+    const newTrack = await Tracks.create({
+      title: FileName,
+      track: FileURL,
+    });
 
-  // console.log("received file", req.body);
-  // try {
-  //   const id = req.params.id;
+    const Musician = await Artist.findById(id);
+    await Musician?.tracks.push(newTrack);
+    const Track = await Tracks.findOne({ title: FileName });
+    await Track?.artists.push(Musician);
 
-  //   const newTrack = await Tracks.create({
-  //     title: req.body.songname,
-  //     track: req.body.song,
-  //   });
+    await Musician.save();
+    await Track.save();
 
-  //   const Musician = await Artist.findById(id);
-
-  //   await Musician.tracks.push(newTrack);
-
-  //   const Track = await Tracks.findOne({ title: req.body.songname });
-  //   await Track.artists.push(Musician);
-
-  //   await Musician.save();
-  //   await Track.save();
-
-  //   return res
-  //     .status(StatusCodes.OK)
-  //     .send("new track added 💥 " + newTrack.title);
-  // } catch (err) {
-  //   if (err) console.log(err);
-  //   return res.status(StatusCodes.NOT_FOUND).send("couldnt save new track");
-  // }
+    return res.status(StatusCodes.OK).send(id);
+  } catch (error) {
+    if (error) console.log(error);
+    return res.status(StatusCodes.NOT_FOUND).send("couldnt save new track");
+  }
 };
 
 // get track by artists id - GET

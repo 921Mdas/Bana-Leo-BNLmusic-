@@ -312,6 +312,19 @@
   position: relative;
 }
 
+.uploadform p {
+  width: 100%;
+  text-align: center;
+}
+
+.uploadform p span {
+  color: var(--clr);
+}
+
+.upload_success {
+  font-size: 34px;
+}
+
 .upload_icon_btn {
   color: white;
   font-size: 30px;
@@ -322,6 +335,10 @@
   border: none !important;
   color: black !important;
   font-weight: bold !important;
+}
+
+.disabled_btn {
+  background-color: var(--grey) !important;
 }
 
 .forminput {

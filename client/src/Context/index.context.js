@@ -180,7 +180,14 @@ function MyProvider(props) {
   const sendMusic = async (data, filename) => {
     try {
       const receivedData = await data;
-      await axios.post(`/tracks/${dataTracker._id}/uploadsongs`, receivedData);
+      const trackUploaded = await axios.post(
+        `/tracks/${dataTracker._id}/uploadsongs`,
+        receivedData
+      );
+
+      console.log(trackUploaded.data, dataTracker._id);
+
+      playMusic(trackUploaded.data);
       Toaster("success", `💥 ${filename} uploaded`);
     } catch (error) {
       Toaster("error", error.response.data.message);
