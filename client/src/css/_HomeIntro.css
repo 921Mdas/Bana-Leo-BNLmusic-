@@ -33,12 +33,106 @@
 
 /* form */
 .App-header-form {
-  width: 50%;
+  width: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
+  /* border: solid 1px orange; */
+}
+
+.input_ctrl {
+  width: 100%;
+  position: relative;
+  margin-bottom: 35px;
+}
+
+.field_icon {
+  font-size: 20px;
+  color: var(--bgc-grey);
+  padding-bottom: 3px;
+}
+
+.label_field_artist {
+  position: absolute;
+  color: var(--bgc-grey);
+  left: 2%;
+  top: 50%;
+  transform: translateY(0%);
+  display: flex;
+  justify-content: center;
+}
+
+.label_text {
+  color: var(--bgc-grey);
+}
+
+.song_details_form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.artist_input_textmessage {
+  color: rgb(214, 54, 107);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  right: 10px;
+}
+
+.send_icon {
+  font-size: 25px;
+}
+
+.warning_icon {
+  margin-right: 5px;
+  margin-top: 2px;
+}
+
+.artist_input_messages {
+  position: absolute;
+  top: 30%;
+  transform: translateY(0%);
+  right: 10%;
+}
+
+.artist_message_icon_success {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  font-size: 20px;
+}
+
+.artist_input_field {
+  padding: 35px;
+}
+
+.artist_input_field,
+.submit_btn_artist_el {
+  padding: 10px 5px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.submit_btn_artist_el {
+  border: none;
+  background: var(--clr);
+  font-weight: bold;
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.submit_btn_artist_el:hover {
+  background: var(--white);
+  color: var(--clr);
+}
+
+.submit_btn_artist {
+  width: 100%;
 }
 
 .App-header-form h3 {

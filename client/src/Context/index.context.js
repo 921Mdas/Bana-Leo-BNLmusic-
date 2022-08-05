@@ -52,6 +52,8 @@ const reducer = (state, action) => {
       return { ...state, artists: action.payload };
     case COMMANDS.SET_ARTISTS:
       return { ...state, [action.payload.inputname]: action.payload.value };
+    case COMMANDS.CREATE_NEW_ARTISTS:
+      return { ...state, newArtist: action.payload };
     case COMMANDS.UPDATE_USERONLINE:
       const {
         name: user_name,
