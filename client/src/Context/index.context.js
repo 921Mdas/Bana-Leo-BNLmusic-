@@ -138,7 +138,7 @@ function MyProvider(props) {
       Toaster("success", `${removedArtist.name} removed`);
     } catch (error) {
       if (error) console.log(error);
-      Toaster("error", error.response.data.message);
+      Toaster("error", error?.response.data.message);
     }
   };
 
@@ -154,7 +154,7 @@ function MyProvider(props) {
       Toaster("success", `💥 ${artistToUpdate.name} successfully updated`);
     } catch (error) {
       if (error) console.log(error);
-      Toaster("error", error.response.data.message);
+      Toaster("error", error?.response.data.message);
     }
   };
 
@@ -163,6 +163,8 @@ function MyProvider(props) {
     CongoPlayLists.reset();
 
     try {
+      console.log("ids on play", dataTracker._id, id);
+
       await axios.get(`/tracks/${id}/uploadsongs`).then(res => {
         dispatch({ type: COMMANDS.GET_TRACKS_BY_ID, payload: res.data });
         let newMusic = res.data?.tracks;
@@ -171,7 +173,7 @@ function MyProvider(props) {
         }
       });
     } catch (error) {
-      if (error) Toaster("error", error.response.data.message);
+      if (error) Toaster("error", error?.response.data.message);
       console.log(error);
     }
   };
@@ -185,12 +187,12 @@ function MyProvider(props) {
         receivedData
       );
 
-      console.log(trackUploaded.data, dataTracker._id);
+      console.log("ids on upload", trackUploaded.data, dataTracker._id);
 
       playMusic(trackUploaded.data);
       Toaster("success", `💥 ${filename} uploaded`);
     } catch (error) {
-      Toaster("error", error.response.data.message);
+      Toaster("error", error?.response.data.message);
       console.log(error);
     }
   };
@@ -202,7 +204,7 @@ function MyProvider(props) {
       await dispatch({ type: COMMANDS.GETALL_TRACKS, payload: tracks.data });
       localStorage.setItem("songs", JSON.stringify(tracks.data));
     } catch (error) {
-      Toaster("error", error.response.data.message);
+      Toaster("error", error?.response.data.message);
       console.log(error);
     }
   };

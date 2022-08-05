@@ -42,7 +42,7 @@ const SongCtrl = ({ playList, ctrlMusic }) => {
               <IoIosMusicalNote /> Now Playing:
             </h6>
             <h6 className="bio_title_song_playing">
-              {currentTrack?.value?.title}
+              {currentTrack?.value?.title.split(".mp3")[0].substring(0, 20)}
             </h6>
           </div>
           <div className="title_playing coming_up_next">

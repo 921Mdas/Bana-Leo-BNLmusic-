@@ -10,6 +10,7 @@ import { HiUpload } from "react-icons/hi";
 import { FiDisc } from "react-icons/fi";
 import { RiMusic2Line } from "react-icons/ri";
 import { BsSoundwave, BsCloudCheckFill } from "react-icons/bs";
+import { Load } from "../../Context/helper";
 
 const UploadForm = ({ sendMusic }) => {
   const FileUpload = useRef(null);
@@ -17,12 +18,12 @@ const UploadForm = ({ sendMusic }) => {
     file: "",
   });
   const [isUploaded, setIsUploaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const fileName = formState?.file?.name?.split(".")[0];
   const handleChange = e => {
     e.preventDefault();
     const targetName = e.target.name;
     const targetValue = e.target.files[0];
-    console.log("the file changed");
 
     if (targetName && targetValue) {
       setFormState({ ...formState, [targetName]: targetValue });
@@ -32,11 +33,13 @@ const UploadForm = ({ sendMusic }) => {
     }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const data = new FormData();
     data.append("file", formState.file);
-    sendMusic(data, fileName);
+    setIsLoading(true);
+    await sendMusic(data, fileName);
+    setIsLoading(false);
     setIsUploaded(false);
   };
 
