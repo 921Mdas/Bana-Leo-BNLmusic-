@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
+import { TbMusicOff } from "react-icons/tb";
+import { Load } from "../../Context/helper";
 
 function GrowExample() {
   return <Spinner animation="grow" variant="light" />;
@@ -19,13 +21,22 @@ const Loader = () => {
   }, []);
 
   if (nom) {
+    // prettier-ignore
+
     return (
       <div className="loader">
-        <GrowExample />;
+        <GrowExample />
       </div>
     );
   } else {
-    return <h3 className="nomusic">Oops no tracks</h3>;
+    // prettier-ignore
+    return (
+      <h3 className="nomusic">
+        {" "}
+        <TbMusicOff />
+        No Tracks Found, Upload{" "}
+      </h3>
+    );
   }
 };
 

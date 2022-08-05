@@ -1,18 +1,22 @@
 // state & components
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../Context/index.context";
 
 // components
 import UploadForm from "./UploadForm";
 import Song from "./Song";
+import { Load } from "../../Context/helper";
 
 // icons
 import { AiOutlineInstagram, AiFillYoutube } from "react-icons/ai";
 import { BsTwitch } from "react-icons/bs";
 import { FaFacebookSquare } from "react-icons/fa";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 import Navbar from "../navbar";
 import Footer from "../Footer";
+import TrackList from "./TrackList";
 
 let dateCreator = (data, val) => {
   if (data)
@@ -45,31 +49,46 @@ function DetailView({
 
   const image = savedData?.picture ? <img src={savedData?.picture} /> : null;
 
+  const navigate = useNavigate();
+
   return (
     <>
       <Navbar />
       <div className="tracks">
+        <div className="navigation">
+          <div className="navigate_home" onClick={() => navigate("/home")}>
+            <AiOutlineArrowLeft className="navigate_icon" />
+          </div>
+        </div>
         <div className="Tracks-Preview">
-          <UploadForm
-            sendMusic={sendMusic}
-            playMusic={playMusic}
-            savedData={savedData}
-          />
+          <div className="top_preview_section">
+            <UploadForm
+              sendMusic={sendMusic}
+              playMusic={playMusic}
+              savedData={savedData}
+            />
 
-          <div className="artist-preview">
-            <div className="aritst-pic">{image}</div>
+            {/* {Load("grow", "light")} */}
 
-            <div className="bio-titles">
-              <h6>PLAYLIST</h6>
-              <h2>{savedData?.name || "No artist"}</h2>
-              <p>{savedData?.bio}</p>
-              <div className="metadata">
-                <p>
-                  Created By: <span>Banaleo</span> /
-                </p>
-                <p>{savedData?.tracks.length} tracks uploaded / </p>
-                <p>Artist added: {dateCreator(savedData, "createdAt")} / </p>
-                <p>Last updated: {dateCreator(savedData, "updatedAt")}</p>
+            <div className="artist-preview">
+              <div className="aritst-pic">{image}</div>
+
+              <div className="bio-titles">
+                <h6>PLAYLIST</h6>
+                <h2>{savedData?.name || "No artist"}</h2>
+                <p>{savedData?.bio}</p>
+
+                <TrackList songs={savedData?.tracks} />
+
+                <div className="metadata">
+                  <p>
+                    Created By: <span>Banaleo</span> /
+                  </p>
+                  <p>
+                    Artist added on: {dateCreator(savedData, "createdAt")} /{" "}
+                  </p>
+                  <p>Last updated: {dateCreator(savedData, "updatedAt")}</p>
+                </div>
               </div>
             </div>
           </div>

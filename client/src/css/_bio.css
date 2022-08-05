@@ -84,12 +84,16 @@
   border-radius: 10px;
   display: flex;
   box-shadow: var(--shadow-2);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: solid 2px green;
 }
 
 .detail_info {
   position: relative;
   padding: 10px;
-  width: 70%;
+  width: 100%;
+  min-width: 800px;
   height: 10vh;
   display: flex;
 }
@@ -136,7 +140,7 @@
   font-weight: bold;
 }
 .Tracks-Preview {
-  margin: 10em auto 0 0;
+  margin: 1em auto 0 0;
   min-height: 100vh;
   padding: 2em;
   width: 100%;
@@ -144,6 +148,41 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
+  position: relative;
+}
+
+.navigate_home {
+  padding: 20px;
+}
+
+.navigate_icon {
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  color: var(--white);
+}
+
+.navigate_icon:hover {
+  color: var(--clr);
+}
+
+.track_list_section {
+  margin-bottom: 1em;
+}
+
+.popular_song {
+  padding: 5px 0;
+  font-size: 12px;
+}
+
+.track_list_title {
+  margin-bottom: 10px;
+}
+
+.track_list_songs {
+  height: 15vh;
+  width: 100%;
+  overflow-y: scroll;
 }
 
 .Track-preview_first_section {
@@ -155,12 +194,18 @@
   gap: 10px;
 }
 
-.artist-preview {
-  width: 100%;
-  height: 30vh;
-  margin: 0 auto;
+.top_preview_section {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.artist-preview {
+  width: 70%;
+  height: 50vh;
+  margin: 0 auto;
   gap: 30px;
   border: solid 1px var(--bgc-grey);
   background: var(--black);
@@ -178,6 +223,7 @@
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   overflow: hidden;
+  filter: grayscale(1) contrast(1.2);
 }
 
 .aritst-pic img {
@@ -190,7 +236,7 @@
 
 .bio-titles {
   height: 100%;
-  padding: 10px 0;
+  padding: 25px 0 0 0;
   color: var(--white);
 }
 
@@ -366,4 +412,22 @@
 
 .upload_label:hover .upload_icon {
   transform: scale(1.1);
+}
+
+/* loader */
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 100%;
+  height: 20vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }

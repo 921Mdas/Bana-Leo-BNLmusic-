@@ -54,32 +54,32 @@ const CardArtist = ({
           </Card.Subtitle>
         </div>
         <Card.Text className="Bio">
-          {bio ? ` ${bio.substring(0, 100)} ...` : bio}
+          {bio ? ` ${bio.substring(0, 110)} ...` : bio}
         </Card.Text>
         <div className="actions">
           <Button
-            variant="light"
-            className="playlist"
+            variant="transparent"
+            className="playlist card_btn"
             onClick={() => playMusic(_id)}
           >
             <Link to="/bio/:id">
-              <BsPlayCircle />
+              <BsPlayCircle color="white" className="card_btn_icon" />
             </Link>
           </Button>
 
           <Button
-            variant="secondary"
-            className="updateBtn"
+            variant="transparent"
+            className="updateBtn card_btn"
             onClick={() => handleUpdateArtist(_id)}
           >
-            <FiEdit />
+            <FiEdit color="white" className="card_btn_icon" />
           </Button>
           <Button
-            variant="danger"
-            className="deleteBtn"
+            variant="transparent"
+            className="deleteBtn card_btn"
             onClick={() => handleDeleteArtist(_id)}
           >
-            <AiFillDelete />
+            <AiFillDelete color="darkred" className="card_btn_icon" />
           </Button>
         </div>
         {copyright ? <RiCopyrightLine className="copyrightIcon" /> : ""}

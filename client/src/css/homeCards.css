@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.Bio {
+  font-size: 16px;
+}
+
 .cardGallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
@@ -70,6 +74,11 @@
   margin: 10px 0;
 }
 
+.cardSubtitle,
+.icon {
+  padding-top: 5px;
+}
+
 .artistName {
   font-weight: bold;
   font-size: 25px !important;
@@ -90,4 +99,16 @@
 
 .actions .playlist a {
   width: 40px;
+}
+
+.card_btn {
+  font-size: 30px !important;
+}
+
+.card_btn_icon {
+  transition: all 0.5s ease-in-out;
+}
+
+.card_btn_icon:hover {
+  transform: scale(1.1);
 }
