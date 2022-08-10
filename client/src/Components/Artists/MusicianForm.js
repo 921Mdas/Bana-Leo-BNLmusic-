@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { RiErrorWarningLine } from "react-icons/ri";
@@ -15,19 +15,48 @@ import { IoMusicalNote } from "react-icons/io5";
 
 import InputCtrl from "./InputCtrl";
 import SubmitBtn from "./SubmitBtn";
+import Goback from "../UtilComponent/Goback";
+import { useFormikContext } from "formik";
+import { useNavigate } from "react-router-dom";
+import { Toaster } from "../../Context/helper";
 
-const MusicianForm = ({ dispatch, COMMANDS, addArtistForm, state }) => {
+const MusicianForm = ({
+  dispatch,
+  COMMANDS,
+  addArtistForm,
+  state,
+  MoveBack,
+  updateArtist,
+  updateArtistForm,
+  registerArtist,
+}) => {
+  const handleChangingForm = e => {
+    let inputname = e.target.name;
+    let inputvalue = e.target.value;
+
+    console.log("analysing input ctrl", inputname, inputvalue);
+    if (!inputname || !inputvalue) return;
+    dispatch({
+      type: COMMANDS.SET_ARTISTS,
+      payload: { inputname, inputvalue },
+    });
+  };
+
+  const handleUpdateArtist = async () => {
+    await updateArtistForm();
+  };
+
   const defaultValues = {
-    name: "",
-    picture: "",
-    song: "",
-    country: "",
-    year: "",
-    bio: "",
+    name: state.name,
+    picture: state.picture,
+    song: state.song,
+    country: state.country,
+    year: state.year,
+    bio: state.bio,
   };
 
   const validation = Yup.object({
-    name: Yup.string().required("enter name").max(10, "Too long"),
+    name: Yup.string().required("enter name"),
     picture: Yup.string().required("include picture URL"),
     song: Yup.string(),
     country: Yup.string().required("Nationality ?"),
@@ -41,12 +70,13 @@ const MusicianForm = ({ dispatch, COMMANDS, addArtistForm, state }) => {
         initialValues={defaultValues}
         validationSchema={validation}
         onSubmit={async (values, { resetForm }) => {
-          console.log(values);
-          await dispatch({
+          dispatch({
             type: COMMANDS.CREATE_NEW_ARTISTS,
             payload: values,
           });
-          addArtistForm();
+          const { name, picture, song, bio, country, year } = values;
+          await registerArtist({ name, picture, song, bio, country, year });
+          MoveBack("/home");
         }}
       >
         {({
@@ -69,6 +99,8 @@ const MusicianForm = ({ dispatch, COMMANDS, addArtistForm, state }) => {
               valueType={values.name}
               errors={errors}
               touched={touched}
+              // defaultVal={defaultValues.name}
+              // handleChangingForm={handleChangingForm}
             />
             <InputCtrl
               handleChange={handleChange}
@@ -79,6 +111,8 @@ const MusicianForm = ({ dispatch, COMMANDS, addArtistForm, state }) => {
               InputType="text"
               errors={errors}
               touched={touched}
+              // defaultVal={defaultValues.country}
+              // handleChangingForm={handleChangingForm}
             />
             <InputCtrl
               handleChange={handleChange}
@@ -89,6 +123,8 @@ const MusicianForm = ({ dispatch, COMMANDS, addArtistForm, state }) => {
               InputType="text"
               errors={errors}
               touched={touched}
+              // defaultVal={defaultValues.picture}
+              // handleChangingForm={handleChangingForm}
             />
             <div className="song_details_form">
               <InputCtrl
@@ -100,6 +136,8 @@ const MusicianForm = ({ dispatch, COMMANDS, addArtistForm, state }) => {
                 InputType="text"
                 errors={errors}
                 touched={touched}
+                // defaultVal={defaultValues.song}
+                // handleChangingForm={handleChangingForm}
               />
               <InputCtrl
                 handleChange={handleChange}
@@ -110,6 +148,8 @@ const MusicianForm = ({ dispatch, COMMANDS, addArtistForm, state }) => {
                 InputType="number"
                 errors={errors}
                 touched={touched}
+                // defaultVal={defaultValues.year}
+                // handleChangingForm={handleChangingForm}
               />
             </div>
             <InputCtrl
@@ -121,6 +161,8 @@ const MusicianForm = ({ dispatch, COMMANDS, addArtistForm, state }) => {
               InputType="textarea"
               errors={errors}
               touched={touched}
+              // defaultVal={defaultValues.bio}
+              // handleChangingForm={handleChangingForm}
             />
             <SubmitBtn
               handleSubmit={handleSubmit}

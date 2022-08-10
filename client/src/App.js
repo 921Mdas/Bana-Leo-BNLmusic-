@@ -4,6 +4,7 @@ import { MyContext } from "./Context/index.context";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 import Home from "./Components/Home/Home";
+import Form from "./Components/Form/Form";
 // main components
 import Navbar from "./Components/navbar";
 import Footer from "./Components/Footer";
@@ -41,6 +42,23 @@ function App() {
             path="/home"
             element={
               <Home
+                state={state}
+                dispatch={dispatch}
+                COMMANDS={COMMANDS}
+                LoadArtists={LoadArtists}
+                removeArtist={removeArtist}
+                updateArtist={updateArtist}
+                playMusic={playMusic}
+                registerArtist={registerArtist}
+                sendMusic={sendMusic}
+                getAllTracks={getAllTracks}
+              />
+            }
+          ></Route>
+          <Route
+            path="/form"
+            element={
+              <Form
                 state={state}
                 dispatch={dispatch}
                 COMMANDS={COMMANDS}

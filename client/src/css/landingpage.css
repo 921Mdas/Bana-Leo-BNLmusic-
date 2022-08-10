@@ -14,7 +14,6 @@
 
   position: relative;
   margin-bottom: 2em;
-
   background-image: linear-gradient(to top, black, transparent),
     url("../images-client/rumbapic1.jpeg");
   background-repeat: no-repeat;

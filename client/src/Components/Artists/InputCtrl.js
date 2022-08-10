@@ -10,9 +10,11 @@ const InputCtrl = ({
   inputName,
   Icon,
   InputType,
-  valueType,
+  // valueType,
   errors,
   touched,
+  defaultVal,
+  handleChangingForm,
 }) => {
   return (
     <div className="input_ctrl">
@@ -31,7 +33,10 @@ const InputCtrl = ({
             onChange={handleChange}
             onBlur={handleBlur}
             className="artist_input_field"
-            values={valueType}
+            value={defaultVal}
+            // onChange={e => handleChangingForm(e)}
+
+            // values={valueType}
           />
         ) : (
           <input
@@ -41,7 +46,10 @@ const InputCtrl = ({
             onChange={handleChange}
             onBlur={handleBlur}
             className="artist_input_field"
-            values={valueType}
+            value={defaultVal}
+            // onChange={e => handleChangingForm(e)}
+
+            // values={valueType}
           />
         )}
       </div>

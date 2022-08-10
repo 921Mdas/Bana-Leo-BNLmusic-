@@ -14,7 +14,7 @@ const addArtist = async (req, res) => {
       country: req.body.country,
       bio: req.body.bio,
       year: req.body.year,
-      copyright: req.body.copyright,
+      copyright: "",
     });
 
     return res.status(StatusCodes.OK).send(`${newArtist.name} added 💥`);

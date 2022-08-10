@@ -1,5 +1,6 @@
 // state
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // components
 import Welcome from "../UtilComponent/welcome";
@@ -30,58 +31,42 @@ function Home({
   getAllTracks,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
   const FIRST_PAGE = 1;
   const SECOND_PAGE = 2;
   const isPageChange = currentPage === FIRST_PAGE;
 
-  useEffect(() => {
-    getAllTracks();
-  }, []);
-
   return (
     <>
-      <Navbar />
+      <Navbar getAllTracks={getAllTracks} />
       <div className="landingpage">
         <Welcome state={state} />
         <Intro />
         <Searchbar state={state} dispatch={dispatch} COMMANDS={COMMANDS} />
       </div>
       <div className="contentPage">
-        {isPageChange ? (
-          <>
-            <Artists
-              state={state}
-              dispatch={dispatch}
-              COMMANDS={COMMANDS}
-              LoadArtists={LoadArtists}
-              removeArtist={removeArtist}
-              updateArtist={updateArtist}
-              playMusic={playMusic}
-              setCurrentPage={setCurrentPage}
-              FIRST_PAGE={FIRST_PAGE}
-              SECOND_PAGE={SECOND_PAGE}
-              currentPage={currentPage}
-            />
-            <Button
-              className="nextpage"
-              variant="success"
-              onClick={() => setCurrentPage(SECOND_PAGE)}
-            >
-              <BsFillPersonPlusFill />
-            </Button>
-          </>
-        ) : (
-          <ArtistForm
+        <div>
+          <Artists
             state={state}
             dispatch={dispatch}
             COMMANDS={COMMANDS}
-            registerArtist={registerArtist}
+            LoadArtists={LoadArtists}
+            removeArtist={removeArtist}
+            updateArtist={updateArtist}
+            playMusic={playMusic}
             setCurrentPage={setCurrentPage}
             FIRST_PAGE={FIRST_PAGE}
             SECOND_PAGE={SECOND_PAGE}
             currentPage={currentPage}
           />
-        )}
+          <Button
+            className="nextpage"
+            variant="success"
+            onClick={() => navigate("/form")}
+          >
+            <BsFillPersonPlusFill />
+          </Button>
+        </div>
       </div>
       <div className="originesContentPage">
         <Origines state={state} dispatch={dispatch} COMMANDS={COMMANDS} />

@@ -8,6 +8,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { BsMusicNoteList } from "react-icons/bs";
 import { GiDrum } from "react-icons/gi";
 import { IoIosLogOut } from "react-icons/io";
+import { BsPencilSquare } from "react-icons/bs";
 
 const Navbar = () => {
   const { state: userOnline, getAllTracks } = useContext(MyContext);
@@ -27,7 +28,14 @@ const Navbar = () => {
         <Link to="/home" className="logoContainer">
           <AiOutlineHome />
         </Link>
-        <Link to="/tracks" className="logoContainer">
+        <Link to="/form" className="logoContainer">
+          <BsPencilSquare />
+        </Link>
+        <Link
+          to="/tracks"
+          className="logoContainer"
+          onClick={() => getAllTracks()}
+        >
           <BsMusicNoteList />
         </Link>
         <Link to="/" className="logoContainer ">
