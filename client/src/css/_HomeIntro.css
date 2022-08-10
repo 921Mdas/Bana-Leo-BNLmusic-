@@ -32,6 +32,15 @@
 }
 
 /* form */
+.artist_form_editor {
+  margin-top: 2em;
+  width: 100%;
+  height: max-content;
+  background: linear-gradient(120deg, rgba(0, 0, 0, 0.87), rgba(0, 0, 0, 0.87)),
+    url("../images-client/rumbacongo4.jpeg");
+  background-repeat: no-repeat;
+}
+
 .App-header-form {
   width: 60%;
   display: flex;
@@ -39,7 +48,7 @@
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-  /* border: solid 1px orange; */
+  padding-bottom: 50px;
 }
 
 .input_ctrl {
@@ -162,7 +171,32 @@ label {
 .artist-submission {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 400px;
+  height: 65vh;
+  max-width: 500px;
+}
+
+.update_form_mid_section {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.mid_sections {
+  width: 100%;
+}
+
+.update_label_text {
+  display: flex;
+  height: 3vh !important;
+}
+
+.form_input_ctrl {
+  padding: 10px 5px !important;
+}
+
+.update_form_label {
+  margin-bottom: 20px !important;
 }
 
 /* origin of rumba section */

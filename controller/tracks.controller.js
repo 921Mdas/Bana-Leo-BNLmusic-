@@ -31,8 +31,8 @@ const createTrack = async (req, res) => {
     const Track = await Tracks.findOne({ title: FileName });
     await Track?.artists.push(Musician);
 
-    await Musician.save();
-    await Track.save();
+    await Musician?.save();
+    await Track?.save();
 
     return res.status(StatusCodes.OK).send(id);
   } catch (error) {

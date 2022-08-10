@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import Spinner from "react-bootstrap/Spinner";
+import { useNavigate } from "react-router-dom";
 
 export const resetStorage = (itemName, newData) => {
   if (localStorage.getItem(itemName)) {
@@ -29,4 +30,12 @@ export const Load = (type, color) => {
       <Spinner animation={type} variant={color} size="lg" />
     </div>
   );
+};
+
+export const NavigateHome = () => {
+  const navigate = useNavigate();
+
+  return direction => {
+    navigate(direction);
+  };
 };

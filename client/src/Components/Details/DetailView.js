@@ -7,6 +7,7 @@ import { MyContext } from "../../Context/index.context";
 import UploadForm from "./UploadForm";
 import Song from "./Song";
 import { Load } from "../../Context/helper";
+import Goback from "../UtilComponent/Goback";
 
 // icons
 import { AiOutlineInstagram, AiFillYoutube } from "react-icons/ai";
@@ -55,11 +56,7 @@ function DetailView({
     <>
       <Navbar />
       <div className="tracks">
-        <div className="navigation">
-          <div className="navigate_home" onClick={() => navigate("/home")}>
-            <AiOutlineArrowLeft className="navigate_icon" />
-          </div>
-        </div>
+        <Goback direction={"/home"} />
         <div className="Tracks-Preview">
           <div className="top_preview_section">
             <UploadForm

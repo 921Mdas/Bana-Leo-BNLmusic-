@@ -1,5 +1,6 @@
 // state
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // components
 import CardArtist from "../card";
@@ -21,13 +22,17 @@ function Artists({
   SECOND_PAGE,
   currentPage,
 }) {
+  const navigate = useNavigate();
+
   const handleDeleteArtist = id => {
     removeArtist(id);
   };
 
+  // change this to only move you to the form with info
+  // dispatch
   const handleUpdateArtist = id => {
+    navigate("/form");
     updateArtist(id);
-    setCurrentPage(SECOND_PAGE);
   };
 
   useEffect(() => {

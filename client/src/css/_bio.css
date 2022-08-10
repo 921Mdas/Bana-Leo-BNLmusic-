@@ -86,7 +86,6 @@
   box-shadow: var(--shadow-2);
   background-repeat: no-repeat;
   background-size: cover;
-  border: solid 2px green;
 }
 
 .detail_info {
@@ -120,6 +119,10 @@
   width: 400px;
   padding: 1em 0;
   position: relative;
+}
+
+.audio_playlist_item p {
+  padding-left: 15px;
 }
 
 .artist_info audio {

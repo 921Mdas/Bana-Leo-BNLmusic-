@@ -79,6 +79,7 @@ const defaultState = {
   country: "",
   year: "",
   bio: "",
+  song: "",
   copyright: false,
   stage: 1,
   update: [false, 0],
@@ -101,12 +102,10 @@ function MyProvider(props) {
   // create a new artist
   const registerArtist = async args => {
     try {
-      console.log("new artist info", args);
-      await axios.post("/artists", args);
-      Toaster("success", `💥 successfully added`);
-      dispatch({ type: COMMANDS.GOTO_PREVIOUS_PAGE });
+      const artistAdded = await axios.post("/artists", args);
+      Toaster(` ${artistAdded} 💥 successfully added`);
     } catch (error) {
-      if (error) Toaster("error", error.response.data.message);
+      if (error) Toaster("error", error?.response?.data?.message);
       console.log(error);
     }
   };
@@ -124,7 +123,7 @@ function MyProvider(props) {
     }
   };
 
-  // delete artist
+  // delete artist work perfect
   const removeArtist = id => {
     try {
       const { artists } = state;
@@ -132,11 +131,6 @@ function MyProvider(props) {
       const removedArtist = artists.find(artist => artist._id === id);
       const newArtists = artists.filter(artist => artist._id !== id);
       dispatch({ type: COMMANDS.REMOVE_AN_ARTIST, payload: newArtists });
-
-      toast.error(` ${removedArtist.name} removed`, {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 500,
-      });
       Toaster("success", `${removedArtist.name} removed`);
     } catch (error) {
       if (error) console.log(error);
@@ -144,7 +138,8 @@ function MyProvider(props) {
     }
   };
 
-  // update artists
+  // update artists !!! issues
+  // there is no axios here
   const updateArtist = async id => {
     try {
       const { artists } = state;
@@ -153,7 +148,7 @@ function MyProvider(props) {
         type: COMMANDS.UPDATE_ARTIST,
         payload: { artistToUpdate, id },
       });
-      Toaster("success", `💥 ${artistToUpdate.name} successfully updated`);
+      // Toaster("success", `💥 ${artistToUpdate.name} successfully updated`);
     } catch (error) {
       if (error) console.log(error);
       Toaster("error", error?.response.data.message);
@@ -203,6 +198,7 @@ function MyProvider(props) {
   const getAllTracks = async () => {
     try {
       const tracks = await axios.get(`/tracks/alltracks`);
+      console.log(tracks);
       await dispatch({ type: COMMANDS.GETALL_TRACKS, payload: tracks.data });
       localStorage.setItem("songs", JSON.stringify(tracks.data));
     } catch (error) {

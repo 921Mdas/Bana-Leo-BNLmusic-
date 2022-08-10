@@ -74,28 +74,34 @@
 
 .alltracks {
   width: 100%;
-  min-height: 150vh;
+  /* min-height: 150vh; */
+  height: max-content;
   background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.74), black),
-    url("../images-client/pattern2.jpeg");
+    url("../images-client/theater.jpeg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
 }
 
 #track_all {
-  padding: 0.5em 1em;
+  /* padding: 0.5em 1em; */
+  width: 100%;
+}
+
+.audio_play_item {
+  width: 500px;
 }
 
 .alltracks-content {
-  border: solid 1px white;
+  /* border: solid 1px white; */
   width: 100%;
-  height: max-content;
-  margin-top: 9vh;
+  height: max-content !important;
+  /* margin-top: 9vh; */
   border-radius: 10px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
   grid-template-rows: 100px;
-  grid-auto-rows: 100px;
+  grid-auto-rows: 100px; */
   gap: 1em;
   padding: 1em;
   background: rgba(255, 255, 255, 0.25);
@@ -224,10 +230,6 @@ audio::-webkit-media-controls-current-time-display {
 }
 
 .AllTracks {
-  /* display: flex;
-  flex-direction: column;
-  gap: 1em;
-  padding: 2.5em 0; */
   display: grid;
   grid-template-columns: 1fr;
   gap: 1em;
@@ -274,11 +276,29 @@ audio::-webkit-media-controls-current-time-display {
   margin-left: 130px;
 }
 
+.image_avatar_song {
+  width: 150px;
+  height: 150px;
+  max-height: 100%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  overflow: hidden;
+}
+
+.image_avatar_song img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
 .track {
   display: flex;
   justify-content: space-between;
-  padding: 0 1em;
+  /* padding: 0 1em; */
   position: relative;
+  width: 70% !important;
+  margin: 20px auto;
   /* width: 70%; */
   border-radius: 10px;
   background: #ededed;
@@ -315,6 +335,28 @@ audio::-webkit-media-controls-current-time-display {
 .heart-full,
 .book-full {
   color: var(--clr) !important;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  width: 1000px !important;
+}
+
+.icon_audio_player {
+  width: 200px;
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-right: 15px;
+}
+
+.music_icon_player {
+  font-size: 30px;
+  color: var(--bgc-grey);
+  margin-top: 25px;
 }
 
 .info p {
