@@ -1,17 +1,15 @@
 // settings
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
+
+// Default CSS imports
 import "../src/css/_resets.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 
-import { createRoot } from "react-dom/client";
-
-// state, routes
+// Internal imports
 import { MyProvider } from "./Context/index.context";
 import App from "./App";
-
-// main component Layout
 import Layout from "./HOC/Layout";
 
 const root = createRoot(document.getElementById("root"));

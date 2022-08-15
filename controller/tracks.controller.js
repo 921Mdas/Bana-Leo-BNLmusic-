@@ -1,14 +1,12 @@
-const Artist = require("../models/artists.model");
-const Tracks = require("../models/tracks.model");
-const uploadAWSAutomate = require("../middleware/aws");
-const fileMulter = require("../middleware/upload");
-
-// res.send(req.file);
-// res.status(200).json({ location: fileLocation });
-// console.log("received file", req.body);
-
+// External import
 const mongoose = require("mongoose");
 const { StatusCodes } = require("http-status-codes");
+
+// Internal import
+const uploadAWSAutomate = require("../middleware/aws");
+const Artist = require("../models/artists.model");
+const Tracks = require("../models/tracks.model");
+
 // register a new track in the DB - POST
 const createTrack = async (req, res) => {
   try {
@@ -16,10 +14,6 @@ const createTrack = async (req, res) => {
     const fileLocation = await uploadAWSAutomate(req.file);
     const FileURL = await fileLocation?.Location;
     const FileName = await fileLocation?.key?.split("new-")[1];
-
-    // if (!FileURL || !FileName) return;
-
-    console.log("the id of the correct", id);
 
     const newTrack = await Tracks.create({
       title: FileName,
@@ -61,6 +55,7 @@ const showTrack = async (req, res) => {
 const getallTracks = async (req, res) => {
   try {
     const alltracks = await Tracks.find({});
+    console.log(alltracks);
     return res.status(StatusCodes.OK).send(alltracks);
   } catch (err) {
     console.log(err);

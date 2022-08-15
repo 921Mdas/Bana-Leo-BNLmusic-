@@ -1,11 +1,14 @@
-const User = require("../models/user.model");
+// External import
+const { OAuth2Client } = require("google-auth-library");
 const { StatusCodes } = require("http-status-codes");
 
-const { OAuth2Client } = require("google-auth-library");
+// Internal import
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+const User = require("../models/user.model");
 
 const users = [];
 
+// user info
 function upsert(array, item) {
   const i = array.findIndex(_item => _item.email === item.email);
   if (i > -1) array[i] = item;
@@ -50,12 +53,9 @@ const register = async (req, res, next) => {
 // JWT manual login - POST
 const sendUser = async (req, res, next) => {
   try {
-    //   only with react - try simplify
     const {
       localUser: { email, password },
     } = req.body;
-
-    // const { email, password } = req.body;
 
     let Auth = false;
 

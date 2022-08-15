@@ -15,6 +15,7 @@ export const COMMANDS = {
   GETALL_TRACKS: "GETALL_TRACKS",
   PLAYTRACK: "PLAYTRACK",
   LOGGEDIN: "LOGGEDIN",
+  RESETUPDATE: "RESETUPDATE",
 };
 
 // ****** needed links for local DEV

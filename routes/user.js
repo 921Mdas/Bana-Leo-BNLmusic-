@@ -1,7 +1,9 @@
+// External imports
 var express = require("express");
 var app = express();
-
 var router = express.Router();
+
+// Internal imports
 var ctrl = require("../controller/user.controller");
 
 // user home route

@@ -1,4 +1,7 @@
+// External import
 const Artist = require("../models/artists.model");
+
+// Internal import
 const { StatusCodes } = require("http-status-codes");
 
 // register new artist - POST
@@ -78,13 +81,3 @@ module.exports = {
   deleteArtists,
   updateArtists,
 };
-
-// catches all artists in the database and send them back to the home link
-// in the client we are using axios to listen to the link and making an api call to get the info
-
-// on click on the delete button we are sending a post request with axios
-// to the remove link by passing an id on the link with ${} and we grabbing it here to find artist to delete
-
-// the update button on the client is making a post request to the update route with id
-// same as delete, it's sending new info with the form
-// when we clicked on the update button all the artist info is sent on the link

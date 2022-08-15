@@ -1,3 +1,4 @@
+// aws function to save files into a bucket
 const AWS = require("aws-sdk");
 require("dotenv").config();
 

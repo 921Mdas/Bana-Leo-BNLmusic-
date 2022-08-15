@@ -11,11 +11,20 @@ import { IoIosLogOut } from "react-icons/io";
 import { BsPencilSquare } from "react-icons/bs";
 
 const Navbar = () => {
-  const { state: userOnline, getAllTracks } = useContext(MyContext);
+  const {
+    state: userOnline,
+    getAllTracks,
+    dispatch,
+    COMMANDS,
+  } = useContext(MyContext);
 
   const LogOut = () => {
     localStorage.removeItem("loginData");
     localStorage.clear();
+  };
+
+  const formResetter = () => {
+    dispatch({ type: COMMANDS.RESETUPDATE });
   };
 
   return (
@@ -25,10 +34,18 @@ const Navbar = () => {
       </Link>
 
       <div className="contentnavSection">
-        <Link to="/home" className="logoContainer">
+        <Link
+          to="/home"
+          className="logoContainer"
+          onClick={() => formResetter()}
+        >
           <AiOutlineHome />
         </Link>
-        <Link to="/form" className="logoContainer">
+        <Link
+          to="/form"
+          className="logoContainer"
+          onClick={() => formResetter()}
+        >
           <BsPencilSquare />
         </Link>
         <Link
