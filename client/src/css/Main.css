@@ -353,6 +353,38 @@ audio::-webkit-media-controls-current-time-display {
   padding-right: 15px;
 }
 
+.playlist_search_bar {
+  width: 70% !important;
+  margin: 0 auto;
+  border-radius: 10px;
+  height: 70px;
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+.playlist_search_bar input {
+  width: 85%;
+  border-radius: 10px;
+  border: solid 1px var(--clr);
+  padding-left: 20px;
+  background: none;
+  color: white;
+}
+
+::placeholder {
+  color: white;
+}
+
+.playlist_search_bar button {
+  width: 15%;
+  border-radius: 10px;
+  font-weight: bold;
+  border: none;
+  background-color: var(--clr);
+  color: var(--white);
+}
+
 .music_icon_player {
   font-size: 30px;
   color: var(--bgc-grey);

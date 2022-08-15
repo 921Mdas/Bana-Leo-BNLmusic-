@@ -58,11 +58,6 @@ const ArtistForm = ({
   const updateArtistForm = async () => {
     const id = state.update[1];
     const { name, picture, song, bio, country, year, copyright: cop } = state;
-    toast.success(` ${name} updated`, {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 500,
-    });
-
     await axios
       .post(`/artists/update/${id}`, {
         id,
@@ -80,7 +75,12 @@ const ArtistForm = ({
         );
       });
 
-    navigate("/home");
+    toast.success(` ${name} updated`, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 500,
+    });
+
+    MoveBack("/home");
   };
 
   return (

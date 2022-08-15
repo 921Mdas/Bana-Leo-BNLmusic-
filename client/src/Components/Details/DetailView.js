@@ -65,8 +65,6 @@ function DetailView({
               savedData={savedData}
             />
 
-            {/* {Load("grow", "light")} */}
-
             <div className="artist-preview">
               <div className="aritst-pic">{image}</div>
 

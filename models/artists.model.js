@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// artist's schema
 const artistSchema = new Schema(
   {
     name: {

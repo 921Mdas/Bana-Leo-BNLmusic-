@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
+// song audio schema
 const trackSchema = new Schema(
   {
     title: {
@@ -31,7 +32,3 @@ const trackSchema = new Schema(
 );
 
 module.exports = mongoose.model("tracks", trackSchema);
-
-// add artists and you can reference multiple
-// bring your artists into tracks
-// reference differently

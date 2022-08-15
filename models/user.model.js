@@ -1,11 +1,13 @@
+// external imports
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
 const bcrypt = require("bcrypt");
-const SALT_I = 10;
 const jwt = require("jsonwebtoken");
 
+// env config
 require("dotenv").config();
+
+const SALT_I = 10;
 
 const userSchema = new Schema(
   {
@@ -34,7 +36,7 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-// verify is taken
+// verify if email is taken
 userSchema.statics.isEmailTaken = async function (email) {
   let User = this;
   let ExistingUser = await User.findOne({ email: email });
