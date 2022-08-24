@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { NavigateHome } from "../../Context/helper";
+import { NavigateSomewhere } from "../../Context/helper";
 import { useNavigate } from "react-router-dom";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { AiOutlineCheckCircle } from "react-icons/ai";
@@ -129,7 +129,7 @@ const UpdateForm = ({
       </Form>
       <div className="submission_btns">
         <Link to="/home">
-          <Button className="cancel" onClick={() => NavigateHome("/home")}>
+          <Button className="cancel" onClick={() => NavigateSomewhere("/home")}>
             Cancel
           </Button>
         </Link>

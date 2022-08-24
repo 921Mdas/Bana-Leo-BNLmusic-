@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import MusicianForm from "./MusicianForm";
 import { useNavigate } from "react-router-dom";
 import UpdateForm from "./UpdateForm";
-import { NavigateHome } from "../../Context/helper";
+import { NavigateSomewhere } from "../../Context/helper";
 
 const ArtistForm = ({
   state,

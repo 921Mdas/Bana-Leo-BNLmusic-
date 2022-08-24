@@ -1,9 +1,10 @@
-// state
+// Internal imports
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { MyContext } from "../Context/index.context";
+import { LogOut } from "../Context/helper";
 
-// icons
+// External imports
 import { AiOutlineHome } from "react-icons/ai";
 import { BsMusicNoteList } from "react-icons/bs";
 import { GiDrum } from "react-icons/gi";
@@ -18,12 +19,7 @@ const Navbar = () => {
     COMMANDS,
   } = useContext(MyContext);
 
-  const LogOut = () => {
-    localStorage.removeItem("loginData");
-    localStorage.clear();
-  };
-
-  const formResetter = () => {
+  const clearAllFormData = () => {
     dispatch({ type: COMMANDS.RESETUPDATE });
   };
 
@@ -37,14 +33,14 @@ const Navbar = () => {
         <Link
           to="/home"
           className="logoContainer"
-          onClick={() => formResetter()}
+          onClick={() => clearAllFormData()}
         >
           <AiOutlineHome />
         </Link>
         <Link
           to="/form"
           className="logoContainer"
-          onClick={() => formResetter()}
+          onClick={() => clearAllFormData()}
         >
           <BsPencilSquare />
         </Link>
@@ -56,7 +52,7 @@ const Navbar = () => {
           <BsMusicNoteList />
         </Link>
         <Link to="/" className="logoContainer ">
-          <IoIosLogOut onClick={() => LogOut()} />
+          <IoIosLogOut onClick={() => LogOut("loginData")} />
         </Link>
       </div>
     </div>
@@ -64,12 +60,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// create a pathname with details and a query
-/* <Link to={{
-      pathname:'/addArtist',
-      hash:"#Luambo",
-      search:'?true=enabled'
-  }} >
-  ADD ARTIST
-  </Link> */

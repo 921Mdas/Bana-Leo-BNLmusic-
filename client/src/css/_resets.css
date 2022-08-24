@@ -12,6 +12,7 @@
 @import "./_bio.css";
 @import "./_form.css";
 @import "./_mobile.css";
+@import "./canvas.css";
 
 *,
 *::before,

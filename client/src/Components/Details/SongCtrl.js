@@ -5,8 +5,9 @@ import { CgPlayTrackNextR } from "react-icons/cg";
 import { FiPlayCircle } from "react-icons/fi";
 
 import Actionbar from "./Actionbar";
+import CreateAudio from "../Canvas/CreateAudio";
 
-const SongCtrl = ({ playList, ctrlMusic }) => {
+const SongCtrl = ({ playList, ctrlMusic, setCanvaAudio, addListener }) => {
   const [currentTrack, setCurrentTrack] = useState(null);
   let [counter, setCounter] = useState(0);
   let [showEqualizer, setShowEqualizer] = useState(false);
@@ -22,16 +23,19 @@ const SongCtrl = ({ playList, ctrlMusic }) => {
     }
 
     setCurrentTrack(currentTrack.next);
+    // setCanvaAudio(currentTrack);
     setCounter((counter += 1));
   };
 
   const PrevSong = () => {
     setCurrentTrack(ctrlMusic.prev());
+    // setCanvaAudio(currentTrack);
   };
 
   useEffect(() => {
     setCurrentTrack(ctrlMusic.start());
-  }, [playList, ctrlMusic]);
+    // setCanvaAudio(currentTrack);
+  }, [ctrlMusic, currentTrack]);
 
   return (
     <div className="detail_song">
@@ -54,15 +58,16 @@ const SongCtrl = ({ playList, ctrlMusic }) => {
             </h6>
           </div>
         </div>
-        <ReactPlayer
+
+        {/* <ReactPlayer
           controls={true}
           url={currentTrack?.value?.track}
           width={"100%"}
           height={"100%"}
           volume={0.2}
-          onStart={() => setShowEqualizer(true)}
+          onStart={() => addListener()}
           onPause={() => setShowEqualizer(false)}
-        />
+        /> */}
       </div>
       <div className="track_actions">
         <Actionbar

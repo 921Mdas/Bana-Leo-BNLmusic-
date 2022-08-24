@@ -5,10 +5,11 @@ import { COMMANDS } from "./type";
 import { resetStorage } from "./helper";
 import { CongoPlayLists } from "../Components/Details/Stack";
 
-import { Toaster, setStorage } from "./helper";
+import { ToasterError, ToasterSuccess, setStorage } from "./helper";
 
 const MyContext = React.createContext();
 const controller = new AbortController();
+let headers = new Headers();
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -107,12 +108,9 @@ function MyProvider(props) {
   const registerArtist = async args => {
     try {
       const artistAdded = await axios.post("/artists", args);
-      await toast.success(artistAdded.data, {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 500,
-      });
+      ToasterSuccess(artistAdded.data);
     } catch (error) {
-      if (error) Toaster("error", error?.response?.data?.message);
+      if (error) ToasterError(error?.response?.data?.message);
       console.log(error);
     }
   };
@@ -125,7 +123,7 @@ function MyProvider(props) {
         dispatch({ type: COMMANDS.STORE_ALL_ARTISTS, payload: res.data });
       });
     } catch (error) {
-      if (error) Toaster("error", error?.response?.data?.message);
+      if (error) ToasterError(error?.response?.data?.message);
       console.log(error);
     }
   };
@@ -138,15 +136,14 @@ function MyProvider(props) {
       const removedArtist = artists.find(artist => artist._id === id);
       const newArtists = artists.filter(artist => artist._id !== id);
       dispatch({ type: COMMANDS.REMOVE_AN_ARTIST, payload: newArtists });
-      Toaster("success", `${removedArtist.name} removed`);
+      ToasterSuccess(`${removedArtist.name} removed`);
     } catch (error) {
       if (error) console.log(error);
-      Toaster("error", error?.response.data.message);
+      ToasterError(error?.response.data.message);
     }
   };
 
-  // update artists !!! issues
-  // there is no axios here
+  // update artists
   const updateArtist = async id => {
     try {
       const { artists } = state;
@@ -155,10 +152,10 @@ function MyProvider(props) {
         type: COMMANDS.UPDATE_ARTIST,
         payload: { artistToUpdate, id },
       });
-      // Toaster("success", `💥 ${artistToUpdate.name} successfully updated`);
+      ToasterSuccess(`💥 ${artistToUpdate.name} successfully updated`);
     } catch (error) {
       if (error) console.log(error);
-      Toaster("error", error?.response.data.message);
+      ToasterError(error?.response.data.message);
     }
   };
 
@@ -168,16 +165,20 @@ function MyProvider(props) {
     setUploadId(id);
 
     try {
-      await axios.get(`/tracks/${id}/uploadsongs`).then(res => {
-        dispatch({ type: COMMANDS.GET_TRACKS_BY_ID, payload: res.data });
-        let newMusic = res.data?.tracks;
-        console.log("play music new music based on the id", newMusic);
-        if (CongoPlayLists.length === 0) {
-          newMusic.map(music => CongoPlayLists.push(music));
-        }
-      });
+      await axios
+        .get(`/tracks/${id}/uploadsongs`, {
+          crossdomain: true,
+          headers: headers,
+        })
+        .then(res => {
+          dispatch({ type: COMMANDS.GET_TRACKS_BY_ID, payload: res.data });
+          let newMusic = res.data?.tracks;
+          if (CongoPlayLists.length === 0) {
+            newMusic.map(music => CongoPlayLists.push(music));
+          }
+        });
     } catch (error) {
-      if (error) Toaster("error", error?.response.data.message);
+      if (error) ToasterError(error?.response.data.message);
       console.log(error);
     }
   };
@@ -192,9 +193,9 @@ function MyProvider(props) {
       );
 
       playMusic(trackUploaded?.data);
-      Toaster("success", `💥 ${filename} uploaded`);
+      ToasterSuccess(`💥 ${filename} uploaded`);
     } catch (error) {
-      Toaster("error", error?.response?.data.message);
+      ToasterError(error?.response?.data.message);
       console.log(error);
     }
   };
@@ -202,11 +203,13 @@ function MyProvider(props) {
   // retrieve all songs
   const getAllTracks = async () => {
     try {
-      const tracks = await axios.get(`/tracks/alltracks`);
+      const tracks = await axios.get(`/tracks/alltracks`, (req, res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+      });
       await dispatch({ type: COMMANDS.GETALL_TRACKS, payload: tracks.data });
       localStorage.setItem("songs", JSON.stringify(tracks.data));
     } catch (error) {
-      Toaster("error", error?.response.data.message);
+      ToasterError(error?.response.data.message);
       console.log(error);
     }
   };

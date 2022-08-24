@@ -7,13 +7,19 @@ import { CongoPlayLists } from "./Stack";
 
 // prettier-ignore
 
-const Song = () => {
+const Song = ({ setCanvaAudio }) => {
   const savedData = localStorage.getItem("detailSongs")
     ? JSON.parse(localStorage.getItem("detailSongs"))
     : null;
   // prettier-ignore
   if (CongoPlayLists.length > 0) {
-    return <SongCtrl ctrlMusic={CongoPlayLists} playList={savedData} />
+    return (
+      <SongCtrl
+        ctrlMusic={CongoPlayLists}
+        playList={savedData}
+        setCanvaAudio={setCanvaAudio}
+      />
+    );
   } else {
     // prettier-ignore
     return (
@@ -22,6 +28,6 @@ const Song = () => {
       </div>
     )
   }
-}
+};
 
 export default Song;
