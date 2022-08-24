@@ -1,31 +1,30 @@
-// state
+// External Imports
 import React, { useState, useEffect, useContext } from "react";
-import { MyContext } from "../Context/index.context";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { baseURLtype } from "../Context/type";
-
-// google
-import GoogleLogin from "react-google-login";
-
-// bootstrap
 import { Button, Form } from "react-bootstrap";
-
+import axios from "axios";
+import { toast } from "react-toastify";
 // icons
-import { MdHorizontalRule } from "react-icons/md";
 import { HiOutlineMail, HiOutlineKey } from "react-icons/hi";
 import { GiDrum } from "react-icons/gi";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { FcApproval } from "react-icons/fc";
 
-// libraries
-import { toast } from "react-toastify";
-
-// assets
+// Internal imports
+import { MyContext } from "../Context/index.context";
 import jazz from "../videos/pexels-anthony-shkraba-production-8043616.mp4";
+import {
+  UserAuthentication,
+  ToasterError,
+  ToasterSuccess,
+  EmailRegex,
+  PasswordRegex,
+  getStorage,
+  setStorage,
+} from "../Context/helper";
 
 function Login() {
-  const { dispatch, COMMANDS, state } = useContext(MyContext);
+  const { dispatch, COMMANDS } = useContext(MyContext);
   let navigate = useNavigate();
 
   const [localUser, setlocalUser] = useState({
@@ -36,98 +35,51 @@ function Login() {
   const [validatePass, setValidatePass] = useState("");
   const [register, setRegister] = useState(false);
 
-  const [loginData, setLoginData] = useState(
-    localStorage.getItem("loginData")
-      ? JSON.parse(localStorage.getItem("loginData"))
-      : null
-  );
+  // session stored, userdata, token
+  let getLoginData = getStorage("userLoginData");
+  let createLoginData;
 
-  // const handleLogin = async googleData => {
-  //   try {
-  //     const res = await fetch(`/user/google-login`, {
-  //       method: "POST",
-  //       body: JSON.stringify({ token: googleData.tokenId }),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
+  //  load storage login userData
+  useEffect(() => {
+    if (!getLoginData) return;
+    dispatch({ type: COMMANDS.UPDATE_USERONLINE, payload: getLoginData });
+    console.log(getLoginData);
+  }, [createLoginData]);
 
-  //     const data = await res.json();
-  //     setLoginData(data);
-
-  //     data.email ? navigate("/home") : navigate("/");
-  //     localStorage.setItem("loginData", JSON.stringify(data));
-  //     const userLogged = JSON.parse(localStorage.getItem("loginData"));
-
-  //     userLogged.email ? navigate("/home") : navigate("/");
-
-  //     if (!loginData.email) {
-  //       setLoginData(userLogged);
-  //     }
-  //   } catch (err) {
-  //     if (err) console.log(err);
-  //   }
-  // };
-
+  // sign in
   const handleSignIn = async e => {
     try {
       e.preventDefault();
-      const SignedUser = await axios.post(`/user/userlogin`, {
-        localUser,
-      });
-      SignedUser.data.isAuth ? navigate("/home") : navigate("/");
-      dispatch({ type: COMMANDS.LOGGEDIN, payload: SignedUser });
+      const SignedUser = await UserAuthentication(`user/userlogin`, localUser);
+      // manual sign in
+      if (SignedUser?.data.isAuth) {
+        createLoginData = setStorage("userLoginData", SignedUser);
+        dispatch({ type: COMMANDS.LOGGEDIN, payload: SignedUser });
+        ToasterSuccess(`welcome ${SignedUser?.data.user.email}`);
+        navigate("/home");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
-      if (error)
-        toast.error(error.response.data, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 500,
-        });
-      console.log(error);
+      if (error) console.log(error.message);
     }
   };
 
+  // sign up
   const handleSignUp = async e => {
     try {
       e.preventDefault();
-      const RegisteredUser = await axios.post("user/register", localUser);
+      const RegisteredUser = await UserAuthentication(
+        `user/register`,
+        localUser
+      );
       setRegister(false);
-      toast.success(`Success ${RegisteredUser.data.email}`, {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 500,
-      });
+      ToasterSuccess(`Success ${RegisteredUser.data.email}`);
     } catch (error) {
-      if (error)
-        toast.error(error.response.data, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 500,
-        });
+      if (error) ToasterError(error.response.data);
       console.log(error);
     }
   };
-
-  // const handleFailure = err => {
-  //   toast.error("🛑 couldn't login, try later", {
-  //     position: toast.POSITION.TOP_CENTER,
-  //     autoClose: 500,
-  //   });
-  // };
-
-  const handleLogout = () => {
-    localStorage.removeItem("loginData");
-    setLoginData(null);
-  };
-
-  useEffect(() => {
-    if (!loginData) return;
-    dispatch({ type: COMMANDS.UPDATE_USERONLINE, payload: loginData });
-  }, [loginData]);
-
-  const EmailRegex = new RegExp(
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    "g"
-  );
-  const passwordRegex = new RegExp(/[0-9]/, "g");
 
   const handleManualChange = e => {
     const name = e.target.name;
@@ -135,7 +87,7 @@ function Login() {
     setlocalUser({ ...localUser, [name]: value });
 
     const emailTest = EmailRegex.test(localUser.email);
-    const passwordTest = passwordRegex.test(localUser.password);
+    const passwordTest = PasswordRegex.test(localUser.password);
 
     if (emailTest) {
       setValidateEmail(true);
@@ -172,18 +124,7 @@ function Login() {
             </h4>
           </div>
           <div className="sign_in">
-            {/* <div className="google">
-              <GoogleLogin
-                className="loginBtn"
-                clientId={
-                  "772173664744-lr5pa17sih47aeb539m8svtht2v2oe1v.apps.googleusercontent.com"
-                }
-                buttonText="Log in with Google"
-                onSuccess={handleLogin}
-                onFailure={handleFailure}
-                cookiePolicy={"single_host_origin"}
-              ></GoogleLogin>
-            </div> */}
+            <div className="google"></div>
             {/* <div className="alternative">
               <MdHorizontalRule className="line" /> OR{" "}
               <MdHorizontalRule className="line" />

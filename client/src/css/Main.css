@@ -236,7 +236,7 @@ audio::-webkit-media-controls-current-time-display {
 }
 
 .tracks {
-  background: black;
+  /* background: black; */
   width: 100%;
   height: max-content;
   display: grid;
@@ -245,6 +245,8 @@ audio::-webkit-media-controls-current-time-display {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  position: relative;
+  z-index: 2;
 }
 
 .audiofilectrl {

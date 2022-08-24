@@ -27,9 +27,9 @@ const NewGoogleUser = async (req, res, next) => {
     const { name, email, picture } = ticket.getPayload();
     upsert(users, { name, email, picture });
     return res.status(StatusCodes.OK).json({ name, email, picture });
-  } catch (err) {
-    console.log(err);
-    if (err)
+  } catch (error) {
+    console.log(error);
+    if (error)
       return res.status(StatusCodes.NOT_ACCEPTABLE).send("cant register");
   }
 };
@@ -41,52 +41,44 @@ const register = async (req, res, next) => {
     if (await isUserTaken)
       return res.status(StatusCodes.NOT_ACCEPTABLE).send("user already exists");
 
-    await User.create(req.body, (err, user) => {
-      if (err) console.log(err);
+    await User.create(req.body, (error, user) => {
+      if (error) console.log(error);
       return res.status(StatusCodes.OK).send(parseUserDetails(user));
     });
-  } catch (error) {
-    if (error) return res.status(500).send({ message: "couldnt save", error });
+  } catch (erroror) {
+    if (erroror)
+      return res.status(500).send({ message: "couldnt save", erroror });
   }
 };
 
 // JWT manual login - POST
 const sendUser = async (req, res, next) => {
   try {
-    const {
-      localUser: { email, password },
-    } = req.body;
-
+    const receivedUser = req.body;
+    const email = receivedUser.email;
+    const password = receivedUser.password;
     let Auth = false;
 
     const foundUser = await User.findOne({ email: email });
-
     if (!foundUser)
-      return res.status(StatusCodes.NOT_FOUND).send("user not found");
+      return res.status(StatusCodes.NOT_FOUND).send("user not found, register");
 
-    const match = foundUser.comparePassword(password);
+    const match = await foundUser.comparePassword(password);
 
     if (match) {
       Auth = true;
       let token = foundUser.generateToken();
       let userDeets = parseUserDetails(foundUser);
-      return res
-        .cookie("bnlauth", token)
-        .json({ token: token, user: userDeets, isAuth: Auth });
+      return res.json({ token: token, user: userDeets, isAuth: Auth });
     }
 
     if (!match) {
       Auth = false;
-      return res.status(StatusCodes.UNAUTHORIZED).json({
-        message: "wrong password",
-        token: null,
-        user: null,
-        isAuth: Auth,
-      });
+      return res.status(StatusCodes.UNAUTHORIZED).send("wrong password");
     }
-  } catch (err) {
-    console.log(err);
-    if (err)
+  } catch (error) {
+    console.log(error);
+    if (error)
       return res.status(StatusCodes.NOT_ACCEPTABLE).send("User not found");
   }
 };
