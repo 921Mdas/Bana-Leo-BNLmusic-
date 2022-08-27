@@ -4,15 +4,22 @@ import { useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { gapi } from "gapi-script";
+import { GoogleLogin, GoogleLogout } from "@leecheuk/react-google-login";
+import { Formik } from "formik";
+import * as Yup from "yup";
+
 // icons
 import { HiOutlineMail, HiOutlineKey } from "react-icons/hi";
 import { GiDrum } from "react-icons/gi";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { FcApproval } from "react-icons/fc";
+import { MdHorizontalRule } from "react-icons/md";
 
 // Internal imports
 import { MyContext } from "../Context/index.context";
 import jazz from "../videos/pexels-anthony-shkraba-production-8043616.mp4";
+import { GoogleOAuthLogin } from "./OAuth";
 import {
   UserAuthentication,
   ToasterError,
@@ -23,7 +30,34 @@ import {
   setStorage,
 } from "../Context/helper";
 
+const GOOGLE_CLIENT_ID =
+  "772173664744-m0eu6jh0ijf2ivbb1hvdi1lvt6mlai5u.apps.googleusercontent.com";
+const GOOGLE_SECRET = "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";
+
 function Login() {
+  const handleGoogleLogout = () => {
+    console.log("logout");
+  };
+
+  const HandleGoogleLogin = async googleData => {
+    const res = await fetch("/api/google-login", {
+      method: "POST",
+      body: JSON.stringify({
+        token: googleData.tokenId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+
+    setStorage("loginData", data);
+  };
+
+  const HandleGoogleFailure = result => {
+    console.log("fail", result);
+  };
   const { dispatch, COMMANDS } = useContext(MyContext);
   let navigate = useNavigate();
 
@@ -102,6 +136,16 @@ function Login() {
     }
   };
 
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const validate = Yup.object({
+    email: Yup.string().required("please enter email"),
+    password: Yup.string().required("please enter password"),
+  });
+
   return (
     <div className="loginpage">
       <div className="bgc-vid">
@@ -124,11 +168,33 @@ function Login() {
             </h4>
           </div>
           <div className="sign_in">
-            <div className="google"></div>
-            {/* <div className="alternative">
+            <div className="google">
+              <GoogleLogin
+                className="loginBtn"
+                clientId={GOOGLE_CLIENT_ID}
+                buttonText="GOOGLE LOGIN "
+                onSuccess={googleData => {
+                  navigate("/home");
+                  HandleGoogleLogin(googleData);
+                }}
+                onFailure={HandleGoogleFailure}
+                cookiePolicy={"single_host_origin"}
+                isSignedIn={true}
+              ></GoogleLogin>
+              {/* <GoogleOAuthLogin
+                className="loginBtn"
+                clientID={process.env.REACT_GOOGLE_CLIENTID}
+              /> */}
+            </div>
+            <div className="alternative">
               <MdHorizontalRule className="line" /> OR{" "}
               <MdHorizontalRule className="line" />
-            </div> */}
+            </div>
+
+            <Formik initialValues={initialValues}>
+              {({ handleBlur, handleChange, handleSubmit, touched }) => {}}
+            </Formik>
+
             <Form action="" className="Signinform">
               <div className="inputController">
                 {!validateEmail ? (

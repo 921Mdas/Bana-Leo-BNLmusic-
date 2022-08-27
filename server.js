@@ -4,14 +4,28 @@ const app = require("./config/app");
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const path = require("path");
+const session = require("express-session");
+const passport = require("passport");
 
 // general configs
 require("dotenv").config();
 require("./config/db");
+require("./config/passport.config");
+require("./config/passportGoogle");
+app.use(
+  session({
+    secret: "ABC",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 app.set("view engine", "ejs");
+app.use(cookieParser());
 app.use(bodyParser.json());
+
 app.use(express.json({ limit: "50mb" }));
 app.use(
   express.urlencoded({
@@ -21,7 +35,16 @@ app.use(
   })
 );
 app.use(logger("dev"));
-app.use(cors({ credentials: true, origin: "http://localhost:3005/" }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+    methods: "GET,POST,PUT,DELETE",
+  })
+);
 
 // compile
 app.use(express.static(path.join(__dirname, "build")));
