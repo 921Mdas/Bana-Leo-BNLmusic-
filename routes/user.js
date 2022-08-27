@@ -2,7 +2,7 @@
 var express = require("express");
 var app = express();
 var router = express.Router();
-
+const passport = require("passport");
 // Internal imports
 var ctrl = require("../controller/user.controller");
 
@@ -17,11 +17,6 @@ router.post("/register", ctrl.register);
 // user manual login
 router.post("/userlogin", (req, res, next) => {
   ctrl.sendUser(req, res, next);
-});
-
-// google
-router.post("/google-login", (req, res, next) => {
-  ctrl.NewGoogleUser(req, res, next);
 });
 
 module.exports = router;

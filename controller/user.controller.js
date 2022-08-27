@@ -16,23 +16,23 @@ function upsert(array, item) {
 }
 
 // Google New user sign in - POST
-const NewGoogleUser = async (req, res, next) => {
-  try {
-    const { token } = req.body;
-    const ticket = await client.verifyIdToken({
-      idToken: token,
-      audience: process.env.CLIENT_ID,
-    });
+// const NewGoogleUser = async (req, res, next) => {
+//   try {
+//     const { token } = req.body;
+//     const ticket = await client.verifyIdToken({
+//       idToken: token,
+//       audience: process.env.CLIENT_ID,
+//     });
 
-    const { name, email, picture } = ticket.getPayload();
-    upsert(users, { name, email, picture });
-    return res.status(StatusCodes.OK).json({ name, email, picture });
-  } catch (error) {
-    console.log(error);
-    if (error)
-      return res.status(StatusCodes.NOT_ACCEPTABLE).send("cant register");
-  }
-};
+//     const { name, email, picture } = ticket.getPayload();
+//     upsert(users, { name, email, picture });
+//     return res.status(StatusCodes.OK).json({ name, email, picture });
+//   } catch (error) {
+//     console.log(error);
+//     if (error)
+//       return res.status(StatusCodes.NOT_ACCEPTABLE).send("cant register");
+//   }
+// };
 
 // JWT manual register new user - POST
 const register = async (req, res, next) => {
@@ -91,7 +91,6 @@ const parseUserDetails = user => {
 };
 
 module.exports = {
-  NewGoogleUser,
   sendUser,
   register,
 };

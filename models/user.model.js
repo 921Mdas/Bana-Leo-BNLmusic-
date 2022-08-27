@@ -14,6 +14,7 @@ const userSchema = new Schema(
     name: { type: String, default: "John Doe" },
     email: { type: String, default: "" },
     password: { type: String, default: "" },
+    photo: { type: String, default: "" },
     googleId: { type: String, default: "" },
   },
   {

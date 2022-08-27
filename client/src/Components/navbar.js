@@ -1,6 +1,7 @@
 // Internal imports
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MyContext } from "../Context/index.context";
 import { LogOut } from "../Context/helper";
 
@@ -10,8 +11,14 @@ import { BsMusicNoteList } from "react-icons/bs";
 import { GiDrum } from "react-icons/gi";
 import { IoIosLogOut } from "react-icons/io";
 import { BsPencilSquare } from "react-icons/bs";
+import { GoogleLogin, GoogleLogout } from "@leecheuk/react-google-login";
+
+const GOOGLE_CLIENT_ID =
+  "772173664744-m0eu6jh0ijf2ivbb1hvdi1lvt6mlai5u.apps.googleusercontent.com";
+const GOOGLE_SECRET = "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";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const {
     state: userOnline,
     getAllTracks,
@@ -52,7 +59,19 @@ const Navbar = () => {
           <BsMusicNoteList />
         </Link>
         <Link to="/" className="logoContainer ">
-          <IoIosLogOut onClick={() => LogOut("loginData")} />
+          <IoIosLogOut
+            onClick={() => {
+              LogOut("loginData");
+              navigate("/");
+            }}
+          />
+          <GoogleLogout
+            clientId={GOOGLE_CLIENT_ID}
+            buttonText="Logout"
+            onLogoutSuccess={() => {
+              localStorage.clear();
+            }}
+          ></GoogleLogout>
         </Link>
       </div>
     </div>
