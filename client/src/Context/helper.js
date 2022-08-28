@@ -1,7 +1,10 @@
+// External Imports
 import { toast } from "react-toastify";
 import Spinner from "react-bootstrap/Spinner";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
+// Internal Imports
 
 // reset item data on local storage
 export const resetStorage = (itemName, newData) => {
@@ -40,7 +43,7 @@ export const ToasterError = message => {
   });
 };
 export const ToasterSuccess = message => {
-  toast.error(message, {
+  toast.success(message, {
     position: toast.POSITION.TOP_CENTER,
     autoClose: 500,
   });

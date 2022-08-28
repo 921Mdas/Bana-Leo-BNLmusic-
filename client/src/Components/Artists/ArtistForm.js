@@ -1,18 +1,14 @@
-// state
-import React, { useState } from "react";
+// External Imports
+import React from "react";
 import { Link } from "react-router-dom";
-
-// bootstrap
 import { Button, Form } from "react-bootstrap";
-import Goback from "../UtilComponent/Goback";
-
-// libraries
 import axios from "axios";
 import { toast } from "react-toastify";
-
-// components
-import MusicianForm from "./MusicianForm";
 import { useNavigate } from "react-router-dom";
+
+// Internal Imports
+import Goback from "../UtilComponent/Goback";
+import MusicianForm from "./MusicianForm";
 import UpdateForm from "./UpdateForm";
 import { NavigateSomewhere } from "../../Context/helper";
 
@@ -22,10 +18,6 @@ const ArtistForm = ({
   COMMANDS,
   registerArtist,
   updateArtist,
-  setCurrentPage,
-  FIRST_PAGE,
-  SECOND_PAGE,
-  currentPage,
 }) => {
   const navigate = useNavigate();
 
@@ -39,12 +31,6 @@ const ArtistForm = ({
     const value = e.target.value;
     dispatch({ type: COMMANDS.SET_ARTISTS, payload: { inputname, value } });
   };
-
-  // const addArtistForm = async () => {
-  //   const { name, picture, song, bio, country, year, copyright: cop } = state;
-  //   await registerArtist({ name, picture, song, bio, country, year, cop });
-  //   setCurrentPage(FIRST_PAGE);
-  // };
   const addArtistForm = async () => {
     const {
       newArtist: { name = "unkown", picture, song, bio, country, year },

@@ -1,5 +1,8 @@
+// External Imports
 import React from "react";
 import { IoSend } from "react-icons/io5";
+
+// Internal Imports
 
 const SubmitBtn = ({ handleSubmit, isSubmitting }) => {
   return (

@@ -15,11 +15,13 @@ import { GiDrum } from "react-icons/gi";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { FcApproval } from "react-icons/fc";
 import { MdHorizontalRule } from "react-icons/md";
+import { MdPassword } from "react-icons/md";
 
 // Internal imports
 import { MyContext } from "../Context/index.context";
 import jazz from "../videos/pexels-anthony-shkraba-production-8043616.mp4";
 import { GoogleOAuthLogin } from "./OAuth";
+import InputCtrl from "./Artists/InputCtrl";
 import {
   UserAuthentication,
   ToasterError,
@@ -35,11 +37,16 @@ const GOOGLE_CLIENT_ID =
 const GOOGLE_SECRET = "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";
 
 function Login() {
+  const { dispatch, COMMANDS } = useContext(MyContext);
   const handleGoogleLogout = () => {
     console.log("logout");
   };
 
   const HandleGoogleLogin = async googleData => {
+    if (googleData.tokenId) {
+      dispatch({ type: COMMANDS.GOOGLE_LOGIN, payload: googleData });
+    }
+
     const res = await fetch("/api/google-login", {
       method: "POST",
       body: JSON.stringify({
@@ -58,7 +65,7 @@ function Login() {
   const HandleGoogleFailure = result => {
     console.log("fail", result);
   };
-  const { dispatch, COMMANDS } = useContext(MyContext);
+
   let navigate = useNavigate();
 
   const [localUser, setlocalUser] = useState({
@@ -77,14 +84,13 @@ function Login() {
   useEffect(() => {
     if (!getLoginData) return;
     dispatch({ type: COMMANDS.UPDATE_USERONLINE, payload: getLoginData });
-    console.log(getLoginData);
   }, [createLoginData]);
 
   // sign in
-  const handleSignIn = async e => {
+  const handleSignIn = async data => {
     try {
-      e.preventDefault();
-      const SignedUser = await UserAuthentication(`user/userlogin`, localUser);
+      // e.preventDefault();
+      const SignedUser = await UserAuthentication(`user/userlogin`, data);
       // manual sign in
       if (SignedUser?.data.isAuth) {
         createLoginData = setStorage("userLoginData", SignedUser);
@@ -100,13 +106,10 @@ function Login() {
   };
 
   // sign up
-  const handleSignUp = async e => {
+  const handleSignUp = async data => {
     try {
-      e.preventDefault();
-      const RegisteredUser = await UserAuthentication(
-        `user/register`,
-        localUser
-      );
+      // e.preventDefault();
+      const RegisteredUser = await UserAuthentication(`user/register`, data);
       setRegister(false);
       ToasterSuccess(`Success ${RegisteredUser.data.email}`);
     } catch (error) {
@@ -191,10 +194,78 @@ function Login() {
               <MdHorizontalRule className="line" />
             </div>
 
-            <Formik initialValues={initialValues}>
-              {({ handleBlur, handleChange, handleSubmit, touched }) => {}}
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validate}
+              onSubmit={(values, { resetForm }) => {
+                register ? handleSignUp(values) : handleSignIn(values);
+              }}
+            >
+              {({
+                values,
+                handleBlur,
+                handleChange,
+                handleSubmit,
+                touched,
+                errors,
+              }) => {
+                return (
+                  <div className="logindiv Signinform">
+                    <InputCtrl
+                      handleChange={handleChange}
+                      handleBlur={handleBlur}
+                      placeholder="Enter name *"
+                      inputName="email"
+                      Icon={HiOutlineMail}
+                      InputType="text"
+                      valueType={values.email}
+                      errors={errors}
+                      touched={touched}
+                      id="logininput"
+                    />
+                    ;
+                    <InputCtrl
+                      handleChange={handleChange}
+                      handleBlur={handleBlur}
+                      placeholder="Enter password *"
+                      inputName="password"
+                      Icon={MdPassword}
+                      InputType="text"
+                      valueType={values.password}
+                      errors={errors}
+                      touched={touched}
+                    />
+                    ;
+                    {register ? (
+                      <Button
+                        type="submit"
+                        className="signinBtn"
+                        onClick={e => handleSubmit()}
+                      >
+                        Sign up
+                      </Button>
+                    ) : (
+                      <Button
+                        type="submit"
+                        className="signinBtn"
+                        onClick={e => handleSubmit()}
+                      >
+                        Sign in
+                      </Button>
+                    )}
+                    <Button
+                      variant="light"
+                      onClick={() => setRegister(!register)}
+                    >
+                      {register
+                        ? "Want to Login ?"
+                        : "Want to create account ?"}
+                    </Button>
+                  </div>
+                );
+              }}
             </Formik>
-
+            {/* 
             <Form action="" className="Signinform">
               <div className="inputController">
                 {!validateEmail ? (
@@ -245,7 +316,7 @@ function Login() {
               <Button variant="light" onClick={() => setRegister(!register)}>
                 {register ? "Want to Login ?" : "Want to create account ?"}
               </Button>
-            </Form>
+            </Form> */}
           </div>
         </div>
       </div>

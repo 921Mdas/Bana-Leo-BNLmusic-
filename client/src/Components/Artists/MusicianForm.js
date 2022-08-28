@@ -1,3 +1,4 @@
+// External Imports
 import React, { useEffect } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -12,12 +13,13 @@ import { GiWorld } from "react-icons/gi";
 import { BsCalendar2Date } from "react-icons/bs";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { IoMusicalNote } from "react-icons/io5";
+import { useFormikContext } from "formik";
+import { useNavigate } from "react-router-dom";
 
+// Internal Imports
 import InputCtrl from "./InputCtrl";
 import SubmitBtn from "./SubmitBtn";
 import Goback from "../UtilComponent/Goback";
-import { useFormikContext } from "formik";
-import { useNavigate } from "react-router-dom";
 import { ToasterSuccess, ToasterError } from "../../Context/helper";
 
 const MusicianForm = ({
@@ -88,7 +90,7 @@ const MusicianForm = ({
           touched,
           isSubmitting,
         }) => (
-          <>
+          <div className="musician_form_inputctrl">
             <InputCtrl
               handleChange={handleChange}
               handleBlur={handleBlur}
@@ -99,6 +101,7 @@ const MusicianForm = ({
               valueType={values.name}
               errors={errors}
               touched={touched}
+              className="input_ctrl_musician"
               // defaultVal={defaultValues.name}
               // handleChangingForm={handleChangingForm}
             />
@@ -111,6 +114,8 @@ const MusicianForm = ({
               InputType="text"
               errors={errors}
               touched={touched}
+              className="input_ctrl_musician"
+
               // defaultVal={defaultValues.country}
               // handleChangingForm={handleChangingForm}
             />
@@ -123,6 +128,8 @@ const MusicianForm = ({
               InputType="text"
               errors={errors}
               touched={touched}
+              className="input_ctrl_musician"
+
               // defaultVal={defaultValues.picture}
               // handleChangingForm={handleChangingForm}
             />
@@ -136,6 +143,8 @@ const MusicianForm = ({
                 InputType="text"
                 errors={errors}
                 touched={touched}
+                className="input_ctrl_musician"
+
                 // defaultVal={defaultValues.song}
                 // handleChangingForm={handleChangingForm}
               />
@@ -148,6 +157,8 @@ const MusicianForm = ({
                 InputType="number"
                 errors={errors}
                 touched={touched}
+                className="input_ctrl_musician"
+
                 // defaultVal={defaultValues.year}
                 // handleChangingForm={handleChangingForm}
               />
@@ -161,6 +172,8 @@ const MusicianForm = ({
               InputType="textarea"
               errors={errors}
               touched={touched}
+              className="input_ctrl_musician"
+
               // defaultVal={defaultValues.bio}
               // handleChangingForm={handleChangingForm}
             />
@@ -168,7 +181,7 @@ const MusicianForm = ({
               handleSubmit={handleSubmit}
               isSubmitting={isSubmitting}
             />
-          </>
+          </div>
         )}
       </Formik>
     </div>

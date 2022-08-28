@@ -1,36 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
-import { MyContext } from "../../Context/index.context";
-
-// react icon
-import { IoIosLogIn } from "react-icons/io";
+// External imports
 import { FcApproval } from "react-icons/fc";
 
 const Welcome = ({ state }) => {
-  // const {
-  //   loggedInUser: {
-  //     data: {
-  //       user: { email },
-  //     },
-  //   },
-  // } = state;
-  // const { loggedUser, setLoggedUser } = useState({});
-  // const storageUser = JSON.parse(localStorage.getItem("loginData"));
+  const user_email = state?.loggedInUser?.data?.user?.email;
+  const user_google_email = state?.google_data?.profileObj?.email;
+  const user_google_name = state?.google_data?.profileObj?.name;
+  const user_google_photo = state?.google_data?.profileObj?.imageUrl;
 
   return (
     <div className="welcome_message">
-      <p>Welcome Home</p>
-      {/* {storageUser?.name ? (
-        <p>
-          Welcome <span>{storageUser?.name}</span>{" "}
-        </p>
-      ) : (
+      <div className="welcome_message_container">
+        {user_google_photo ? <img src={user_google_photo} alt="" /> : null}
+
         <p>
           Welcome{" "}
-          {state.loggedInUser ? state?.loggedInUser?.data?.user?.email : "Home"}
+          {user_google_name
+            ? user_google_name
+            : user_google_email || user_email}{" "}
+          <FcApproval />
         </p>
-      )} */}
-
-      <FcApproval />
+      </div>
     </div>
   );
 };

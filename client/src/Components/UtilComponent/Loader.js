@@ -1,6 +1,9 @@
+// External Imports
 import React, { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { TbMusicOff } from "react-icons/tb";
+
+// Internal Imports
 import { Load } from "../../Context/helper";
 
 function GrowExample() {

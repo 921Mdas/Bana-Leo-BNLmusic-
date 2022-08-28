@@ -1,12 +1,9 @@
-// state
+// External Imports
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-// components
+// Internal Imports
 import CardArtist from "../card";
-
-// libraries
-// import { useSpring, animated } from "react-spring";
 
 function Artists({
   state,
@@ -14,9 +11,6 @@ function Artists({
   removeArtist,
   updateArtist,
   playMusic,
-  getAllTracks,
-  dispatch,
-  COMMANDS,
   setCurrentPage,
   FIRST_PAGE,
   SECOND_PAGE,

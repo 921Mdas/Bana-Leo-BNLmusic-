@@ -1,8 +1,11 @@
+// External Imports
 import React from "react";
 import { BsSpotify } from "react-icons/bs";
 import { FaSoundcloud } from "react-icons/fa";
 import { SiApplemusic } from "react-icons/si";
 import { SiTidal } from "react-icons/si";
+
+// Internal Imports
 import img from "../../images-client/concert.jpeg";
 
 const TRACK_LIST = ({ tracks }) => {

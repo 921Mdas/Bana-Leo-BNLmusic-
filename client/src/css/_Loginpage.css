@@ -10,11 +10,11 @@
   width: 60%;
   max-width: 500px;
   height: max-content !important;
-  min-height: 60vh;
-  overflow-y: scroll;
+  min-height: 90vh;
+  overflow-y: hidden;
   height: 56vh;
   position: absolute;
-  padding: 5em 3em;
+  padding: 3em;
   text-align: center;
   background: rgba(0, 0, 0, 0.719);
   border: solid 1px rgba(255, 255, 255, 0.171);
@@ -36,7 +36,7 @@
 }
 
 .titles {
-  margin-bottom: 5em;
+  margin-bottom: 3em;
 }
 
 .titles h1 {
@@ -59,11 +59,36 @@
   border-radius: 3px;
 }
 
+.sign_in {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.logininput,
+.logindiv,
+#logininput {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: left;
+}
+
+.input_ctrl_musician {
+  margin-bottom: 30px !important;
+}
+
+.musician_form_inputctrl {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
 .alternative {
   display: flex;
   justify-content: center;
-  padding: 1em 0;
+  /* padding: 1em 0; */
   margin-bottom: 2em;
+  padding-bottom: 1em;
   justify-content: center;
   align-items: center;
   color: white;

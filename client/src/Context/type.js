@@ -16,6 +16,7 @@ export const COMMANDS = {
   PLAYTRACK: "PLAYTRACK",
   LOGGEDIN: "LOGGEDIN",
   RESETUPDATE: "RESETUPDATE",
+  GOOGLE_LOGIN: "GOOGLE_LOGIN",
 };
 
 // ****** needed links for local DEV

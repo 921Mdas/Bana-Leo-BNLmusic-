@@ -1,29 +1,14 @@
-// state & components
+// External Imports
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { MyContext } from "../../Context/index.context";
+import { math } from "canvas-sketch-util";
 
-// canva
-import canvas from "canvas-sketch";
-import { math, random } from "canvas-sketch-util";
-import { sketch, SKETCH } from "../../canva";
-
-// components
+// Internal Imports
 import UploadForm from "./UploadForm";
 import Song from "./Song";
-import { Load } from "../../Context/helper";
 import Goback from "../UtilComponent/Goback";
-import CanvaSketch from "../Canvas/CanvaSketch";
 import { CongoPlayLists } from "./Stack";
-
-// icons
-import { AiOutlineInstagram, AiFillYoutube } from "react-icons/ai";
-import { BsTwitch } from "react-icons/bs";
-import { FaFacebookSquare } from "react-icons/fa";
-import { AiOutlineArrowLeft } from "react-icons/ai";
-
 import Navbar from "../navbar";
-import Footer from "../Footer";
 import TrackList from "./TrackList";
 
 let dateCreator = (data, val) => {
@@ -39,17 +24,7 @@ let dateCreator = (data, val) => {
 
 let audio, audioContext, sourceNode, analyzerNode, audioData, newSong, manager;
 
-function DetailView({
-  state,
-  dispatch,
-  COMMANDS,
-  LoadArtists,
-  removeArtist,
-  updateArtist,
-  playMusic,
-  registerArtist,
-  sendMusic,
-}) {
+function DetailView({ state, dispatch, COMMANDS, playMusic, sendMusic }) {
   const playlist = state.playlist;
   const [list] = playlist;
   const savedData = localStorage.getItem("detailSongs")
@@ -62,74 +37,31 @@ function DetailView({
   // canvas
   const canvasRef = useRef(null);
   const player = useRef(null);
-  const Canvas = canvasRef?.current;
-  const [currentTrack, setCurrentTrack] = useState(null);
-
-  // audio = document.createElement("audio");
-  // audio.src = "https://banaleo2.s3.amazonaws.com/new-Yolele.mp3";
-  // audio.crossOrigin = "anonymous";
-
-  // const CreateAudio = () => {
-  //   audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  //   sourceNode = audioContext.createMediaElementSource(audio);
-
-  //   // sourceNode.connect(audioContext.destination);
-  //   analyzerNode = audioContext.createAnalyser();
-  //   sourceNode.connect(analyzerNode);
-  //   analyzerNode.connect(audioContext.destination);
-  //   analyzerNode.fftSize = 512;
-
-  //   // sourceNode.connect(analyzerNode);
-  //   audioData = new Float32Array(analyzerNode.frequencyBinCount);
-  // };
 
   newSong = CongoPlayLists.start();
 
   const NextSong = async () => {
     newSong = await newSong?.next();
-    //   if (ctrlMusic.length >= counter) {
-    //     setCurrentTrack(ctrlMusic.start());
-    //     setCounter(0);
-    //   }
-    //   if (currentTrack === null) {
-    //     setCurrentTrack(ctrlMusic.start());
-    //     setCounter(0);
-    //   }
-
-    //   setCurrentTrack(currentTrack.next);
-    //   // setCanvaAudio(currentTrack);
-    //   setCounter((counter += 1));
   };
 
   const CreateAudio = async () => {
-    // audio = document.createElement("audio");
-    // audio.src = canvaaudio ? canvaaudio : "";
-    // audio.crossOrigin = "anonymous";
-    // audio.src = canvaaudio ? canvaaudio : ""
     audio = await document.createElement("audio");
     audio.src = await newSong?.value.track;
     audio.crossOrigin = "anonymous";
 
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
     sourceNode = audioContext.createMediaElementSource(audio);
-
-    // sourceNode.connect(audioContext.destination);
     analyzerNode = audioContext.createAnalyser();
     sourceNode.connect(analyzerNode);
     analyzerNode.connect(audioContext.destination);
     analyzerNode.fftSize = 512;
 
-    // sourceNode.connect(analyzerNode);
     audioData = new Float32Array(analyzerNode.frequencyBinCount);
   };
 
   useEffect(() => {
     CreateAudio();
   });
-
-  // useEffect(() => {
-  //   CreateAudio();
-  // }, [canvaaudio]);
 
   const addListener = () => {
     player.current?.addEventListener("mouseup", () => {
@@ -161,23 +93,11 @@ function DetailView({
     let radius = 200;
     let slice = (Math.PI * 2) / slices;
 
-    // context.save();
-    // // instead of the above point, we can also draw a quadratic curve
-    // context.lineWidth = 2;
-    // //   context.clearRect(0, 0, canvas.width, canvas.height);
-    // context.strokeStyle = "white";
-    // //   context.translate(x, y);
-    // context.beginPath();
-    // context.arc(0, 0, 50, 0, Math.PI * 2);
-    // context.stroke();
-    // context.restore();
-
     const render = () => {
       // call createaudio
       if (!audioData) return;
       analyzerNode?.getFloatFrequencyData(audioData);
 
-      // Math.abs(audioData[20] / 10);
       context.save();
       // instead of the above point, we can also draw a quadratic curve
       context.lineWidth = 2;

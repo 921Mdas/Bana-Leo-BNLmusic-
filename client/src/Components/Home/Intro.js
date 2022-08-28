@@ -4,9 +4,9 @@ const Intro = () => {
   return (
     <div className="home_headlines">
       <h2 className="intro_title"> EXPLORE</h2>
-      <h1>
-        <span className="styledHeadline">Pure African Rumba</span>
-      </h1>
+      <h2>
+        <span className="styledHeadline">Legendary African Jazz hits</span>
+      </h2>
     </div>
   );
 };

@@ -1,13 +1,11 @@
-// state
-import React, { useContext, useEffect, useState } from "react";
-import { MyContext } from "../../Context/index.context";
+// External Imports
+import React, { useState } from "react";
+
+// Internal Imports
+import TRACK_LIST from "./TrackList";
 import Navbar from "../navbar";
-import Footer from "../Footer";
 import Goback from "../UtilComponent/Goback";
 import Loader from "../UtilComponent/Loader";
-
-// components
-import TRACK_LIST from "./TrackList";
 
 const toCapitaliseKeyword = input => {
   const Capitalised = input.charAt(0).toUpperCase() + input.substring(1);

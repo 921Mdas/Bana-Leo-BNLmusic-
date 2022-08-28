@@ -51,7 +51,8 @@
 
 .contentnavSection {
   display: flex;
-  gap: 1em;
+  width: max-content;
+  gap: 3em;
   top: 15px;
   right: 0;
 }

@@ -3,7 +3,7 @@
 } */
 
 .home_headlines {
-  height: 10vh;
+  height: max-content;
 }
 
 .home_headlines .intro_title {
@@ -13,10 +13,26 @@
 }
 
 .welcome_message {
-  text-align: center;
   font-weight: 100;
+  width: 22vw;
+  background: rgba(44, 43, 43, 0.411);
+  border-radius: 3px;
+}
+
+.welcome_message_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+
+.welcome_message_container p {
+  height: 10vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
 }
 
 /* artist cards section */
@@ -54,7 +70,6 @@
 .input_ctrl {
   width: 100%;
   position: relative;
-  margin-bottom: 35px;
 }
 
 .field_icon {
@@ -117,13 +132,15 @@
 
 .artist_input_field {
   padding: 35px;
+  border-radius: 5px !important;
+  border: none;
 }
 
 .artist_input_field,
 .submit_btn_artist_el {
   padding: 10px 5px;
   width: 100%;
-  border-radius: 3px;
+  border-radius: 5px !important;
 }
 
 .submit_btn_artist_el {

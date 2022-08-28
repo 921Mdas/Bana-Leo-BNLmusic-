@@ -1,6 +1,9 @@
+// External Imports
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+
+// Internal Imports
 
 const Goback = ({ direction }) => {
   const navigate = useNavigate();
