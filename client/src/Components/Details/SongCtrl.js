@@ -1,9 +1,11 @@
+// External Imports
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import { IoIosMusicalNote } from "react-icons/io";
 import { CgPlayTrackNextR } from "react-icons/cg";
 import { FiPlayCircle } from "react-icons/fi";
 
+// Internal Imports
 import Actionbar from "./Actionbar";
 import CreateAudio from "../Canvas/CreateAudio";
 

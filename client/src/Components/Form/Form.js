@@ -1,7 +1,10 @@
+// External Imports
 import React from "react";
-import ArtistForm from "../Artists/ArtistForm";
-import Navbar from "../navbar";
 import { GoDiffAdded } from "react-icons/go";
+
+// Internal Imports
+import Navbar from "../navbar";
+import ArtistForm from "../Artists/ArtistForm";
 import Goback from "../UtilComponent/Goback";
 
 const Form = ({ state, dispatch, COMMANDS, registerArtist, updateArtist }) => {

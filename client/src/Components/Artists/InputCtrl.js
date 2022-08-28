@@ -1,7 +1,10 @@
+// External Imports
 import React from "react";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { Placeholder } from "react-bootstrap";
+
+// Internal Imports
 
 const InputCtrl = ({
   placeholder,
@@ -10,11 +13,9 @@ const InputCtrl = ({
   inputName,
   Icon,
   InputType,
-  // valueType,
   errors,
   touched,
   defaultVal,
-  handleChangingForm,
 }) => {
   return (
     <div className="input_ctrl">
@@ -34,9 +35,6 @@ const InputCtrl = ({
             onBlur={handleBlur}
             className="artist_input_field"
             value={defaultVal}
-            // onChange={e => handleChangingForm(e)}
-
-            // values={valueType}
           />
         ) : (
           <input
@@ -47,9 +45,6 @@ const InputCtrl = ({
             onBlur={handleBlur}
             className="artist_input_field"
             value={defaultVal}
-            // onChange={e => handleChangingForm(e)}
-
-            // values={valueType}
           />
         )}
       </div>

@@ -5,16 +5,13 @@
   height: 60vh;
   color: white;
   font-weight: bold;
-
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-align: center;
   flex-direction: column;
-
   position: relative;
   margin-bottom: 2em;
-  background-image: linear-gradient(to top, black, transparent),
+  padding: 1em 0;
+  background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0.582)),
     url("../images-client/rumbapic1.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -23,8 +20,8 @@
 
 /* headlines */
 
-.landingpage h1 {
-  font-size: 70px;
+.landingpage h2 {
+  font-size: 50px;
   font-weight: bold;
   color: var(--bgc-grey);
   margin-top: 1em;

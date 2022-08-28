@@ -1,15 +1,16 @@
+// External Imports
 import React, { useState, useRef } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-
-//  Boostrap
 import { Button, Form } from "react-bootstrap";
 import { BiEqualizer } from "react-icons/bi";
 import { HiUpload } from "react-icons/hi";
 import { FiDisc } from "react-icons/fi";
 import { RiMusic2Line } from "react-icons/ri";
 import { BsSoundwave, BsCloudCheckFill } from "react-icons/bs";
+
+//  Internal Imports
 import { Load } from "../../Context/helper";
 
 const UploadForm = ({ sendMusic }) => {

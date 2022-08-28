@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+// External Imports
+import React from "react";
 
-// components
+// Internal Imports
 import SongCtrl from "./SongCtrl";
 import Loader from "../UtilComponent/Loader";
 import { CongoPlayLists } from "./Stack";
-
-// prettier-ignore
 
 const Song = ({ setCanvaAudio }) => {
   const savedData = localStorage.getItem("detailSongs")

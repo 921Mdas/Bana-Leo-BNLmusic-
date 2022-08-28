@@ -19,12 +19,7 @@ const GOOGLE_SECRET = "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";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const {
-    state: userOnline,
-    getAllTracks,
-    dispatch,
-    COMMANDS,
-  } = useContext(MyContext);
+  const { state, getAllTracks, dispatch, COMMANDS } = useContext(MyContext);
 
   const clearAllFormData = () => {
     dispatch({ type: COMMANDS.RESETUPDATE });
@@ -58,21 +53,21 @@ const Navbar = () => {
         >
           <BsMusicNoteList />
         </Link>
-        <Link to="/" className="logoContainer ">
-          <IoIosLogOut
-            onClick={() => {
-              LogOut("loginData");
-              navigate("/");
-            }}
-          />
-          <GoogleLogout
-            clientId={GOOGLE_CLIENT_ID}
-            buttonText="Logout"
-            onLogoutSuccess={() => {
-              localStorage.clear();
-            }}
-          ></GoogleLogout>
-        </Link>
+        <div>
+          <Link to="/" className="logoContainer ">
+            <GoogleLogout
+              clientId={GOOGLE_CLIENT_ID}
+              className="google_logout_container"
+              onLogoutSuccess={() => {
+                localStorage.clear();
+                LogOut("loginData");
+                navigate("/");
+              }}
+            >
+              <IoIosLogOut className="google_logout" />
+            </GoogleLogout>
+          </Link>
+        </div>
       </div>
     </div>
   );

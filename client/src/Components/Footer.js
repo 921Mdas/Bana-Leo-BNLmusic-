@@ -1,6 +1,5 @@
+// External Imports
 import React from "react";
-
-// icons
 import { BsTwitter, BsYoutube } from "react-icons/bs";
 import { AiFillInstagram } from "react-icons/ai";
 import {

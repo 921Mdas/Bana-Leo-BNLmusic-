@@ -1,7 +1,7 @@
+// External Imports
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { NavigateSomewhere } from "../../Context/helper";
 import { useNavigate } from "react-router-dom";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { AiOutlineCheckCircle } from "react-icons/ai";
@@ -15,19 +15,10 @@ import { BsCalendar2Date } from "react-icons/bs";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { IoMusicalNote } from "react-icons/io5";
 
-const UpdateForm = ({
-  state,
-  dispatch,
-  COMMANDS,
-  registerArtist,
-  updateArtist,
-  setCurrentPage,
-  FIRST_PAGE,
-  SECOND_PAGE,
-  currentPage,
-  handleOnChange,
-  updateArtistForm,
-}) => {
+// Internal Imports
+import { NavigateSomewhere } from "../../Context/helper";
+
+const UpdateForm = ({ state, handleOnChange, updateArtistForm }) => {
   let titleState = state.update[0] ? "Edit" : "Enter";
 
   return (

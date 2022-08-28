@@ -1,12 +1,7 @@
-import { useState } from "react";
-
-// icons
-import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
-import { BsBookmarkCheckFill, BsBookmark } from "react-icons/bs";
-import { FiDownload } from "react-icons/fi";
+// External Imports
 import { GrNext, GrPrevious } from "react-icons/gr";
 
-import { CongoPlayLists } from "./Stack";
+// Internal Imports
 
 const Actionbar = ({ NextSong, PrevSong, showEqualizer }) => {
   return (

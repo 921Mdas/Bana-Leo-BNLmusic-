@@ -1,7 +1,7 @@
-// state
+// External Imports
 import React from "react";
 
-// bootstrap
+// Internal Imports
 import { Button } from "react-bootstrap";
 import Footer from "../Footer";
 

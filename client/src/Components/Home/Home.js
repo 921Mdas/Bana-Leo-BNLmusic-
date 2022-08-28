@@ -1,6 +1,7 @@
-// state
-import React, { useState, useEffect } from "react";
+// External Exports
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 // components
 import Welcome from "../UtilComponent/welcome";
@@ -8,15 +9,8 @@ import Navbar from "../navbar";
 import Searchbar from "../UtilComponent/Searchbar";
 import Intro from "./Intro";
 import Artists from "../Artists/Artists";
-import ArtistForm from "../Artists/ArtistForm";
-import Footer from "../Footer";
 import Origines from "../Home/Origines";
-
-// icons
 import { BsFillPersonPlusFill } from "react-icons/bs";
-
-// Bootstrap
-import { Button } from "react-bootstrap";
 
 function Home({
   state,
@@ -26,15 +20,9 @@ function Home({
   removeArtist,
   updateArtist,
   playMusic,
-  registerArtist,
-  sendMusic,
   getAllTracks,
 }) {
-  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
-  const FIRST_PAGE = 1;
-  const SECOND_PAGE = 2;
-  const isPageChange = currentPage === FIRST_PAGE;
 
   return (
     <>
@@ -54,10 +42,6 @@ function Home({
             removeArtist={removeArtist}
             updateArtist={updateArtist}
             playMusic={playMusic}
-            setCurrentPage={setCurrentPage}
-            FIRST_PAGE={FIRST_PAGE}
-            SECOND_PAGE={SECOND_PAGE}
-            currentPage={currentPage}
           />
           <Button
             className="nextpage"

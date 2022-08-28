@@ -1,5 +1,8 @@
+// External Imports
 import React from "react";
 import { FiDisc } from "react-icons/fi";
+
+// Internal Imports
 
 const TrackList = ({ songs }) => {
   return (

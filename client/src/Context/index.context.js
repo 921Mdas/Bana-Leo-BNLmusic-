@@ -1,11 +1,16 @@
-import React, { useState, useReducer, useEffect } from "react";
+// External Imports
+import React, { useState, useReducer } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
-import { COMMANDS } from "./type";
-import { resetStorage } from "./helper";
-import { CongoPlayLists } from "../Components/Details/Stack";
 
-import { ToasterError, ToasterSuccess, setStorage } from "./helper";
+// Internal Imports
+import { CongoPlayLists } from "../Components/Details/Stack";
+import { COMMANDS } from "./type";
+import {
+  ToasterError,
+  ToasterSuccess,
+  setStorage,
+  resetStorage,
+} from "./helper";
 
 const MyContext = React.createContext();
 const controller = new AbortController();
@@ -32,6 +37,8 @@ const reducer = (state, action) => {
       return { ...state, artists: action.payload };
     case COMMANDS.RESETUPDATE:
       return { ...state, update: [false, 0] };
+    case COMMANDS.GOOGLE_LOGIN:
+      return { ...state, google_login: true, google_data: action.payload };
     case COMMANDS.UPDATE_ARTIST:
       const { country, name, song, bio, year, picture, copyright } =
         action.payload.artistToUpdate;
@@ -96,12 +103,13 @@ const defaultState = {
   email: "",
   profilepic: "",
   trackisPlaying: false,
+  google_login: false,
   loggedInUser: {},
+  google_data: {},
 };
 
 function MyProvider(props) {
   const [state, dispatch] = useReducer(reducer, defaultState);
-  const [dataTracker, setdataTracker] = useState(setStorage("detailSongs"));
   const [uploadId, setUploadId] = useState("");
 
   // create a new artist
@@ -152,7 +160,6 @@ function MyProvider(props) {
         type: COMMANDS.UPDATE_ARTIST,
         payload: { artistToUpdate, id },
       });
-      ToasterSuccess(`💥 ${artistToUpdate.name} successfully updated`);
     } catch (error) {
       if (error) console.log(error);
       ToasterError(error?.response.data.message);

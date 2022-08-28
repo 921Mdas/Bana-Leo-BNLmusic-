@@ -1,5 +1,3 @@
-import React from "react";
-
 class Song {
   constructor(value) {
     this.value = value;

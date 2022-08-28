@@ -36,6 +36,17 @@
   overflow: hidden;
 }
 
+.mac_card {
+  width: 300px;
+  height: 300px;
+  justify-content: center;
+  background-color: var(--clrdark) !important;
+  color: white;
+  border: solid 1px rgba(216, 215, 215, 0.247) !important;
+  position: relative;
+  box-shadow: var(--shadow-1);
+}
+
 .artistPicture {
   max-height: 220px;
   min-height: 200px;
@@ -43,8 +54,27 @@
   filter: grayscale(1);
   transition: all 0.5s ease-in-out;
 }
+
+.mac_artistPicture {
+  height: 300px;
+  min-height: 200px;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  border-radius: 6px;
+}
 .artistPicture:hover {
   filter: grayscale(0);
+}
+
+.mac_cardbody {
+  border: solid 1px rgba(255, 255, 255, 0.274);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.294);
+  border-radius: 6px;
 }
 
 .imageFiller {
@@ -79,6 +109,36 @@
   padding-top: 5px;
 }
 
+.artist_sub_details {
+  display: flex;
+  margin-top: 1em;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+}
+
+.mac_cardSubtitle {
+  width: max-content;
+  height: max-content;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  gap: 5px;
+  padding: 5px 5px;
+}
+
+.mac_cardSubtitle span {
+  color: var(--clr);
+  padding-top: 5px;
+  font-size: 10px;
+}
+
+.mac_icon {
+  color: var(--clr);
+}
+
 .artistName {
   font-weight: bold;
   font-size: 25px !important;
@@ -88,6 +148,16 @@
   z-index: 2;
 }
 
+.mac_cardbody .mac_artistName {
+  font-weight: bold;
+  font-size: 15px !important;
+  color: var(--clr);
+  position: absolute;
+  bottom: 5%;
+  z-index: 2;
+  transition: all 0.5s ease-in-out;
+}
+
 /* card buttons */
 .actions {
   display: flex;
@@ -95,6 +165,57 @@
   position: absolute;
   bottom: 1em;
   right: 1em;
+}
+
+.mac_Bio {
+  background: var(--clr);
+  width: 100%;
+  min-height: 20vh;
+  height: 100%;
+  padding: 1em;
+  border-radius: 6px;
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  clip-path: circle(0% at 10% 10%);
+  transition: all 0.5s ease;
+}
+
+.mac_cardbody:hover .mac_Bio {
+  clip-path: circle(100% at 10% 10%);
+}
+
+.mac_cardbody:hover .mac_artistName {
+  color: white;
+}
+
+.mac_actions .playlist a {
+  width: 40px;
+}
+
+.mac_actions .play_list_icon {
+  position: absolute;
+  bottom: 5%;
+  right: 15%;
+  color: white;
+}
+
+.mac_actions .updateBtn {
+  position: absolute;
+  bottom: 5%;
+  right: 35%;
+  font-size: 20px;
+}
+
+.mac_actions .deleteBtn {
+  position: absolute;
+  bottom: 5%;
+  right: 0%;
+  font-size: 20px;
+}
+
+.mac_actions .play_list_icon {
+  font-size: 50px;
 }
 
 .actions .playlist a {

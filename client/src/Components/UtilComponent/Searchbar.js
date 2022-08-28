@@ -1,7 +1,8 @@
+// External Imports
 import React, { useState, useEffect } from "react";
-
-// icons
 import { BiSearchAlt } from "react-icons/bi";
+
+// Internal Imports
 
 const Searchbar = ({ state, COMMANDS, dispatch }) => {
   // search bar functions
