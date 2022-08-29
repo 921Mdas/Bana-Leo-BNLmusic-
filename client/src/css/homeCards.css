@@ -47,6 +47,13 @@
   box-shadow: var(--shadow-1);
 }
 
+.mini_logo_card {
+  position: absolute;
+  z-index: 3;
+  top: 5%;
+  left: 5%;
+}
+
 .artistPicture {
   max-height: 220px;
   min-height: 200px;
@@ -151,7 +158,7 @@
 .mac_cardbody .mac_artistName {
   font-weight: bold;
   font-size: 15px !important;
-  color: var(--clr);
+  color: white;
   position: absolute;
   bottom: 5%;
   z-index: 2;
@@ -179,6 +186,10 @@
   top: 0%;
   clip-path: circle(0% at 10% 10%);
   transition: all 0.5s ease;
+  padding-top: 40px;
+}
+.mac_Bio h4 {
+  font-weight: bold;
 }
 
 .mac_cardbody:hover .mac_Bio {

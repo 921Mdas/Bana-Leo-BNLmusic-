@@ -82,3 +82,15 @@ export const EmailRegex = new RegExp(
   "g"
 );
 export const PasswordRegex = new RegExp(/[0-9]/, "g");
+
+// date creator
+export let dateCreator = (data, val) => {
+  if (data)
+    return (
+      new Date(data[val]).getDay().toString() +
+      "-" +
+      (new Date(data[val]).getMonth() + 1).toString() +
+      "-" +
+      new Date(data[val]).getFullYear().toString()
+    );
+};

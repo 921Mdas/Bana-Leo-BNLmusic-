@@ -114,3 +114,121 @@
 // };
 
 // export default CanvaSketch;
+
+// Canvaa React
+
+// canvas
+//   const canvasRef = useRef(null);
+//   const player = useRef(null);
+
+//   newSong = CongoPlayLists.start();
+
+//   const NextSong = async () => {
+//     newSong = await newSong?.next();
+//   };
+
+//   const CreateAudio = async () => {
+//     audio = await document.createElement("audio");
+//     audio.src = await newSong?.value.track;
+//     audio.crossOrigin = "anonymous";
+
+//     audioContext = new (window.AudioContext || window.webkitAudioContext)();
+//     sourceNode = audioContext.createMediaElementSource(audio);
+//     analyzerNode = audioContext.createAnalyser();
+//     sourceNode.connect(analyzerNode);
+//     analyzerNode.connect(audioContext.destination);
+//     analyzerNode.fftSize = 512;
+
+//     audioData = new Float32Array(analyzerNode.frequencyBinCount);
+//   };
+
+//   useEffect(() => {
+//     CreateAudio();
+//   });
+
+//   const addListener = () => {
+//     player.current?.addEventListener("mouseup", () => {
+//       console.log(audio);
+
+//       if (audio.paused) {
+//         audio.play();
+//       } else {
+//         audio.pause();
+//       }
+//     });
+//   };
+
+//   useEffect(() => {
+//     const canvas = canvasRef.current;
+//     const context = canvas.getContext("2d");
+//     let x = canvas.width * 0.5;
+//     let y = canvas.height * 0.5;
+
+//     let animationFrameId;
+
+//     context.fillStyle = "black";
+//     context.fillRect(0, 0, canvas.width, canvas.height);
+
+//     const bins = [179, 30, 11, 30, 12, 24, 53, 8, 179];
+
+//     let numCircles = 5;
+//     let slices = 6;
+//     let radius = 200;
+//     let slice = (Math.PI * 2) / slices;
+
+//     const render = () => {
+//       // call createaudio
+//       if (!audioData) return;
+//       analyzerNode?.getFloatFrequencyData(audioData);
+
+//       context.save();
+//       // instead of the above point, we can also draw a quadratic curve
+//       context.lineWidth = 2;
+//       context.strokeStyle = "white";
+//       context.clearRect(0, 0, canvas.width, canvas.height);
+//       context.translate(x + 350, y);
+//       context.beginPath();
+//       for (let i = 0; i < bins.length; i++) {
+//         const bin = bins[i];
+//         const mapped = math.mapRange(
+//           audioData[bin],
+//           analyzerNode.minDecibels,
+//           analyzerNode.maxDecibels,
+//           0,
+//           1,
+//           true
+//         );
+//         const radius = Math.floor(mapped * 100);
+//         context.save();
+//         context.beginPath();
+//         context.rotate((30 * i * Math.PI) / 60);
+//         context.lineWidth = i * 10;
+//         context.arc(0, 0, radius + i * 30, 0, slice);
+//         context.stroke();
+//         context.restore();
+//       }
+
+//       context.restore();
+
+//       animationFrameId = requestAnimationFrame(render);
+//     };
+
+//     render();
+//     addListener();
+
+//     return () => {
+//       window.cancelAnimationFrame(animationFrameId);
+//       analyzerNode?.disconnect();
+//       sourceNode?.disconnect();
+//     };
+//   }, []);
+
+// <canvas
+//   className="canvas"
+//   ref={canvasRef}
+//   width={window.innerWidth}
+//   height={500}
+// ></canvas>;
+
+//  <button ref={player}>Play</button>
+//             <button onClick={() => NextSong}>Next</button>

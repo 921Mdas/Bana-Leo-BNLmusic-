@@ -11,11 +11,7 @@ import { BsMusicNoteList } from "react-icons/bs";
 import { GiDrum } from "react-icons/gi";
 import { IoIosLogOut } from "react-icons/io";
 import { BsPencilSquare } from "react-icons/bs";
-import { GoogleLogin, GoogleLogout } from "@leecheuk/react-google-login";
-
-const GOOGLE_CLIENT_ID =
-  "772173664744-m0eu6jh0ijf2ivbb1hvdi1lvt6mlai5u.apps.googleusercontent.com";
-const GOOGLE_SECRET = "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";
+import { GoogleLogout } from "@leecheuk/react-google-login";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -56,7 +52,7 @@ const Navbar = () => {
         <div>
           <Link to="/" className="logoContainer ">
             <GoogleLogout
-              clientId={GOOGLE_CLIENT_ID}
+              clientId={process.env.REACT_APP_GOOGLE_CLIENTID}
               className="google_logout_container"
               onLogoutSuccess={() => {
                 localStorage.clear();

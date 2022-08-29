@@ -15,12 +15,15 @@ import { BsPersonLinesFill } from "react-icons/bs";
 import { IoMusicalNote } from "react-icons/io5";
 import { useFormikContext } from "formik";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Button, Form } from "react-bootstrap";
 
 // Internal Imports
 import InputCtrl from "./InputCtrl";
 import SubmitBtn from "./SubmitBtn";
 import Goback from "../UtilComponent/Goback";
 import { ToasterSuccess, ToasterError } from "../../Context/helper";
+import { NavigateSomewhere } from "../../Context/helper";
 
 const MusicianForm = ({
   dispatch,
@@ -102,8 +105,6 @@ const MusicianForm = ({
               errors={errors}
               touched={touched}
               className="input_ctrl_musician"
-              // defaultVal={defaultValues.name}
-              // handleChangingForm={handleChangingForm}
             />
             <InputCtrl
               handleChange={handleChange}
@@ -115,9 +116,6 @@ const MusicianForm = ({
               errors={errors}
               touched={touched}
               className="input_ctrl_musician"
-
-              // defaultVal={defaultValues.country}
-              // handleChangingForm={handleChangingForm}
             />
             <InputCtrl
               handleChange={handleChange}
@@ -129,9 +127,6 @@ const MusicianForm = ({
               errors={errors}
               touched={touched}
               className="input_ctrl_musician"
-
-              // defaultVal={defaultValues.picture}
-              // handleChangingForm={handleChangingForm}
             />
             <div className="song_details_form">
               <InputCtrl
@@ -144,9 +139,6 @@ const MusicianForm = ({
                 errors={errors}
                 touched={touched}
                 className="input_ctrl_musician"
-
-                // defaultVal={defaultValues.song}
-                // handleChangingForm={handleChangingForm}
               />
               <InputCtrl
                 handleChange={handleChange}
@@ -158,9 +150,6 @@ const MusicianForm = ({
                 errors={errors}
                 touched={touched}
                 className="input_ctrl_musician"
-
-                // defaultVal={defaultValues.year}
-                // handleChangingForm={handleChangingForm}
               />
             </div>
             <InputCtrl
@@ -173,14 +162,21 @@ const MusicianForm = ({
               errors={errors}
               touched={touched}
               className="input_ctrl_musician"
-
-              // defaultVal={defaultValues.bio}
-              // handleChangingForm={handleChangingForm}
             />
-            <SubmitBtn
-              handleSubmit={handleSubmit}
-              isSubmitting={isSubmitting}
-            />
+            <div className="submit_actions_musicianform">
+              <Link to="/home">
+                <Button
+                  className="cancel canceL_musicianform"
+                  onClick={() => NavigateSomewhere("/home")}
+                >
+                  Cancel
+                </Button>
+              </Link>
+              <SubmitBtn
+                handleSubmit={handleSubmit}
+                isSubmitting={isSubmitting}
+              />
+            </div>
           </div>
         )}
       </Formik>

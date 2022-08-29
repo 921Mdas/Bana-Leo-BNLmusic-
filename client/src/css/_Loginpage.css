@@ -82,11 +82,19 @@
   flex-direction: column;
   gap: 2em;
 }
+.canceL_musicianform {
+  height: 100%;
+}
+
+.submit_actions_musicianform {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
 
 .alternative {
   display: flex;
   justify-content: center;
-  /* padding: 1em 0; */
   margin-bottom: 2em;
   padding-bottom: 1em;
   justify-content: center;

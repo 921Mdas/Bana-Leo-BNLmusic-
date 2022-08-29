@@ -6,6 +6,7 @@ import { GiWorld } from "react-icons/gi";
 import { BsMusicNote, BsCalendarDate, BsPlayCircle } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
+import { GiDrum } from "react-icons/gi";
 
 const CardArtist = ({
   name,
@@ -21,25 +22,13 @@ const CardArtist = ({
 }) => {
   return (
     <Card className="mac_card">
+      <GiDrum className="mini_logo_card" />
       <Card.Img variant="top" className="mac_artistPicture" src={picture} />
 
       <Card.Body className="mac_cardbody">
-        <Card.Title className="mac_artistName" style={{ fontWeight: "bold" }}>
-          {name}
-        </Card.Title>
         <Card.Text className="mac_Bio">
-          {bio ? ` ${bio.substring(0, 110)} ...` : bio}
-          <div className="artist_sub_details">
-            <Card.Subtitle className="mac_cardSubtitle">
-              <GiWorld className="mac_icon" /> <span>{country}</span>
-            </Card.Subtitle>
-            <Card.Subtitle className="mac_cardSubtitle">
-              <BsMusicNote className="mac_icon" /> <span> {song}</span>
-            </Card.Subtitle>
-            <Card.Subtitle className="mac_cardSubtitle">
-              <BsCalendarDate className="mac_icon" /> <span>{year}</span>
-            </Card.Subtitle>
-          </div>
+          <span>{name}</span>
+          {bio ? ` ${bio.substring(0, 150)} ...` : bio}
         </Card.Text>
 
         <div className="mac_actions">

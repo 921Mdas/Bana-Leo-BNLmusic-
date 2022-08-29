@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Khula:wght@300;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
 
 @import "./_Loginpage.css";
 @import "./Main.css";
@@ -32,6 +33,8 @@
   --light-black: rgba(0, 0, 0, 0.671);
   --light-black2: rgba(0, 0, 0, 0.788);
   --cursive-font: "Dancing Script", cursive;
+  --letter-space: 0;
+  --Lato-font: "Lato", sans-serif;
   --white: white;
   --black: black;
   --track: #ededed;
@@ -60,8 +63,8 @@ html {
   background-color: var(--bgc);
   overflow-y: scroll;
   font-family: khula, Helvetica, sans-serif;
+  letter-spacing: var(--letter-space);
   overflow: hidden;
-  /* padding: 10px 20px; */
 }
 
 .glass {

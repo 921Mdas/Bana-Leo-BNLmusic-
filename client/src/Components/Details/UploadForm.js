@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { Button, Form } from "react-bootstrap";
+import ProgressBar from "react-bootstrap/ProgressBar";
 import { BiEqualizer } from "react-icons/bi";
 import { HiUpload } from "react-icons/hi";
 import { FiDisc } from "react-icons/fi";
@@ -20,6 +21,7 @@ const UploadForm = ({ sendMusic }) => {
   });
   const [isUploaded, setIsUploaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isprogress, setIsProgress] = useState(0);
   const fileName = formState?.file?.name?.split(".")[0];
   const handleChange = e => {
     e.preventDefault();
@@ -29,6 +31,7 @@ const UploadForm = ({ sendMusic }) => {
     if (targetName && targetValue) {
       setFormState({ ...formState, [targetName]: targetValue });
       setIsUploaded(true);
+      setIsProgress(0);
     } else {
       console.log("form incomplete");
     }
@@ -39,7 +42,9 @@ const UploadForm = ({ sendMusic }) => {
     const data = new FormData();
     data.append("file", formState.file);
     setIsLoading(true);
-    await sendMusic(data, fileName);
+    const progress = await sendMusic(data, fileName);
+    console.log("onsubmit", progress);
+    setIsProgress(progress);
     setIsLoading(false);
     setIsUploaded(false);
   };
@@ -75,6 +80,13 @@ const UploadForm = ({ sendMusic }) => {
             <HiUpload className="upload_icon_btn" />
           )}
         </Button>
+        <ProgressBar
+          now={isprogress}
+          label={`${isprogress}%`}
+          className="pg_bar"
+          variant="warning"
+          striped
+        />
       </Form>
     </>
   );
