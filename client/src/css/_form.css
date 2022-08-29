@@ -4,6 +4,10 @@
   justify-content: center;
   align-items: center;
   gap: 1em;
+  position: absolute;
+  top: 19%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .form_header_icon {

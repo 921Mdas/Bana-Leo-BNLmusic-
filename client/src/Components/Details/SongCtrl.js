@@ -3,13 +3,11 @@ import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import { IoIosMusicalNote } from "react-icons/io";
 import { CgPlayTrackNextR } from "react-icons/cg";
-import { FiPlayCircle } from "react-icons/fi";
 
 // Internal Imports
 import Actionbar from "./Actionbar";
-import CreateAudio from "../Canvas/CreateAudio";
 
-const SongCtrl = ({ playList, ctrlMusic, setCanvaAudio, addListener }) => {
+const SongCtrl = ({ ctrlMusic, addListener }) => {
   const [currentTrack, setCurrentTrack] = useState(null);
   let [counter, setCounter] = useState(0);
   let [showEqualizer, setShowEqualizer] = useState(false);
@@ -22,22 +20,20 @@ const SongCtrl = ({ playList, ctrlMusic, setCanvaAudio, addListener }) => {
     if (currentTrack === null) {
       setCurrentTrack(ctrlMusic.start());
       setCounter(0);
+      console.log("the next is null");
     }
 
     setCurrentTrack(currentTrack.next);
-    // setCanvaAudio(currentTrack);
     setCounter((counter += 1));
   };
 
   const PrevSong = () => {
     setCurrentTrack(ctrlMusic.prev());
-    // setCanvaAudio(currentTrack);
   };
 
   useEffect(() => {
     setCurrentTrack(ctrlMusic.start());
-    // setCanvaAudio(currentTrack);
-  }, [ctrlMusic, currentTrack]);
+  }, [ctrlMusic]);
 
   return (
     <div className="detail_song">
@@ -61,7 +57,7 @@ const SongCtrl = ({ playList, ctrlMusic, setCanvaAudio, addListener }) => {
           </div>
         </div>
 
-        {/* <ReactPlayer
+        <ReactPlayer
           controls={true}
           url={currentTrack?.value?.track}
           width={"100%"}
@@ -69,7 +65,7 @@ const SongCtrl = ({ playList, ctrlMusic, setCanvaAudio, addListener }) => {
           volume={0.2}
           onStart={() => addListener()}
           onPause={() => setShowEqualizer(false)}
-        /> */}
+        />
       </div>
       <div className="track_actions">
         <Actionbar

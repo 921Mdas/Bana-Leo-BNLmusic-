@@ -379,6 +379,15 @@
   font-size: 30px;
 }
 
+.pg_bar {
+  position: absolute;
+  width: 83%;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 0;
+  margin: 0 auto;
+}
+
 .uploadBtn {
   background-color: var(--clr) !important;
   border: none !important;

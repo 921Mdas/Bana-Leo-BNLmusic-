@@ -173,7 +173,12 @@ label {
 .submission_btns {
   width: 220px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 1em;
+}
+
+.submission_btns .submission {
+  width: 100%;
 }
 
 .cancel {

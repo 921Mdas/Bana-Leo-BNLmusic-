@@ -5,15 +5,9 @@ import axios from "axios";
 // Internal Imports
 import { CongoPlayLists } from "../Components/Details/Stack";
 import { COMMANDS } from "./type";
-import {
-  ToasterError,
-  ToasterSuccess,
-  setStorage,
-  resetStorage,
-} from "./helper";
+import { ToasterError, ToasterSuccess, resetStorage } from "./helper";
 
 const MyContext = React.createContext();
-const controller = new AbortController();
 let headers = new Headers();
 
 const reducer = (state, action) => {
@@ -192,15 +186,22 @@ function MyProvider(props) {
 
   // uploading music
   const sendMusic = async (data, filename) => {
+    let progress;
     try {
       const receivedData = await data;
       const trackUploaded = await axios.post(
         `/tracks/${uploadId}/uploadsongs`,
-        receivedData
+        receivedData,
+        {
+          onUploadProgress: data => {
+            progress = Math.round((data.loaded / data.total) * 100);
+          },
+        }
       );
 
       playMusic(trackUploaded?.data);
       ToasterSuccess(`💥 ${filename} uploaded`);
+      return progress;
     } catch (error) {
       ToasterError(error?.response?.data.message);
       console.log(error);

@@ -32,15 +32,10 @@ import {
   setStorage,
 } from "../Context/helper";
 
-const GOOGLE_CLIENT_ID =
-  "772173664744-m0eu6jh0ijf2ivbb1hvdi1lvt6mlai5u.apps.googleusercontent.com";
-const GOOGLE_SECRET = "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";
-
 function Login() {
   const { dispatch, COMMANDS } = useContext(MyContext);
-  const handleGoogleLogout = () => {
-    console.log("logout");
-  };
+
+  let navigate = useNavigate();
 
   const HandleGoogleLogin = async googleData => {
     if (googleData.tokenId) {
@@ -66,14 +61,6 @@ function Login() {
     console.log("fail", result);
   };
 
-  let navigate = useNavigate();
-
-  const [localUser, setlocalUser] = useState({
-    email: "",
-    password: "",
-  });
-  const [validateEmail, setValidateEmail] = useState("");
-  const [validatePass, setValidatePass] = useState("");
   const [register, setRegister] = useState(false);
 
   // session stored, userdata, token
@@ -118,27 +105,6 @@ function Login() {
     }
   };
 
-  const handleManualChange = e => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setlocalUser({ ...localUser, [name]: value });
-
-    const emailTest = EmailRegex.test(localUser.email);
-    const passwordTest = PasswordRegex.test(localUser.password);
-
-    if (emailTest) {
-      setValidateEmail(true);
-    } else {
-      setValidateEmail(false);
-    }
-
-    if (passwordTest) {
-      setValidatePass(true);
-    } else {
-      setValidatePass(false);
-    }
-  };
-
   const initialValues = {
     email: "",
     password: "",
@@ -174,7 +140,7 @@ function Login() {
             <div className="google">
               <GoogleLogin
                 className="loginBtn"
-                clientId={GOOGLE_CLIENT_ID}
+                clientId={process.env.REACT_APP_GOOGLE_CLIENTID}
                 buttonText="GOOGLE LOGIN "
                 onSuccess={googleData => {
                   navigate("/home");
@@ -184,10 +150,6 @@ function Login() {
                 cookiePolicy={"single_host_origin"}
                 isSignedIn={true}
               ></GoogleLogin>
-              {/* <GoogleOAuthLogin
-                className="loginBtn"
-                clientID={process.env.REACT_GOOGLE_CLIENTID}
-              /> */}
             </div>
             <div className="alternative">
               <MdHorizontalRule className="line" /> OR{" "}
@@ -214,7 +176,7 @@ function Login() {
                     <InputCtrl
                       handleChange={handleChange}
                       handleBlur={handleBlur}
-                      placeholder="Enter name *"
+                      placeholder="Enter email *"
                       inputName="email"
                       Icon={HiOutlineMail}
                       InputType="text"
@@ -265,58 +227,6 @@ function Login() {
                 );
               }}
             </Formik>
-            {/* 
-            <Form action="" className="Signinform">
-              <div className="inputController">
-                {!validateEmail ? (
-                  <RiErrorWarningLine className="success notif" />
-                ) : (
-                  <FcApproval className="failure notif" />
-                )}
-
-                <HiOutlineMail className="iconplaceholder mail" />
-                <Form.Control
-                  name="email"
-                  type="text"
-                  className="inputfield"
-                  onChange={e => handleManualChange(e)}
-                />
-              </div>
-              <div className="inputController">
-                {!validatePass ? (
-                  <RiErrorWarningLine className="success notif" />
-                ) : (
-                  <FcApproval className="failure notif" />
-                )}
-                <HiOutlineKey className="iconplaceholder key" />
-                <Form.Control
-                  name="password"
-                  type="password"
-                  className="inputfield"
-                  onChange={e => handleManualChange(e)}
-                />
-              </div>
-              {register ? (
-                <Button
-                  type="submit"
-                  className="signinBtn"
-                  onClick={e => handleSignUp(e)}
-                >
-                  Sign up
-                </Button>
-              ) : (
-                <Button
-                  type="submit"
-                  className="signinBtn"
-                  onClick={e => handleSignIn(e)}
-                >
-                  Sign in
-                </Button>
-              )}
-              <Button variant="light" onClick={() => setRegister(!register)}>
-                {register ? "Want to Login ?" : "Want to create account ?"}
-              </Button>
-            </Form> */}
           </div>
         </div>
       </div>
