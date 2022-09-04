@@ -39,6 +39,12 @@ const artistSchema = new Schema(
         ref: "tracks",
       },
     ],
+    albums: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Album",
+      },
+    ],
   },
   { timestamps: true }
 );
