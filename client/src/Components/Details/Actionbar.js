@@ -2,7 +2,6 @@
 import { GrNext, GrPrevious } from "react-icons/gr";
 
 // Internal Imports
-
 const Actionbar = ({ NextSong, PrevSong, showEqualizer }) => {
   return (
     <div className="content_likeBook">

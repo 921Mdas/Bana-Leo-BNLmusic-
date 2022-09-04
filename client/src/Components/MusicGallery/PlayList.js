@@ -1,5 +1,6 @@
 // External Imports
 import React, { useState } from "react";
+import { Slide } from "react-awesome-reveal";
 
 // Internal Imports
 import TRACK_LIST from "./TrackList";
@@ -19,8 +20,6 @@ function PlayList({ state }) {
   const [playList, setPlayList] = useState(
     state.alltracks.length > 0 ? state.alltracks : tracks
   );
-
-  console.log(state.alltracks);
 
   const handleChange = e => {
     const value = e.target.value;
@@ -71,7 +70,9 @@ function PlayList({ state }) {
             playList?.map(track => {
               return (
                 <div className="single_track" key={track._id}>
-                  <TRACK_LIST tracks={track} state={state} />
+                  <Slide triggerOnce direction="up">
+                    <TRACK_LIST tracks={track} state={state} />
+                  </Slide>
                 </div>
               );
             })

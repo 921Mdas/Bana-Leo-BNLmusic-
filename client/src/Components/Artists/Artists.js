@@ -1,6 +1,7 @@
 // External Imports
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Fade, Slide } from "react-awesome-reveal";
 
 // Internal Imports
 import CardArtist from "../card";
@@ -43,23 +44,25 @@ function Artists({
 
         return (
           <div key={_id} className="artists">
-            <CardArtist
-              name={name}
-              song={song}
-              picture={picture}
-              country={country}
-              bio={bio}
-              year={year}
-              copyright={copyright}
-              _id={_id}
-              handleDeleteArtist={handleDeleteArtist}
-              handleUpdateArtist={handleUpdateArtist}
-              playMusic={playMusic}
-              FIRST_PAGE={FIRST_PAGE}
-              SECOND_PAGE={SECOND_PAGE}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
+            <Fade cascade direction="up" triggerOnce>
+              <CardArtist
+                name={name}
+                song={song}
+                picture={picture}
+                country={country}
+                bio={bio}
+                year={year}
+                copyright={copyright}
+                _id={_id}
+                handleDeleteArtist={handleDeleteArtist}
+                handleUpdateArtist={handleUpdateArtist}
+                playMusic={playMusic}
+                FIRST_PAGE={FIRST_PAGE}
+                SECOND_PAGE={SECOND_PAGE}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+              />
+            </Fade>
           </div>
         );
       })

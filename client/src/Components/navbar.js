@@ -1,11 +1,7 @@
-// Internal imports
-import React, { useContext } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { MyContext } from "../Context/index.context";
-import { LogOut } from "../Context/helper";
-
 // External imports
+import React, { useContext, useRef, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import { BsMusicNoteList } from "react-icons/bs";
 import { GiDrum } from "react-icons/gi";
@@ -13,16 +9,41 @@ import { IoIosLogOut } from "react-icons/io";
 import { BsPencilSquare } from "react-icons/bs";
 import { GoogleLogout } from "@leecheuk/react-google-login";
 
+// Internal imports
+import { MyContext } from "../Context/index.context";
+import { LogOut } from "../Context/helper";
+
 const Navbar = () => {
   const navigate = useNavigate();
+  const navbarRef = useRef(null);
+  const [useStick, setUseStick] = useState(false);
+  let navbar;
   const { state, getAllTracks, dispatch, COMMANDS } = useContext(MyContext);
-
   const clearAllFormData = () => {
     dispatch({ type: COMMANDS.RESETUPDATE });
   };
 
+  // scroll detection
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setUseStick(true);
+    } else {
+      setUseStick(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="navigation glass">
+    <div
+      className={`navigation glass ${useStick ? "sticky_nav" : ""} `}
+      ref={navbarRef}
+    >
       <Link to="/home" className="logoContainer">
         <GiDrum className="logoIcon" /> <span>BANALEO</span>
       </Link>

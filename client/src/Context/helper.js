@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import Spinner from "react-bootstrap/Spinner";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Fade } from "react-awesome-reveal";
 
 // Internal Imports
 
@@ -93,4 +95,37 @@ export let dateCreator = (data, val) => {
       "-" +
       new Date(data[val]).getFullYear().toString()
     );
+};
+
+// counter
+
+export let COUNTER = ({ end, children }) => {
+  const [start, setStart] = useState(0);
+  const counter = () => {
+    if (start < end) {
+      setStart(prevcount => prevcount + 1);
+    }
+  };
+
+  useEffect(() => {
+    if (start > 0 && start < end) {
+      setTimeout(() => {
+        setStart(prevcount => prevcount + 1);
+      }, 30);
+    }
+  }, [start]);
+
+  return (
+    <>
+      <Fade
+        onVisibilityChange={inView => {
+          if (inView) {
+            counter();
+          }
+        }}
+      >
+        <span>{start}</span>
+      </Fade>
+    </>
+  );
 };
