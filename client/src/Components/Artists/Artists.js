@@ -5,6 +5,7 @@ import { Fade, Slide } from "react-awesome-reveal";
 
 // Internal Imports
 import CardArtist from "../card";
+import Canvas from "../canvas";
 
 function Artists({
   state,

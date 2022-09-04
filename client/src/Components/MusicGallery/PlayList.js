@@ -1,6 +1,7 @@
 // External Imports
 import React, { useState } from "react";
 import { Slide } from "react-awesome-reveal";
+import { AiOutlineSearch } from "react-icons/ai";
 
 // Internal Imports
 import TRACK_LIST from "./TrackList";
@@ -63,7 +64,9 @@ function PlayList({ state }) {
               placeholder="Search songs, artists, albums"
               onChange={e => handleChange(e)}
             />
-            <button onClick={() => handleSubmit()}>Search</button>
+            <button onClick={() => handleSubmit()}>
+              <AiOutlineSearch className="search_icon_alltracks" />
+            </button>
           </div>
 
           {playList?.length > 0 ? (

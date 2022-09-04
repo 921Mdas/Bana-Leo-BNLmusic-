@@ -135,6 +135,11 @@
   position: relative;
 }
 
+.audio_playlist_item {
+  width: 80%;
+  margin-right: 10%;
+}
+
 .audio_playlist_item p {
   padding-left: 15px;
 }

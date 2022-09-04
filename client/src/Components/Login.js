@@ -1,5 +1,5 @@
 // External Imports
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import axios from "axios";
@@ -8,6 +8,7 @@ import { gapi } from "gapi-script";
 import { GoogleLogin, GoogleLogout } from "@leecheuk/react-google-login";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import Canvas from "./canvas";
 
 // icons
 import { HiOutlineMail, HiOutlineKey } from "react-icons/hi";
@@ -117,13 +118,14 @@ function Login() {
 
   return (
     <div className="loginpage">
+      <Canvas />
       <div className="bgc-vid">
-        <video
+        {/* <video
           src={jazz}
           autoPlay={true}
           loop={true}
           className="videobg"
-        ></video>
+        ></video> */}
       </div>
 
       <div className="sign_inpageContent"></div>
