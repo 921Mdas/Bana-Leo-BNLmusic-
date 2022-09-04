@@ -80,13 +80,7 @@ const UploadForm = ({ sendMusic }) => {
             <HiUpload className="upload_icon_btn" />
           )}
         </Button>
-        <ProgressBar
-          now={isprogress}
-          label={`${isprogress}%`}
-          className="pg_bar"
-          variant="warning"
-          striped
-        />
+        <ProgressBar now={isprogress} className="pg_bar" variant="warning" />
       </Form>
     </>
   );

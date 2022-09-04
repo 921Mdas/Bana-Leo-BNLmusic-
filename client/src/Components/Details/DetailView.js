@@ -2,6 +2,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { math } from "canvas-sketch-util";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // Internal Imports
 import UploadForm from "./UploadForm";
@@ -11,8 +14,8 @@ import { CongoPlayLists } from "./Stack";
 import Navbar from "../navbar";
 import TrackList from "./TrackList";
 import { dateCreator } from "../../Context/helper";
-
-let audio, audioContext, sourceNode, analyzerNode, audioData, newSong, manager;
+import SliderComp from "../UtilComponent/Slider";
+import { concertInfo } from "../../Context/data_dummy";
 
 function DetailView({ state, dispatch, COMMANDS, playMusic, sendMusic }) {
   const playlist = state.playlist;
@@ -21,8 +24,16 @@ function DetailView({ state, dispatch, COMMANDS, playMusic, sendMusic }) {
     ? JSON.parse(localStorage.getItem("detailSongs"))
     : null;
   const image = savedData?.picture ? <img src={savedData?.picture} /> : null;
-  const [canvaaudio, setCanvaAudio] = useState(null);
   const navigate = useNavigate();
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplaySpeed: 4000,
+  };
 
   return (
     <>
@@ -30,6 +41,9 @@ function DetailView({ state, dispatch, COMMANDS, playMusic, sendMusic }) {
       <div className="tracks">
         <Goback direction={"/home"} />
         <div className="Tracks-Preview">
+          <div className="artist_slider">
+            <SliderComp settings={settings} data={concertInfo} />
+          </div>
           <div className="top_preview_section">
             <UploadForm
               sendMusic={sendMusic}

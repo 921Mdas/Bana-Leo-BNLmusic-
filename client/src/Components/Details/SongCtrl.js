@@ -6,6 +6,7 @@ import { CgPlayTrackNextR } from "react-icons/cg";
 
 // Internal Imports
 import Actionbar from "./Actionbar";
+import AudioPlayerCtrl from "../UtilComponent/AudioPlayer";
 
 const SongCtrl = ({ ctrlMusic, addListener }) => {
   const [currentTrack, setCurrentTrack] = useState(null);
@@ -17,10 +18,10 @@ const SongCtrl = ({ ctrlMusic, addListener }) => {
       setCurrentTrack(ctrlMusic.start());
       setCounter(0);
     }
-    if (currentTrack === null) {
+
+    if (currentTrack.next.next === null) {
       setCurrentTrack(ctrlMusic.start());
       setCounter(0);
-      console.log("the next is null");
     }
 
     setCurrentTrack(currentTrack.next);
@@ -40,10 +41,10 @@ const SongCtrl = ({ ctrlMusic, addListener }) => {
       <div className="detail_info">
         <div className="detail_info_music">
           <div className="title_playing playing_now">
-            <h6>
+            <h6 className="main_song_playing">
               <IoIosMusicalNote /> Now Playing:
             </h6>
-            <h6 className="bio_title_song_playing">
+            <h6 className="bio_title_song_playing playing_now">
               {currentTrack?.value?.title.split(".mp3")[0].substring(0, 20)}
             </h6>
           </div>
@@ -56,16 +57,9 @@ const SongCtrl = ({ ctrlMusic, addListener }) => {
             </h6>
           </div>
         </div>
-
-        <ReactPlayer
-          controls={true}
-          url={currentTrack?.value?.track}
-          width={"100%"}
-          height={"100%"}
-          volume={0.2}
-          onStart={() => addListener()}
-          onPause={() => setShowEqualizer(false)}
-        />
+      </div>
+      <div className="audio_player">
+        <AudioPlayerCtrl audio={currentTrack?.value?.track} />
       </div>
       <div className="track_actions">
         <Actionbar

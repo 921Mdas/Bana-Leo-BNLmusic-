@@ -7,8 +7,17 @@
   align-items: center;
   display: flex;
   padding: 0 1em;
-
   margin-bottom: 1em;
+}
+
+.sticky_nav {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 50%;
+  width: 98%;
+  height: 10vh;
+  transform: translateX(-50%);
 }
 
 .google_logout {

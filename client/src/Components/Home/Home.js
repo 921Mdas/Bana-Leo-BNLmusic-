@@ -1,9 +1,10 @@
-// External Exports
-import React, { useState } from "react";
+// External Imports
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { Slide } from "react-awesome-reveal";
 
-// components
+// Internal Imports
 import Welcome from "../UtilComponent/welcome";
 import Navbar from "../navbar";
 import Searchbar from "../UtilComponent/Searchbar";
@@ -30,7 +31,9 @@ function Home({
       <div className="landingpage">
         <Welcome state={state} />
         <Intro />
-        <Searchbar state={state} dispatch={dispatch} COMMANDS={COMMANDS} />
+        <Slide triggerOnce direction="up">
+          <Searchbar state={state} dispatch={dispatch} COMMANDS={COMMANDS} />
+        </Slide>
       </div>
       <div className="contentPage">
         <div>
