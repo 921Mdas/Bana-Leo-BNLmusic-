@@ -33,6 +33,7 @@
   pointer-events: none;
   /* border: solid 3px red;s */
   overflow: hidden !important;
+  opacity: 0.8;
 }
 
 .titles {

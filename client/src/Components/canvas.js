@@ -3,6 +3,8 @@ import { canvas } from "canvas-sketch";
 import { math, random } from "canvas-sketch-util";
 import { GiDrum } from "react-icons/gi";
 import drum from "../images-client/drumicon.png";
+import colormap from "colormap";
+import { COLORPICKER } from "../Context/helper";
 
 const Canvas = () => {
   const canvasRef = useRef(null);
@@ -16,9 +18,8 @@ const Canvas = () => {
   let randomRad;
 
   const draw = (context, x, y, radius, rad, lineW) => {
-    console.log(rad);
     context.save();
-    context.strokeStyle = "white";
+    context.strokeStyle = random.pick(COLORPICKER(99));
     context.lineWidth = lineW;
 
     context.beginPath();
@@ -30,7 +31,7 @@ const Canvas = () => {
 
   const drawLine = (context, x, y, lineW) => {
     context.save();
-    context.strokeStyle = "white";
+    context.strokeStyle = random.pick(COLORPICKER(99));
     context.lineWidth = lineW;
     context.beginPath();
     context.translate(x, y);

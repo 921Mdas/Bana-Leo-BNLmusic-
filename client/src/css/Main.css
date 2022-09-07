@@ -280,6 +280,7 @@ audio::-webkit-media-controls-current-time-display {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   overflow: hidden;
+  position: relative;
   background-image: linear-gradient(
       90deg,
       rgba(0, 0, 0, 0.609),
@@ -287,6 +288,15 @@ audio::-webkit-media-controls-current-time-display {
     ),
     url("../images-client/bgc.png");
   border-radius: 10px;
+}
+
+.playlist_icon_logo {
+  font-size: 3rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
 }
 
 .image_avatar_song img {

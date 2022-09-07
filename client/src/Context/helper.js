@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Fade } from "react-awesome-reveal";
+import colormap from "colormap";
+import { math, random } from "canvas-sketch-util";
 
 // Internal Imports
 
@@ -128,4 +130,15 @@ export let COUNTER = ({ end, children }) => {
       </Fade>
     </>
   );
+};
+
+// colorpick
+
+export const COLORPICKER = shades => {
+  const colors = colormap({
+    colormap: "magma",
+    nshades: shades,
+  });
+
+  return colors;
 };

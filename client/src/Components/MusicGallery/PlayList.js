@@ -1,5 +1,5 @@
 // External Imports
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Slide } from "react-awesome-reveal";
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -18,9 +18,13 @@ function PlayList({ state }) {
   const tracks = JSON.parse(localStorage.getItem("songs"));
 
   const [query, setQuery] = useState("");
-  const [playList, setPlayList] = useState(
-    state.alltracks.length > 0 ? state.alltracks : tracks
-  );
+  let tester = tracks;
+  const [playList, setPlayList] = useState(tracks);
+
+  useEffect(() => {
+    tester = tracks || state.alltracks;
+    setPlayList(tester);
+  }, []);
 
   const handleChange = e => {
     const value = e.target.value;
@@ -69,8 +73,8 @@ function PlayList({ state }) {
             </button>
           </div>
 
-          {playList?.length > 0 ? (
-            playList?.map(track => {
+          {tracks ? (
+            tracks?.map(track => {
               return (
                 <div className="single_track" key={track._id}>
                   <Slide triggerOnce direction="up">
