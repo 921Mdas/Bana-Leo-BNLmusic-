@@ -1,21 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.8cbe99a4.css",
-    "main.js": "/static/js/main.a1922940.js",
+    "main.css": "/static/css/main.6775c2de.css",
+    "main.js": "/static/js/main.47504381.js",
     "static/media/pexels-anthony-shkraba-production-8043616.mp4": "/static/media/pexels-anthony-shkraba-production-8043616.0164e302b4e4db07ae7d.mp4",
-    "static/media/pattern2.jpeg": "/static/media/pattern2.10209f21e51458e79c9c.jpeg",
     "static/media/pattern.webp": "/static/media/pattern.9f61664486d43ff2ee59.webp",
-    "static/media/rumbacongo4.jpeg": "/static/media/rumbacongo4.69a839472ee674205cfc.jpeg",
     "static/media/concert.jpeg": "/static/media/concert.72d75a18ebc8602945ec.jpeg",
     "static/media/rumbapic1.jpeg": "/static/media/rumbapic1.83c8112b17687f4bebcc.jpeg",
     "static/media/wemba.jpeg": "/static/media/wemba.7a58e614c4900511b6c4.jpeg",
+    "static/media/bgc.png": "/static/media/bgc.c6e480ee641205fa42d4.png",
     "static/media/theater.jpeg": "/static/media/theater.90c8bc66776fe6a65a2b.jpeg",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
-    "main.8cbe99a4.css.map": "/static/css/main.8cbe99a4.css.map",
-    "main.a1922940.js.map": "/static/js/main.a1922940.js.map"
+    "main.6775c2de.css.map": "/static/css/main.6775c2de.css.map",
+    "main.47504381.js.map": "/static/js/main.47504381.js.map"
   },
   "entrypoints": [
-    "static/css/main.8cbe99a4.css",
-    "static/js/main.a1922940.js"
+    "static/css/main.6775c2de.css",
+    "static/js/main.47504381.js"
   ]
 }
